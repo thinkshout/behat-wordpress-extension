@@ -1,0 +1,21 @@
+{
+  "name": "paulgibbs/behat-wordpress-extension",
+  "type": "behat-extension",
+  "description": "WordPress extension for Behat functional testing.",
+  "keywords": ["WordPress", "behat", "extension", "bdd"],
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Paul Gibbs",
+      "email": "djpaul@gmail.com",
+      "homepage": "http://byotos.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+    }
+  },
+  "require": {
+    "behat/behat": "~3.0"
+  }
+}
