@@ -2,13 +2,14 @@
 namespace paulgibbs\WordPress\Behat\ServiceContainer;
 
 use Behat\Behat\Context\ServiceContainer\ContextExtension;
-use Behat\Testwork\ServiceContainer\Extension;
-use Behat\Testwork\ServiceContainer\ExtensionManager;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+    Behat\Testwork\ServiceContainer\Extension as ExtensionInterface,
+    Behat\Testwork\ServiceContainer\ExtensionManager;
 
-class BehatExtension implements Extension
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+    Symfony\Component\DependencyInjection\ContainerBuilder,
+    Symfony\Component\DependencyInjection\Definition;
+
+class BehatExtension implements ExtensionInterface
 {
 	public function getConfigKey()
 	{
