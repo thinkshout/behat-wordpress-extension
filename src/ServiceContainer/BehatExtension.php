@@ -53,24 +53,16 @@ class BehatExtension implements ExtensionInterface
 
 	public function load(ContainerBuilder $container, array $config)
 	{
-		$this->loadContextInitializer($container);
-		$container->setParameter('wordpress.parameters', $config);
-	}
-
-	/**
-	 * Register a Context Initializer service for Behat.
-	 *
-	 * @param ContainerBuilder $container
-	 */
-	private function loadContextInitializer(ContainerBuilder $container)
-	{
-		$definition = new Definition('paulgibbs\WordPress\Behat\Context\Initializer', array(
+		// Register a Context Initializer service for Behat.
+		$definition = new Definition('paulgibbs\WordPress\Behat\Context\Initializer\WordPressContextInitializer', array(
 			'%wordpress.parameters%',
 			'%mink.parameters%',
 			'%paths.base%',
 		));
-
 		$definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
 		$container->setDefinition('paulgibbs.wordpress.context_initializer', $definition);
+
+		// Other options.
+		$container->setParameter('wordpress.parameters', $config);
 	}
 }
