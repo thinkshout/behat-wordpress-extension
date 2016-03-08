@@ -24,22 +24,6 @@ class BehatExtension implements ExtensionInterface
                 ->scalarNode('path')
                     ->defaultValue('vendor')
                 ->end()
-                ->arrayNode('connection')
-                    ->children()
-                        ->scalarNode('host')
-                            ->defaultValue('localhost')
-                        ->end()
-                        ->scalarNode('db')
-                            ->defaultValue('wordpress')
-                        ->end()
-                        ->scalarNode('username')
-                            ->defaultValue('root')
-                        ->end()
-                        ->scalarNode('password')
-                            ->defaultValue('')
-                        ->end()
-                    ->end()
-                ->end()
             ->end();
     }
 
