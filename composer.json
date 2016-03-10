@@ -18,6 +18,8 @@
   },
   "require": {
     "behat/behat": "~3.0",
-    "behat/mink-extension": "~2.0"
+    "behat/mink-extension": "~2.0",
+    "symfony/config": "*",
+    "symfony/dependency-injection": "*"
   }
 }
