@@ -1,5 +1,5 @@
 <?php
-namespace paulgibbs\WordPress\Behat\ServiceContainer;
+namespace PaulGibbs\WordPress\Behat\ServiceContainer;
 
 use Behat\Behat\Context\ServiceContainer\ContextExtension;
 use Behat\Testwork\ServiceContainer\Extension as ExtensionInterface;
@@ -22,7 +22,26 @@ class BehatExtension implements ExtensionInterface
             ->addDefaultsIfNotSet()
             ->children()
                 ->scalarNode('path')
-                    ->defaultValue('vendor')
+                    ->defaultValue('')
+                ->end()
+                ->arrayNode('connection')
+                    ->children()
+                        ->scalarNode('DB_NAME')
+                            ->defaultValue('wordpress')
+                        ->end()
+                        ->scalarNode('DB_USER_NAME')
+                            ->defaultValue('root')
+                        ->end()
+                        ->scalarNode('DB_USER_PASSWORD')
+                            ->defaultValue('')
+                        ->end()
+                        ->scalarNode('WP_USER_NAME')
+                            ->defaultValue('admin')
+                        ->end()
+                        ->scalarNode('WP_APP_PASSWORD')
+                            ->defaultValue('')
+                        ->end()
+                    ->end()
                 ->end()
             ->end();
     }
