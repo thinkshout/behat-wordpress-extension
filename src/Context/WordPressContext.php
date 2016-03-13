@@ -1,5 +1,5 @@
 <?php
-namespace paulgibbs\WordPress\Behat\Context;
+namespace PaulGibbs\WordPress\Behat\Context;
 
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
