@@ -9,7 +9,7 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
-class BehatExtension implements ExtensionInterface
+class WordPressExtension implements ExtensionInterface
 {
     public function getConfigKey()
     {
