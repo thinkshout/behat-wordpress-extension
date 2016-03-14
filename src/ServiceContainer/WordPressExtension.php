@@ -24,21 +24,25 @@ class WordPressExtension implements ExtensionInterface
                 ->scalarNode('path')
                     ->defaultValue('')
                 ->end()
-                ->arrayNode('connection')
+                ->arrayNode('database')
                     ->children()
-                        ->scalarNode('DB_NAME')
+                        ->scalarNode('name')
                             ->defaultValue('wordpress')
                         ->end()
-                        ->scalarNode('DB_USER_NAME')
+                        ->scalarNode('user_name')
                             ->defaultValue('root')
                         ->end()
-                        ->scalarNode('DB_USER_PASSWORD')
+                        ->scalarNode('user_password')
                             ->defaultValue('')
                         ->end()
-                        ->scalarNode('WP_USER_NAME')
+                    ->end()
+                ->end()
+                ->arrayNode('wordpress')
+                    ->children()
+                        ->scalarNode('user_name')
                             ->defaultValue('admin')
                         ->end()
-                        ->scalarNode('WP_APP_PASSWORD')
+                        ->scalarNode('app_password')
                             ->defaultValue('')
                         ->end()
                     ->end()
@@ -57,13 +61,13 @@ class WordPressExtension implements ExtensionInterface
     public function load(ContainerBuilder $container, array $config)
     {
         // Register a Context Initializer service for Behat.
-        $definition = new Definition('paulgibbs\WordPress\Behat\Context\Initializer\WordPressContextInitializer', array(
+        $definition = new Definition('PaulGibbs\WordPress\Behat\Context\Initializer\WordPressContextInitializer', array(
             '%wordpress.parameters%',
             '%mink.parameters%',
             '%paths.base%',
         ));
         $definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
-        $container->setDefinition('paulgibbs.wordpress.context_initializer', $definition);
+        $container->setDefinition('PaulGibbs.wordpress.context_initializer', $definition);
 
         // Other options.
         $container->setParameter('wordpress.parameters', $config);
