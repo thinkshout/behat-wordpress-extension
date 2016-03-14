@@ -11,7 +11,6 @@ default:
           goutte: ~
 
     PaulGibbs\WordPressExtension:
-      path: '/Users/paulgibbs/Sites/Salty-WordPress/projects/hats.dev'
       database:
         name: 'youremptytestdbnamehere'
         user_name: 'yourusernamehere'

@@ -21,9 +21,6 @@ class WordPressExtension implements ExtensionInterface
         $builder
             ->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('path')
-                    ->defaultValue('')
-                ->end()
                 ->arrayNode('database')
                     ->children()
                         ->scalarNode('name')
