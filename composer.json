@@ -13,7 +13,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "PaulGibbs\\WordPress\\Behat\\": "src"
+      "PaulGibbs\\WordPressBehatExtension\\": "src"
     }
   },
   "require": {

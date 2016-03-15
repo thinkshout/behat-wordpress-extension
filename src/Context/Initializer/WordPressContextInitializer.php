@@ -1,10 +1,10 @@
 <?php
-namespace paulgibbs\WordPress\Behat\Context\Initializer;
+namespace PaulGibbs\WordPressBehatExtension\Context\Initializer;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\Initializer\ContextInitializer;
 
-use paulgibbs\WordPress\Behat\Context\WordPressContext;
+use PaulGibbs\WordPressBehatExtension\Context\WordPressContext;
 
 class WordPressContextInitializer implements ContextInitializer
 {
