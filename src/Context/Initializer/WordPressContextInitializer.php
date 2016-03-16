@@ -11,6 +11,7 @@ class WordPressContextInitializer implements ContextInitializer
     private $wordpressParams;
     private $minkParams;
     private $basePath;
+    private $context;
 
     public function __construct($wordpressParams, $minkParams, $basePath)
     {
@@ -21,8 +22,6 @@ class WordPressContextInitializer implements ContextInitializer
 
     public function initializeContext(Context $context)
     {
-        if (!$context instanceof WordPressContext) {
-            return;
-        }
+        $this->context = $context;
     }
 }
