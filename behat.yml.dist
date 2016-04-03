@@ -13,5 +13,5 @@ default:
 
     PaulGibbs\WordPressBehatExtension:
       wordpress:
-        user_name: 'yourusernamehere'
-        app_password: 'yourpasswordhere'
+        admin_username: 'wpbehat'
+        admin_password: 'wpbehat'
