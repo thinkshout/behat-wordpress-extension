@@ -17,11 +17,23 @@ class WordPressContextInitializer implements ContextInitializer
     {
         $this->basePath        = $basePath;
         $this->minkParams      = $minkParams;
-        $this->wordpressParams = $wordpressParams;
+        $this->wordpressParams = $this->sanitiseWordpressParams($wordpressParams);
     }
 
     public function initializeContext(Context $context)
     {
         $this->context = $context;
+    }
+
+    /**
+     * Sanitise the supplied WordPress configuration variables.
+     *
+     * @param array $params
+     * @return array
+     */
+    protected function sanitiseWordpressParams($params)
+    {
+        $params['url'] = filter_var( $params['url'], FILTER_SANITIZE_URL );
+        return $params;
     }
 }
