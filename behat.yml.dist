@@ -12,10 +12,6 @@ default:
           goutte: ~
 
     PaulGibbs\WordPressBehatExtension:
-      database:
-        name: 'youremptytestdbnamehere'
-        user_name: 'yourusernamehere'
-        user_password: 'yourpasswordhere'
       wordpress:
         user_name: 'yourusernamehere'
         app_password: 'yourpasswordhere'
