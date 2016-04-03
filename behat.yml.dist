@@ -14,5 +14,4 @@ default:
     PaulGibbs\WordPressBehatExtension:
       admin_username: 'wpbehat'
       admin_password: 'wpbehat'
-      path: '../../../../..'
-      url: 'NOP'
+      url: ''
