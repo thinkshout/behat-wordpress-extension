@@ -16,3 +16,4 @@ default:
         admin_username: 'wpbehat'
         admin_password: 'wpbehat'
         path: '../../../../..'
+        url: ''

@@ -32,6 +32,9 @@ class WordPressBehatExtension implements ExtensionInterface
                         ->scalarNode('path')
                             ->defaultValue('../../../../..')  // wp-content/plugins/<plugin>/tests/behat
                         ->end()
+                        ->scalarNode('url')
+                            ->defaultValue('')
+                        ->end()
                     ->end()
                 ->end()
             ->end();
