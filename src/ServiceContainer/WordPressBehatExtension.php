@@ -27,10 +27,25 @@ class WordPressBehatExtension implements ExtensionInterface
                     ->scalarNode('admin_password')
                         ->defaultValue('wpbehat')
                     ->end()
-                    ->scalarNode('path')
+                    ->scalarNode('url')
+                        ->defaultValue('')
+                    ->end()
+                    ->scalarNode('path')  // Relative
                         ->defaultValue('../../../../..')  // wp-content/plugins/<plugin>/tests/behat
                     ->end()
-                    ->scalarNode('url')
+
+
+                    // Optional - automatically set from wp-config-tests.php if missing.
+                    ->scalarNode('db_host')
+                        ->defaultValue('')
+                    ->end()
+                    ->scalarNode('db_name')
+                        ->defaultValue('')
+                    ->end()
+                    ->scalarNode('db_username')
+                        ->defaultValue('')
+                    ->end()
+                    ->scalarNode('db_password')
                         ->defaultValue('')
                     ->end()
                 ->end()
