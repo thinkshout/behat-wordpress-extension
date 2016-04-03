@@ -12,8 +12,7 @@ default:
           goutte: ~
 
     PaulGibbs\WordPressBehatExtension:
-      wordpress:
-        admin_username: 'wpbehat'
-        admin_password: 'wpbehat'
-        path: '../../../../..'
-        url: ''
+      admin_username: 'wpbehat'
+      admin_password: 'wpbehat'
+      path: '../../../../..'
+      url: 'NOP'

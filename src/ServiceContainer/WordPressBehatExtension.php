@@ -20,21 +20,18 @@ class WordPressBehatExtension implements ExtensionInterface
     {
         $builder
             ->addDefaultsIfNotSet()
-            ->children()
-                ->arrayNode('wordpress')
-                    ->children()
-                        ->scalarNode('admin_username')
-                            ->defaultValue('wpbehat')
-                        ->end()
-                        ->scalarNode('admin_password')
-                            ->defaultValue('wpbehat')
-                        ->end()
-                        ->scalarNode('path')
-                            ->defaultValue('../../../../..')  // wp-content/plugins/<plugin>/tests/behat
-                        ->end()
-                        ->scalarNode('url')
-                            ->defaultValue('')
-                        ->end()
+                ->children()
+                    ->scalarNode('admin_username')
+                        ->defaultValue('wpbehat')
+                    ->end()
+                    ->scalarNode('admin_password')
+                        ->defaultValue('wpbehat')
+                    ->end()
+                    ->scalarNode('path')
+                        ->defaultValue('../../../../..')  // wp-content/plugins/<plugin>/tests/behat
+                    ->end()
+                    ->scalarNode('url')
+                        ->defaultValue('')
                     ->end()
                 ->end()
             ->end();
