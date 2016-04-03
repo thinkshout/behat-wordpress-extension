@@ -1,0 +1,21 @@
+default:
+  suites:
+    default:
+      contexts:
+        - PaulGibbs\WordPressBehatExtension\Context\WordPressContext
+
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'http://localhost:8000'
+      sessions:
+        default:
+          goutte: ~
+
+    PaulGibbs\WordPressBehatExtension:
+      database:
+        name: 'youremptytestdbnamehere'
+        user_name: 'yourusernamehere'
+        user_password: 'yourpasswordhere'
+      wordpress:
+        user_name: 'yourusernamehere'
+        app_password: 'yourpasswordhere'

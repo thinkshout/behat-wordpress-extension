@@ -13,12 +13,13 @@
   ],
   "autoload": {
     "psr-4": {
-      "paulgibbs\\WordPress\\Behat\\": "src"
+      "PaulGibbs\\WordPressBehatExtension\\": "src"
     }
   },
   "require": {
     "behat/behat": "~3.0",
     "behat/mink-extension": "~2.0",
+    "behat/mink-goutte-driver": "~1.2",
     "php": ">=5.4.0",
     "symfony/config": "*",
     "symfony/dependency-injection": "*"

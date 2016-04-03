@@ -1,5 +1,5 @@
 <?php
-namespace paulgibbs\WordPress\Behat\Context;
+namespace PaulGibbs\WordPressBehatExtension\Context;
 
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
@@ -7,7 +7,7 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 
 //http://www.tentacode.net/10-tips-with-behat-and-mink
-abstract whatever extends MinkContext {
+/*abstract whatever extends MinkContext {
 public function __call($method, $parameters)
 {
     // we try to call the method on the Page first
@@ -27,7 +27,7 @@ public function __call($method, $parameters)
         'The "%s()" method does not exist.', $method
     ));
 }
-}
+}*/
 
 class WordPressContext extends MinkContext
 {
