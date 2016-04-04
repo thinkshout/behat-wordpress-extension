@@ -59,22 +59,22 @@ class WordPressContextInitializer implements ContextInitializer
             {
                 $wpConfig = file_get_contents( $wpConfig );
 
-                if (preg_match( '#^define\( ?\'DB_HOST\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches ))
+                if (preg_match('#^define\( ?\'DB_HOST\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches))
                 {
                     $params['db_host'] = $matches[1];
                 }
 
-                if (preg_match( '#^define\( ?\'DB_NAME\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches ))
+                if (preg_match('#^define\( ?\'DB_NAME\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches))
                 {
                     $params['db_name'] = $matches[1];
                 }
 
-                if (preg_match( '#^define\( ?\'DB_USER\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches ))
+                if (preg_match('#^define\( ?\'DB_USER\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches))
                 {
                     $params['db_username'] = $matches[1];
                 }
 
-                if (preg_match( '#^define\( ?\'DB_PASSWORD\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches ))
+                if (preg_match('#^define\( ?\'DB_PASSWORD\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches))
                 {
                     $params['db_password'] = $matches[1];
                 }
