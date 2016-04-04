@@ -50,14 +50,15 @@ class WordPressContextInitializer implements ContextInitializer
             if (@file_exists($path . 'wp-tests-config.php'))
             {
                 $wpConfig = $path . 'wp-tests-config.php';
-            } elseif (@file_exists($path . '../wp-tests-config.php') && ! @file_exists($path . '../wp-settings.php'))
+            }
+            elseif (@file_exists($path . '../wp-tests-config.php') && ! @file_exists($path . '../wp-settings.php'))
             {
                 $wpConfig = $path . '../wp-tests-config.php';
             }
 
             if ($wpConfig && is_readable($wpConfig))
             {
-                $wpConfig = file_get_contents( $wpConfig );
+                $wpConfig = file_get_contents($wpConfig);
 
                 if (preg_match('#^define\( ?\'DB_HOST\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches))
                 {
