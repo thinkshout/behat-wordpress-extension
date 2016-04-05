@@ -1,6 +1,7 @@
 This extension offers a simple way to begin testing and driving your WordPress applications with Behat. Some benefits include:
 
-- **Efficient:** Like WordPress' PHPUnit implementation, SQL transactions are used to restore the database to a clean state before each scenario is tested.
+- **Efficient:** SQL transactions are used to restore the database to a clean state before each scenario is tested.
+- **Separation of concerns:** Tests are performed in a browser to ensure realistic results. We do not intefer with WordPress' PHP state in any way.
 - **Environments:** Supports both release and development versions of WordPress.
 - **Workflow:** A number of useful traits are available, which will speed up your Behat workflow.
 
