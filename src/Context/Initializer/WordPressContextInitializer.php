@@ -8,10 +8,10 @@ use PaulGibbs\WordPressBehatExtension\Context\WordPressContext;
 
 class WordPressContextInitializer implements ContextInitializer
 {
-    private $wordpressParams;
-    private $minkParams;
-    private $basePath;
-    private $context;
+    protected $wordpressParams;
+    protected $minkParams;
+    protected $basePath;
+    protected $context;
 
     public function __construct($wordpressParams, $minkParams, $basePath)
     {
