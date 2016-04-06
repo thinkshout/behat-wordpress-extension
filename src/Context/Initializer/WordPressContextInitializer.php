@@ -11,14 +11,21 @@ class WordpressContextInitializer implements ContextInitializer
     /**
      * @var WordpressContext
      */
-    protected $context;
+    protected $context = null;
 
     /**
      * @var array
      */
-    protected $params;
+    protected $params = [];
 
 
+    /**
+     * Constructor.
+     *
+     * @param array $wordpressParams
+     * @param array $minkParams
+     * @param array $basePath
+     */
     public function __construct($wordpressParams, $minkParams, $basePath)
     {
         $this->params = array(
@@ -28,6 +35,11 @@ class WordpressContextInitializer implements ContextInitializer
         );
     }
 
+    /**
+     * Prepare anything that the Context needs.
+     *
+     * @param Context $context
+     */
     public function initializeContext(Context $context)
     {
         if (! $context instanceof WordpressContext) {
@@ -36,6 +48,16 @@ class WordpressContextInitializer implements ContextInitializer
 
         $this->context = $context;
         $this->context->setContextInitializer( $this );
+    }
+
+    /**
+     * Get configuration parameters.
+     *
+     * @return array
+     */
+    public function getParameters()
+    {
+        return $this->params;
     }
 
     /**
