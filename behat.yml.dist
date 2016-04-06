@@ -2,7 +2,7 @@ default:
   suites:
     default:
       contexts:
-        - PaulGibbs\WordPressBehatExtension\Context\WordPressContext
+        - PaulGibbs\WordpressBehatExtension\Context\WordpressContext
 
   extensions:
     Behat\MinkExtension:
@@ -11,7 +11,7 @@ default:
         default:
           goutte: ~
 
-    PaulGibbs\WordPressBehatExtension:
+    PaulGibbs\WordpressBehatExtension:
       admin_username: 'wpbehat'
       admin_password: 'wpbehat'
       url: ''

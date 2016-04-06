@@ -1,14 +1,15 @@
 <?php
-namespace PaulGibbs\WordPressBehatExtension\Context;
 
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+namespace PaulGibbs\WordpressBehatExtension\Context;
 
 use Behat\MinkExtension\Context\MinkContext;
 
 //http://www.tentacode.net/10-tips-with-behat-and-mink
 /*abstract whatever extends MinkContext {
 public function __call($method, $parameters)
+class WordpressContext extends MinkContext
 {
     // we try to call the method on the Page first
     $page = $this->getSession()->getPage();
@@ -29,7 +30,6 @@ public function __call($method, $parameters)
 }
 }*/
 
-class WordPressContext extends MinkContext
 {
     /**
      * Create a new WordPress website from scratch

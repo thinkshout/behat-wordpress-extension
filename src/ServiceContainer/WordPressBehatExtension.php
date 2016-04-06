@@ -1,5 +1,5 @@
 <?php
-namespace PaulGibbs\WordPressBehatExtension\ServiceContainer;
+namespace PaulGibbs\WordpressBehatExtension\ServiceContainer;
 
 use Behat\Behat\Context\ServiceContainer\ContextExtension;
 use Behat\Testwork\ServiceContainer\Extension as ExtensionInterface;
@@ -9,7 +9,7 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
-class WordPressBehatExtension implements ExtensionInterface
+class WordpressBehatExtension implements ExtensionInterface
 {
     public function getConfigKey()
     {
@@ -63,7 +63,7 @@ class WordPressBehatExtension implements ExtensionInterface
     public function load(ContainerBuilder $container, array $config)
     {
         // Register a Context Initializer service for Behat.
-        $definition = new Definition('PaulGibbs\WordPressBehatExtension\Context\Initializer\WordPressContextInitializer', array(
+        $definition = new Definition('PaulGibbs\WordpressBehatExtension\Context\Initializer\WordpressContextInitializer', array(
             '%wordpress.parameters%',
             '%mink.parameters%',
             '%paths.base%',

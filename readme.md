@@ -20,7 +20,7 @@ Next, within your project root, create a `behat.yml` file, and add:
 ```
 default:
     extensions:
-        PaulGibbs\WordPressBehatExtension:
+        PaulGibbs\WordpressBehatExtension:
             # env_path: .env.behat
 ```
 

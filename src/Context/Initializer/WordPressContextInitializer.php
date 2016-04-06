@@ -1,12 +1,12 @@
 <?php
-namespace PaulGibbs\WordPressBehatExtension\Context\Initializer;
+namespace PaulGibbs\WordpressBehatExtension\Context\Initializer;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\Initializer\ContextInitializer;
 
-use PaulGibbs\WordPressBehatExtension\Context\WordPressContext;
+use PaulGibbs\WordpressBehatExtension\Context\WordpressContext;
 
-class WordPressContextInitializer implements ContextInitializer
+class WordpressContextInitializer implements ContextInitializer
 {
     protected $wordpressParams;
     protected $minkParams;
