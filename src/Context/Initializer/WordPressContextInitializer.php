@@ -8,21 +8,34 @@ use PaulGibbs\WordpressBehatExtension\Context\WordpressContext;
 
 class WordpressContextInitializer implements ContextInitializer
 {
-    protected $wordpressParams;
-    protected $minkParams;
-    protected $basePath;
+    /**
+     * @var WordpressContext
+     */
     protected $context;
+
+    /**
+     * @var array
+     */
+    protected $params;
+
 
     public function __construct($wordpressParams, $minkParams, $basePath)
     {
-        $this->basePath        = $basePath;
-        $this->minkParams      = $minkParams;
-        $this->wordpressParams = $this->sanitiseWordpressParams($wordpressParams);
+        $this->params = array(
+            'basePath'  => $basePath,
+            'mink'      => $minkParams,
+            'wordpress' => $this->sanitiseWordpressParams($wordpressParams),
+        );
     }
 
     public function initializeContext(Context $context)
     {
+        if (! $context instanceof WordpressContext) {
+            return;
+        }
+
         $this->context = $context;
+        $this->context->setContextInitializer( $this );
     }
 
     /**
