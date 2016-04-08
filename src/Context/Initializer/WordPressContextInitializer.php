@@ -48,6 +48,8 @@ class WordpressContextInitializer implements ContextInitializer
 
         $this->context = $context;
         $this->context->setContextInitializer( $this );
+
+        $this->connectToDatabase();
     }
 
     /**
@@ -71,7 +73,7 @@ class WordpressContextInitializer implements ContextInitializer
         $params['url'] = filter_var( $params['url'], FILTER_SANITIZE_URL );
 
         // Fetch WP database credentials if not set.
-        if (! $params['db_name'] || ! $params['db_username'] || ! $params['db_password'])
+        if (! $params['db_name'] || ! $params['db_username'] || ! $params['db_password'] || ! $params['db_host'])
         {
             $path     = dirname(__FILE__) . '/../../../../' . $params['path'] . '/';
             $wpConfig = '';

@@ -3,11 +3,11 @@ namespace PaulGibbs\WordpressBehatExtension\Context;
 
 use Behat\MinkExtension\Context\MinkContext;
 use PaulGibbs\WordpressBehatExtension\Context\Initializer\WordpressContextInitializer;
-use PaulGibbs\WordpressBehatExtension\Context\DatabaseTransactions;
+use PaulGibbs\WordpressBehatExtension\Context\Database;
 
 class WordpressContext extends MinkContext
 {
-    use DatabaseTransactions;
+    use Database;
 
     /**
      * @var WordpressContextInitializer
