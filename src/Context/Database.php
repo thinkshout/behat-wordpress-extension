@@ -14,7 +14,7 @@ trait Database
     /**
      * Connect to MySQL.
      */
-    public static function connectToDatabase()
+    public static function initializeDatabaseConnection()
     {
         self::$mysqli = mysqli_init();
         $db_settings  = $this->getParameters()['wordpress'];
@@ -28,8 +28,23 @@ trait Database
         )) {
             die('MySQL connect error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
         }
+
+        mysqli_multi_query(
+            self::$mysqli,
+            'SET GLOBAL TRANSACTION ISOLATION LEVEL READ UNCOMMITTED'
+        );
     }
 
+    /**
+     * Close MySQL connection.
+     */
+    public static function terminateDatabaseConnection()
+    {
+        mysqli_multi_query(
+            self::$mysqli,
+            'SET GLOBAL TRANSACTION ISOLATION LEVEL REPEATABLE READ UNCOMMITTED'
+        );
+    }
     /**
      * Begin a database transaction.
      *
