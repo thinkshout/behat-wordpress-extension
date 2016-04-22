@@ -31,7 +31,7 @@ trait Database
 
         mysqli_multi_query(
             self::$mysqli,
-            'SET GLOBAL TRANSACTION ISOLATION LEVEL READ UNCOMMITTED'
+            'SET GLOBAL TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;'
         );
     }
 
@@ -40,18 +40,17 @@ trait Database
      */
     public static function terminateDatabaseConnection()
     {
-        mysqli_multi_query(
-            self::$mysqli,
-            'SET GLOBAL TRANSACTION ISOLATION LEVEL REPEATABLE READ UNCOMMITTED'
-        );
+        mysqli_query(self::$mysqli, 'SET GLOBAL TRANSACTION ISOLATION LEVEL REPEATABLE READ;');
     }
+
     /**
      * Begin a database transaction before the scenario is run.
      *
      * @BeforeScenario
      */
-    public static function beginTransaction()
+    public static function startTransaction()
     {
+        mysqli_query(self::$mysqli, 'START TRANSACTION;');
     }
 
     /**
@@ -59,7 +58,8 @@ trait Database
      *
      * @AfterScenario
      */
-    public static function rollback()
+    public static function rollbackTransaction()
     {
+        mysqli_query(self::$mysqli, 'ROLLBACK;');
     }
 }
