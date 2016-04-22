@@ -10,7 +10,6 @@ trait Database
      */
     public static $mysqli = null;
 
-
     /**
      * Connect to MySQL.
      */
@@ -25,7 +24,8 @@ trait Database
             $db_settings['db_username'],
             $db_settings['db_password'],
             $db_settings['db_name']
-        )) {
+        ))
+        {
             die('MySQL connect error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
         }
 
@@ -46,7 +46,7 @@ trait Database
         );
     }
     /**
-     * Begin a database transaction.
+     * Begin a database transaction before the scenario is run.
      *
      * @BeforeScenario
      */
@@ -55,7 +55,7 @@ trait Database
     }
 
     /**
-     * Roll it back after the scenario.
+     * Roll back database transaction after the scenario runs.
      *
      * @AfterScenario
      */
