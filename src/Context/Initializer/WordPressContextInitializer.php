@@ -49,8 +49,8 @@ class WordpressContextInitializer implements ContextInitializer
         $this->context = $context;
         $this->context->setContextInitializer( $this );
 
-        $this->initializeDatabaseConnection();
-        register_shutdown_function( array( $this, 'terminateDatabaseConnection' ) );
+        $this->context->initializeDatabaseConnection();
+        register_shutdown_function( array( $this->context, 'terminateDatabaseConnection' ) );
     }
 
     /**
