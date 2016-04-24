@@ -48,7 +48,6 @@ class WordpressContext extends MinkContext
             die('MySQL connect error: (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
         }
 
-        die(var_dump('djpaul one'));
         mysqli_multi_query(
             $this->mysqli,
             'SET GLOBAL TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;'
@@ -60,7 +59,6 @@ class WordpressContext extends MinkContext
      */
     public function terminateDatabaseConnection()
     {
-        die(var_dump('djpaul four'));
         mysqli_query($this->mysqli, 'SET GLOBAL TRANSACTION ISOLATION LEVEL REPEATABLE READ;');
     }
 
@@ -71,7 +69,6 @@ class WordpressContext extends MinkContext
      */
     public function startTransaction()
     {
-        die(var_dump('djpaul two'));
         mysqli_query($this->mysqli, 'START TRANSACTION;');
     }
 
@@ -82,7 +79,6 @@ class WordpressContext extends MinkContext
      */
     public function rollbackTransaction()
     {
-        die(var_dump('djpaul threetw'));
         mysqli_query($this->mysqli, 'ROLLBACK;');
     }
 }
