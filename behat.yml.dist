@@ -12,6 +12,3 @@ default:
           goutte: ~
 
     PaulGibbs\WordpressBehatExtension:
-      admin_username: 'wpbehat'
-      admin_password: 'wpbehat'
-      url: ''

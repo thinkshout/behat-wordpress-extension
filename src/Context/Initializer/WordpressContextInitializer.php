@@ -71,7 +71,7 @@ class WordpressContextInitializer implements ContextInitializer
      */
     protected function sanitiseWordpressParams($params)
     {
-        $params['url'] = filter_var( $params['url'], FILTER_SANITIZE_URL );
+        $params['site_url'] = filter_var( $params['site_url'], FILTER_SANITIZE_URL );
 
         // Fetch WP database credentials if not set.
         if (! $params['db_name'] || ! $params['db_username'] || ! $params['db_password'] || ! $params['db_host'])

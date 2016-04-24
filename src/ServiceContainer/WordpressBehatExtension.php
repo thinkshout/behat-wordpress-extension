@@ -21,21 +21,12 @@ class WordpressBehatExtension implements ExtensionInterface
         $builder
             ->addDefaultsIfNotSet()
                 ->children()
-                    ->scalarNode('admin_username')
-                        ->defaultValue('wpbehat')
-                    ->end()
-                    ->scalarNode('admin_password')
-                        ->defaultValue('wpbehat')
-                    ->end()
-                    ->scalarNode('url')
-                        ->defaultValue('')
-                    ->end()
-                    ->scalarNode('path')  // Relative
-                        ->defaultValue('../../../../..')  // wp-content/plugins/<plugin>/tests/behat
+                    // Optional - path to this project's Composer's `bin-dir`.
+                    ->scalarNode('composer_bin_dir')
+                        ->defaultValue(__DIR__.'../../')
                     ->end()
 
-
-                    // Optional - automatically set from wp-config-tests.php if missing.
+                    // Optional - automatically fetched from wp-config-tests.php, or DB, if unset.
                     ->scalarNode('db_host')
                         ->defaultValue('')
                     ->end()
@@ -46,6 +37,9 @@ class WordpressBehatExtension implements ExtensionInterface
                         ->defaultValue('')
                     ->end()
                     ->scalarNode('db_password')
+                        ->defaultValue('')
+                    ->end()
+                    ->scalarNode('site_url')
                         ->defaultValue('')
                     ->end()
                 ->end()
