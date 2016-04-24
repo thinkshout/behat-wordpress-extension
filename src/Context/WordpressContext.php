@@ -48,7 +48,7 @@ class WordpressContext extends MinkContext
             die('MySQL connect error: (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
         }
 
-        mysqli_multi_query(
+        mysqli_query(
             $this->mysqli,
             'SET GLOBAL TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;'
         );
@@ -60,6 +60,7 @@ class WordpressContext extends MinkContext
     public function terminateDatabaseConnection()
     {
         mysqli_query($this->mysqli, 'SET GLOBAL TRANSACTION ISOLATION LEVEL REPEATABLE READ;');
+        mysqli_close($this->mysqli);
     }
 
     /**
