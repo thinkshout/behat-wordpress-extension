@@ -23,7 +23,7 @@ class WordpressBehatExtension implements ExtensionInterface
                 ->children()
                     // Optional - path to this project's Composer's `bin-dir`.
                     ->scalarNode('composer_bin_dir')
-                        ->defaultValue(__DIR__.'../../')
+                        ->defaultValue(__DIR__.'../../bin/')
                     ->end()
 
                     // Optional - automatically fetched from wp-config-tests.php, or DB, if unset.
