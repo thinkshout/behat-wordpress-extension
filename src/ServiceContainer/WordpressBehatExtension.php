@@ -26,7 +26,7 @@ class WordpressBehatExtension implements ExtensionInterface
                         ->defaultValue(__DIR__.'../../bin/')
                     ->end()
 
-                    // Optional - automatically fetched from wp-config-tests.php, or DB, if unset.
+                    // Optional - automatically fetched from wp-config-tests.php if unset.
                     ->scalarNode('db_host')
                         ->defaultValue('')
                     ->end()
@@ -39,8 +39,10 @@ class WordpressBehatExtension implements ExtensionInterface
                     ->scalarNode('db_password')
                         ->defaultValue('')
                     ->end()
+
+                    // Optional - not fully supported, but implemented for possible future integration.
                     ->scalarNode('site_url')
-                        ->defaultValue('')
+                        ->defaultValue('127.0.0.1')
                     ->end()
                 ->end()
             ->end();
