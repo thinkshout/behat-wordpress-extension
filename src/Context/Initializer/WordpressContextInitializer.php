@@ -36,7 +36,7 @@ class WordpressContextInitializer implements ContextInitializer
     }
 
     /**
-     * Prepare anything that the Context needs.
+     * Prepare everything that the Context needs.
      *
      * @param Context $context
      */
@@ -45,12 +45,15 @@ class WordpressContextInitializer implements ContextInitializer
         if (! $context instanceof WordpressContext) {
             return;
         }
-
         $this->context = $context;
-        $this->context->setContextInitializer( $this );
+        $this->context->setContextInitializer($this);
 
+        // DB.
         $this->context->initializeDatabaseConnection();
-        register_shutdown_function( array( $this->context, 'terminateDatabaseConnection' ) );
+        register_shutdown_function(array($this->context, 'terminateDatabaseConnection'));
+
+        // Environment.
+        $this->maybeInstallWordpress();
     }
 
     /**
@@ -61,6 +64,13 @@ class WordpressContextInitializer implements ContextInitializer
     public function getParameters()
     {
         return $this->params;
+    }
+
+    /**
+     * Install WordPress. Maybe.
+     */
+    public function maybeInstallWordpress()
+    {
     }
 
     /**
