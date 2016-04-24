@@ -42,7 +42,7 @@ class WordpressBehatExtension implements ExtensionInterface
 
                     // Optional - not fully supported, but implemented for possible future integration.
                     ->scalarNode('site_url')
-                        ->defaultValue('127.0.0.1')
+                        ->defaultValue('http://127.0.0.1')
                     ->end()
                 ->end()
             ->end();
