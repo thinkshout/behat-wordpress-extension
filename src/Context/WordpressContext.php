@@ -30,37 +30,23 @@ class WordpressContext extends MinkContext
     }
 
     /**
-     * Connect to MySQL.
+     * Set MySQL connection handle.
+     *
+     * @param mysqli $handle
      */
-    public function initializeDatabaseConnection()
+    public function setDatabase(\mysqli $handle)
     {
-        $this->mysqli = mysqli_init();
-        $db_settings  = $this->contextInitializer->getParameters()['wordpress'];
-
-        if (! @mysqli_real_connect(
-            $this->mysqli,
-            $db_settings['db_host'],
-            $db_settings['db_username'],
-            $db_settings['db_password'],
-            $db_settings['db_name']
-        ))
-        {
-            die('MySQL connect error: (' . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
-        }
-
-        mysqli_query(
-            $this->mysqli,
-            'SET GLOBAL TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;'
-        );
+        $this->mysqli = $handle;
     }
 
     /**
-     * Close MySQL connection.
+     * Get MySQL connection handle.
+     *
+     * @return mysqli
      */
-    public function terminateDatabaseConnection()
+    public function getDatabase()
     {
-        mysqli_query($this->mysqli, 'SET GLOBAL TRANSACTION ISOLATION LEVEL REPEATABLE READ;');
-        mysqli_close($this->mysqli);
+        return $this->mysqli;
     }
 
     /**

@@ -49,8 +49,8 @@ class WordpressContextInitializer implements ContextInitializer
         $this->context->setContextInitializer($this);
 
         // DB.
-        $this->context->initializeDatabaseConnection();
-        register_shutdown_function(array($this->context, 'terminateDatabaseConnection'));
+        $this->initializeDatabaseConnection();
+        register_shutdown_function(array($this, 'terminateDatabaseConnection'));
 
         // Environment.
         $this->maybeInstallWordpress();
@@ -64,6 +64,40 @@ class WordpressContextInitializer implements ContextInitializer
     public function getParameters()
     {
         return $this->params;
+    }
+
+    /**
+     * Connect to MySQL.
+     */
+    public function initializeDatabaseConnection()
+    {
+        $this->context->setDatabase(mysqli_init());
+        $db_settings = $this->getParameters()['wordpress'];
+
+        if (! @mysqli_real_connect(
+            $this->context->getDatabase(),
+            $db_settings['db_host'],
+            $db_settings['db_username'],
+            $db_settings['db_password'],
+            $db_settings['db_name']
+        ))
+        {
+            die('MySQL connect error: (' . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
+        }
+
+        mysqli_query(
+            $this->context->getDatabase(),
+            'SET GLOBAL TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;'
+        );
+    }
+
+    /**
+     * Close MySQL connection.
+     */
+    public function terminateDatabaseConnection()
+    {
+        mysqli_query($this->context->getDatabase(), 'SET GLOBAL TRANSACTION ISOLATION LEVEL REPEATABLE READ;');
+        mysqli_close($this->context->getDatabase());
     }
 
     /**
