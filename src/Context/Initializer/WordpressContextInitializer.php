@@ -49,7 +49,7 @@ class WordpressContextInitializer implements ContextInitializer
 
         // DB.
         $this->initializeDatabaseConnection();
-        register_shutdown_function(array($this, 'terminateDatabaseConnection'));
+        //register_shutdown_function(array($this, 'terminateDatabaseConnection'));
 
         // Environment.
         $this->maybeInstallWordpress();
