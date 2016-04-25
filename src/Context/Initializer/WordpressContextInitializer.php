@@ -71,6 +71,7 @@ class WordpressContextInitializer implements ContextInitializer
      */
     public function maybeInstallWordpress()
     {
+        $bin_dir = $this->getParameters()['wordpress']['composer_bin_dir'];
     }
 
     /**
