@@ -86,7 +86,7 @@ class WordpressContextInitializer implements ContextInitializer
         // Fetch WP database credentials if not set.
         if (! $params['db_name'] || ! $params['db_username'] || ! $params['db_password'] || ! $params['db_host'])
         {
-            $path     = dirname(__FILE__) . '/../../../../' . $params['path'] . '/';
+            $path     = dirname(__FILE__) . '/../../../../../../../../../';
             $wpConfig = '';
 
             /*
