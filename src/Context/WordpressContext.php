@@ -45,7 +45,7 @@ class WordpressContext extends MinkContext
             $db_settings['db_name']
         ))
         {
-            die('MySQL connect error: (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
+            die('MySQL connect error: (' . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
         }
 
         mysqli_query(
