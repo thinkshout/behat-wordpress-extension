@@ -117,7 +117,35 @@ class WordpressContextInitializer implements ContextInitializer
      */
     public function maybeInstallWordpress()
     {
-        $bin_dir = $this->getParameters()['wordpress']['composer_bin_dir'];
+        $bin = $this->getParameters()['wordpress']['composer_bin_dir'];
+
+        // Drop all tables.
+        $tables = mysqli_query($this->context->getDatabase(), 'SHOW TABLES');
+        while ($table = mysqli_fetch_row($tables)) {
+            mysqli_query($this->context->getDatabase(), "DROP TABLE IF EXISTS {$table[0]}");
+        }
+
+        // Install WordPress.
+        $status = exec(
+            sprintf(
+                "{$bin}/wp core install --url=%s --admin_user=%s --admin_password=%s --admin_email=%s --skip-email --title=%s --require=%s",
+                '127.0.0.1',
+                'admin',
+                'admin',
+                'admin@example.com',
+                'cool-site',
+                $this->getParameters()['wordpress']['wpcli_bootstrap']
+            )
+        );
+        if ($status !== 'Success: WordPress installed successfully.') {
+            die('Error installing WordPress: ' . $status);
+        }
+        die;
+
+        /*mysqli_query(
+            $this->context->getDatabase(),
+            'SET GLOBAL TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;'
+        );*/
     }
 
     /**
