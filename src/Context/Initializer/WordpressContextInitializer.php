@@ -3,7 +3,6 @@ namespace PaulGibbs\WordpressBehatExtension\Context\Initializer;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\Initializer\ContextInitializer;
-
 use PaulGibbs\WordpressBehatExtension\Context\WordpressContext;
 
 class WordpressContextInitializer implements ContextInitializer
@@ -80,8 +79,7 @@ class WordpressContextInitializer implements ContextInitializer
             $db_settings['db_username'],
             $db_settings['db_password'],
             $db_settings['db_name']
-        ))
-        {
+        )) {
             die('MySQL connect error: (' . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
         }
 
@@ -116,11 +114,10 @@ class WordpressContextInitializer implements ContextInitializer
      */
     protected function sanitiseWordpressParams($params)
     {
-        $params['site_url'] = filter_var( $params['site_url'], FILTER_SANITIZE_URL );
+        $params['site_url'] = filter_var($params['site_url'], FILTER_SANITIZE_URL);
 
         // Fetch WP database credentials if not set.
-        if (! $params['db_name'] || ! $params['db_username'] || ! $params['db_password'] || ! $params['db_host'])
-        {
+        if (! $params['db_name'] || ! $params['db_username'] || ! $params['db_password'] || ! $params['db_host']) {
             $path     = dirname(__FILE__) . '/../../../../../../../../../';
             $wpConfig = '';
 
@@ -130,36 +127,28 @@ class WordpressContextInitializer implements ContextInitializer
              * of avoiding cases where the current directory is a nested installation, e.g. / is WordPress(a)
              * and /blog/ is WordPress(b).
              */
-            if (@file_exists($path . 'wp-tests-config.php'))
-            {
+            if (@file_exists($path . 'wp-tests-config.php')) {
                 $wpConfig = $path . 'wp-tests-config.php';
-            }
-            elseif (@file_exists($path . '../wp-tests-config.php') && ! @file_exists($path . '../wp-settings.php'))
-            {
+            } elseif (@file_exists($path . '../wp-tests-config.php') && ! @file_exists($path . '../wp-settings.php')) {
                 $wpConfig = $path . '../wp-tests-config.php';
             }
 
-            if ($wpConfig && is_readable($wpConfig))
-            {
+            if ($wpConfig && is_readable($wpConfig)) {
                 $wpConfig = file_get_contents($wpConfig);
 
-                if (preg_match('#^define\( ?\'DB_HOST\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches))
-                {
+                if (preg_match('#^define\( ?\'DB_HOST\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches)) {
                     $params['db_host'] = $matches[1];
                 }
 
-                if (preg_match('#^define\( ?\'DB_NAME\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches))
-                {
+                if (preg_match('#^define\( ?\'DB_NAME\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches)) {
                     $params['db_name'] = $matches[1];
                 }
 
-                if (preg_match('#^define\( ?\'DB_USER\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches))
-                {
+                if (preg_match('#^define\( ?\'DB_USER\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches)) {
                     $params['db_username'] = $matches[1];
                 }
 
-                if (preg_match('#^define\( ?\'DB_PASSWORD\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches))
-                {
+                if (preg_match('#^define\( ?\'DB_PASSWORD\', ?\'([^\']*)\' \);$#m', $wpConfig, $matches)) {
                     $params['db_password'] = $matches[1];
                 }
             }
