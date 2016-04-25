@@ -18,12 +18,18 @@ class WordpressBehatExtension implements ExtensionInterface
 
     public function configure(ArrayNodeDefinition $builder)
     {
+        $binDir = explode('/', __DIR__);
+        array_pop($binDir);
+        array_pop($binDir);
+        array_push($binDir, 'bin');
+        $binDir = implode('/', $binDir);
+
         $builder
             ->addDefaultsIfNotSet()
                 ->children()
                     // Optional - path to this project's Composer's `bin-dir`.
                     ->scalarNode('composer_bin_dir')
-                        ->defaultValue(__DIR__.'../../bin/')
+                        ->defaultValue($binDir)
                     ->end()
 
                     // Optional - automatically fetched from wp-config-tests.php if unset.
