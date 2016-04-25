@@ -71,14 +71,14 @@ class WordpressContextInitializer implements ContextInitializer
     public function initializeDatabaseConnection()
     {
         $this->context->setDatabase(mysqli_init());
-        $db_settings = $this->getParameters()['wordpress'];
+        $db = $this->getParameters()['wordpress'];
 
         if (! @mysqli_real_connect(
             $this->context->getDatabase(),
-            $db_settings['db_host'],
-            $db_settings['db_username'],
-            $db_settings['db_password'],
-            $db_settings['db_name']
+            $db['db_host'],
+            $db['db_username'],
+            $db['db_password'],
+            $db['db_name']
         )) {
             die('MySQL connect error: (' . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
         }
