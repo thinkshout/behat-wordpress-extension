@@ -52,17 +52,30 @@ class WordpressContextInitializer implements ContextInitializer
         //register_shutdown_function(array($this, 'terminateDatabaseConnection'));
 
         // Environment.
+        $this->createWordpressBootstrap();
         $this->maybeInstallWordpress();
     }
 
     /**
-     * Get configuration parameters.
-     *
-     * @return array
+     * Create a bootstrap file for WP-CLI to set the DB_* values.
      */
-    public function getParameters()
+    public function createWordpressBootstrap()
     {
-        return $this->params;
+        $db       = $this->getParameters()['wordpress'];
+        $file     = tempnam(sys_get_temp_dir(), 'behat');
+        $wpconfig = sprintf("<?php
+            define( 'DB_NAME', '%s' );
+            define( 'DB_USER', '%s' );
+            define( 'DB_PASSWORD', '%s' );
+            define( 'DB_HOST', '%s' );",
+            $db['db_name'],
+            $db['db_username'],
+            $db['db_password'],
+            $db['db_host']
+        );
+
+        file_put_contents($file, $wpconfig);
+        $this->setParameter('wpcli_bootstrap', $file);
     }
 
     /**
@@ -96,6 +109,7 @@ class WordpressContextInitializer implements ContextInitializer
     {
         mysqli_query($this->context->getDatabase(), 'SET GLOBAL TRANSACTION ISOLATION LEVEL REPEATABLE READ;');
         mysqli_close($this->context->getDatabase());
+        unlink($this->getParameters()['wordpress']['wpcli_bootstrap']);
     }
 
     /**
@@ -104,6 +118,27 @@ class WordpressContextInitializer implements ContextInitializer
     public function maybeInstallWordpress()
     {
         $bin_dir = $this->getParameters()['wordpress']['composer_bin_dir'];
+    }
+
+    /**
+     * Set a configuration parameter.
+     *
+     * @param string $key
+     * @param mixed $value
+     */
+    public function setParameter($key, $value)
+    {
+        $this->params['wordpress'][$key] = $value;
+    }
+
+    /**
+     * Get configuration parameters.
+     *
+     * @return array
+     */
+    public function getParameters()
+    {
+        return $this->params;
     }
 
     /**

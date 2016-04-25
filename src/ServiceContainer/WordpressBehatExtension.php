@@ -49,6 +49,9 @@ class WordpressBehatExtension implements ExtensionInterface
                     ->scalarNode('site_url')
                         ->defaultValue('http://127.0.0.1')
                     ->end()
+                    ->scalarNode('wpcli_bootstrap')
+                        ->defaultValue('')
+                    ->end()
                 ->end()
             ->end();
     }
