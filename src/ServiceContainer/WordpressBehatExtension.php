@@ -31,9 +31,15 @@ class WordpressBehatExtension implements ExtensionInterface
                         ->defaultValue($binDir)
                     ->end()
 
+                    // Optional - set in behat.local.yml.
                     ->scalarNode('site_url')
-                        ->defaultValue('http://127.0.0.1')
+                        ->defaultValue('http://127.0.0.1:6680')
                     ->end()
+                    ->scalarNode('ssh_host')
+                        ->defaultValue('127.0.0.1')
+                    ->end()
+                    ->scalarNode('ssh_username')
+                        ->defaultValue('vagrant')
                     ->end()
                 ->end()
             ->end();
