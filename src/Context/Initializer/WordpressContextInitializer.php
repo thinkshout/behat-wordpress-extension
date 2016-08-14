@@ -13,6 +13,8 @@ class WordpressContextInitializer implements ContextInitializer
     protected $context = null;
 
     /**
+     * Extension parameters.
+     *
      * @var array
      */
     protected $params = [];
@@ -28,9 +30,9 @@ class WordpressContextInitializer implements ContextInitializer
     public function __construct($wordpressParams, $minkParams, $basePath)
     {
         $this->params = array(
-            'basePath'  => $basePath,
+            'wordpress' => $wordpressParams,
             'mink'      => $minkParams,
-            'wordpress' => $this->sanitiseWordpressParams($wordpressParams),
+            'basePath'  => $basePath,
         );
     }
 
@@ -44,6 +46,7 @@ class WordpressContextInitializer implements ContextInitializer
         if (! $context instanceof WordpressContext) {
             return;
         }
+
         $this->context = $context;
         $this->context->setContextInitializer($this);
 
@@ -52,9 +55,9 @@ class WordpressContextInitializer implements ContextInitializer
     }
 
     /**
-     * Install WordPress. Maybe.
+     * Install WordPress.
      */
-    public function maybeInstallWordpress()
+    public function installWordpress()
     {
     	//todo chnge
         $bin = $this->getParameters()['wordpress']['composer_bin_dir'];
@@ -98,6 +101,7 @@ class WordpressContextInitializer implements ContextInitializer
      * Get configuration parameters.
      *
      * @return array
+     * @param string $group Option group fo fetch.
      */
     public function getParameters()
     {
