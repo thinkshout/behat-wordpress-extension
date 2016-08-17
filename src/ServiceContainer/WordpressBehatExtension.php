@@ -20,9 +20,11 @@ class WordpressBehatExtension implements ExtensionInterface
         $builder
             ->addDefaultsIfNotSet()
                 ->children()
-                    // Optional - set in behat.local.yml.
-                    ->scalarNode('site_url')
-                        ->defaultValue('http://127.0.0.1')
+                    ->scalarNode('path')
+                        ->defaultValue('/srv/www/buddypress.dev/src')
+                    ->end()
+                    ->scalarNode('url')
+                        ->defaultValue('localhost')
                     ->end()
                 ->end()
             ->end();
