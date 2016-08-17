@@ -15,25 +15,26 @@ class WordpressContextInitializer implements ContextInitializer
     /**
      * Extension parameters.
      *
+     * @todo add a getter
+     *
      * @var array
      */
-    protected $params = [];
+    public $params = [];
 
 
     /**
      * Constructor.
      *
-     * @param array $wordpressParams
-     * @param array $minkParams
-     * @param array $basePath
+     * @param array $config
+     * @param array $mink_params
+     * @param array $path
      */
-    public function __construct($wordpressParams, $minkParams, $basePath)
+    public function __construct($config, $mink_params, $path)
     {
-        $this->params = array(
-            'wordpress' => $wordpressParams,
-            'mink'      => $minkParams,
-            'basePath'  => $basePath,
-        );
+        $this->params = $config;
+
+        $this->params['mink']   = $mink_params;
+        $this->params['binDir'] = "{$path}/vendor/bin";
     }
 
     /**
@@ -51,7 +52,7 @@ class WordpressContextInitializer implements ContextInitializer
         $this->context->setContextInitializer($this);
 
         // Environment.
-        $this->maybeInstallWordpress();
+        $this->installWordpress();
     }
 
     /**
@@ -59,10 +60,37 @@ class WordpressContextInitializer implements ContextInitializer
      */
     public function installWordpress()
     {
-    	//todo chnge
-        $bin = $this->getParameters()['wordpress']['composer_bin_dir'];
+        $cmd = sprintf(
+            'wp --path=%s --url=%s core is-installed',
+            escapeshellarg($this->params['path']),
+            escapeshellarg($this->params['url'])
+        );
+        exec($cmd, $cmd_output, $exit_code);
 
-        // Drop all tables.
+        // Unix exit code; a successful command returns 0.
+        if ($exit_code === 0) {
+            return;
+        }
+
+        $cmd = sprintf(
+            'wp --path=%s --url=%s core install --title=%s --admin_user=%s --admin_password=%s --admin_email=%s --skip-email',
+            escapeshellarg($this->params['path']),
+            escapeshellarg($this->params['url']),
+            escapeshellarg('Test Site'),
+            escapeshellarg('admin'),
+            escapeshellarg('admin'),
+            escapeshellarg('admin@example.com')
+        );
+        exec($cmd, $cmd_output);
+
+        if ($cmd_output[0] !== 'Success: WordPress installed successfully.') {
+            throw new \Exception('Error installing WordPress: ' . implode( PHP_EOL, $cmd_output ) );
+            die;
+        }
+    }
+
+    function asdfs()
+    {
         $tables = mysqli_query($this->context->getDatabase(), 'SHOW TABLES');
         while ($table = mysqli_fetch_row($tables)) {
             mysqli_query($this->context->getDatabase(), "DROP TABLE IF EXISTS {$table[0]}");
@@ -84,27 +112,5 @@ class WordpressContextInitializer implements ContextInitializer
             die('Error installing WordPress: ' . $status);
         }
         die;
-    }
-
-    /**
-     * Set a configuration parameter.
-     *
-     * @param string $key
-     * @param mixed $value
-     */
-    public function setParameter($key, $value)
-    {
-        $this->params['wordpress'][$key] = $value;
-    }
-
-    /**
-     * Get configuration parameters.
-     *
-     * @return array
-     * @param string $group Option group fo fetch.
-     */
-    public function getParameters()
-    {
-        return $this->params;
     }
 }
