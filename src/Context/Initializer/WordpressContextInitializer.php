@@ -67,9 +67,14 @@ class WordpressContextInitializer implements ContextInitializer
         );
         exec($cmd, $cmd_output, $exit_code);
 
-        // Unix exit code; a successful command returns 0.
+        // This means WordPress is installed. Let's remove it.
         if ($exit_code === 0) {
-            return;
+            $cmd = sprintf(
+                'wp --path=%s --url=%s db reset --yes',
+                escapeshellarg($this->params['path']),
+                escapeshellarg($this->params['url'])
+            );
+            exec($cmd);
         }
 
         $cmd = sprintf(
