@@ -38,7 +38,14 @@ class WordpressBehatExtension implements ExtensionInterface
     }
 
     /**
-     * Setups configuration for the extension.
+     * @param ContainerBuilder $container
+     */
+    public function process(ContainerBuilder $container)
+    {
+    }
+
+    /**
+     * Set up configuration for the extension.
      *
      * @param ArrayNodeDefinition $builder
      */
@@ -77,5 +84,49 @@ class WordpressBehatExtension implements ExtensionInterface
 
         $container->setDefinition('PaulGibbs.wordpress.initializer', $definition);
         $container->setParameter('wordpress.parameters', $config);
+
+        // Set up WordPress.
+        $this->installWordpress( $config );
+    }
+
+    /**
+     * Install WordPress.
+     *
+     * @param array $config
+     */
+    protected function installWordpress(array $config)
+    {
+        $cmd = sprintf(
+            'wp --path=%s --url=%s core is-installed',
+            escapeshellarg($config['path']),
+            escapeshellarg($config['url'])
+        );
+        exec($cmd, $cmd_output, $exit_code);
+
+        if ($exit_code === 0) {
+            // This means WordPress is installed. Let's remove it.
+            $cmd = sprintf(
+                'wp --path=%s --url=%s db reset --yes',
+                escapeshellarg($config['path']),
+                escapeshellarg($config['url'])
+            );
+            exec($cmd);
+        }
+
+        $cmd = sprintf(
+            'wp --path=%s --url=%s core install --title=%s --admin_user=%s --admin_password=%s --admin_email=%s --skip-email',
+            escapeshellarg($config['path']),
+            escapeshellarg($config['url']),
+            escapeshellarg('Test Site'),
+            escapeshellarg('admin'),
+            escapeshellarg('admin'),
+            escapeshellarg('admin@example.com')
+        );
+        exec($cmd, $cmd_output);
+
+        if ($cmd_output[0] !== 'Success: WordPress installed successfully.') {
+            throw new \Exception('Error installing WordPress: ' . implode( PHP_EOL, $cmd_output ) );
+            die;
+        }
     }
 }
