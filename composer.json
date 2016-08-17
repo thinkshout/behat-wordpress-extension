@@ -23,7 +23,6 @@
     "php": ">=5.4.0",
     "symfony/config": "*",
     "symfony/dependency-injection": "*",
-    "wp-cli/wp-cli": "~0.24.0",
     "composer/composer": "~1.0.0@dev"
   }
 }
