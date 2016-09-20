@@ -26,7 +26,7 @@ class WordpressContext extends MinkContext
      * Install WordPress, with optional plugins.
      *
      * @Given /^I have a WordPress (multisite|site)$/
-     * @Given /^I have a WordPress (multisite|site) with these plugins: (.+)$/
+     * @Given /^I have a WordPress (multisite|site) with (?:these|this) plugins?: (.+)$/
      *
      * @param string Optional. Type of WordPress configuration, either "site" (default) or "multisite".
      * @param string Optional. Comma-seperated list of plugins to install.
@@ -73,6 +73,8 @@ class WordpressContext extends MinkContext
 
     /**
      * Install WordPpess plugins.
+     *
+     * @Given /^I activate (?:these|this) plugins?: (.+)$/
      *
      * @param string Comma-seperated list of plugins to install.
      */
