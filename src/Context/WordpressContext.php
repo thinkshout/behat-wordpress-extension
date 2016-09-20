@@ -110,24 +110,4 @@ class WordpressContext extends MinkContext
             }
         }
     }
-
-    /**
-     * Begin a database transaction before the scenario is run.
-     *
-     * @BeforeScenario
-     */
-    public function startTransaction()
-    {
-    	//todo
-    }
-
-    /**
-     * Roll back database transaction after the scenario runs.
-     *
-     * @AfterScenario
-     */
-    public function rollbackTransaction()
-    {
-    	//todo
-    }
 }
