@@ -57,9 +57,6 @@ class WordpressBehatExtension implements ExtensionInterface
                     ->scalarNode('path')
                         ->defaultValue('/srv/www/wordpress-develop.dev/src')
                     ->end()
-                    ->scalarNode('url')
-                        ->defaultValue('wordpress-develop.dev')
-                    ->end()
                 ->end()
             ->end();
     }

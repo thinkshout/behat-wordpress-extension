@@ -38,7 +38,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
         $cmd = sprintf(
             'wp --path=%s --url=%s core is-installed',
             escapeshellarg($this->initializer->params['path']),
-            escapeshellarg($this->initializer->params['url'])
+            escapeshellarg($this->getMinkParameter('base_url'))
         );
         exec($cmd, $cmd_output, $exit_code);
 
@@ -47,7 +47,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
             $cmd = sprintf(
                 'wp --path=%s --url=%s db reset --yes',
                 escapeshellarg($this->initializer->params['path']),
-                escapeshellarg($this->initializer->params['url'])
+                escapeshellarg($this->getMinkParameter('base_url'))
             );
             exec($cmd);
         }
@@ -55,7 +55,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
         $cmd = sprintf(
             'wp --path=%s --url=%s core install --title=%s --admin_user=%s --admin_password=%s --admin_email=%s --skip-email',
             escapeshellarg($this->initializer->params['path']),
-            escapeshellarg($this->initializer->params['url']),
+            escapeshellarg($this->getMinkParameter('base_url')),
             escapeshellarg('Test Site'),
             escapeshellarg('wordpress'),
             escapeshellarg('wordpress'),
@@ -88,7 +88,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
             $cmd = sprintf(
                 'wp --path=%1$s --url=%2$s plugin is-installed %3$s',
                 escapeshellarg($this->initializer->params['path']),
-                escapeshellarg($this->initializer->params['url']),
+                escapeshellarg($this->getMinkParameter('base_url')),
                 $plugin['plugin']
             );
             exec($cmd, $cmd_output, $exit_code);
@@ -98,7 +98,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
                 $cmd = sprintf(
                     'wp --path=%1$s --url=%2$s plugin install %3$s',
                     escapeshellarg($this->initializer->params['path']),
-                    escapeshellarg($this->initializer->params['url']),
+                    escapeshellarg($this->getMinkParameter('base_url')),
                     $plugin['plugin']
                 );
                 exec($cmd, $cmd_output);
@@ -113,7 +113,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
             $cmd = sprintf(
                 'wp --path=%1$s --url=%2$s plugin %3$s %4$s',
                 escapeshellarg($this->initializer->params['path']),
-                escapeshellarg($this->initializer->params['url']),
+                escapeshellarg($this->getMinkParameter('base_url')),
                 ($plugin['status'] === 'enabled') ? 'activate' : 'deactivate',
                 $plugin['plugin']
             );
@@ -125,5 +125,5 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
             }
         }
     }
-}
 
+}

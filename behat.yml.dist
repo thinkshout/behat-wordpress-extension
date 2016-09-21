@@ -6,6 +6,7 @@ default:
 
   extensions:
     Behat\MinkExtension:
+      base_url: http://wordpress-develop.dev
       goutte: ~
 
     PaulGibbs\WordpressBehatExtension:

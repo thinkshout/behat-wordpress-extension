@@ -31,7 +31,7 @@ class WordpressContextInitializer implements ContextInitializer
      */
     public function __construct($config, $mink_params, $path)
     {
-        $this->params = $config;
+        $this->params         = $config;
         $this->params['mink'] = $mink_params;
     }
 
