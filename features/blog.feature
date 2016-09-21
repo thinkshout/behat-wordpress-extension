@@ -3,15 +3,12 @@ Feature: You can read blog posts
     As a user
     I need to go to the blog
 
+    Background:
+        Given I have a WordPress site
+        And I have these plugins:
+            | plugin     | status  |
+            | buddypress | enabled |
+
     Scenario: List my blog posts
         Given I am on the homepage
-        Then I should see "Just my article"
-        And I should see "Hello World"
-        And I should not see "My draft"
-
-    Scenario: Read a blog post
-        Given I am on the homepage
-        When I follow "Just my article"
-        Then I should see "Just my article"
-        And I should see "The content of my article"
-
+        Then I should see "Hello world!"
