@@ -1,0 +1,19 @@
+language: php
+
+php:
+  - 7.0
+
+cache:
+  apt: true
+  directories:
+    - $HOME/.composer/cache
+
+# Enable Travis containers.
+sudo: false
+
+install:
+  - composer self-update
+  - composer install
+
+script:
+  - find ./src -name "*.php" -print0 | xargs -0 -n1 -P8 php -l
