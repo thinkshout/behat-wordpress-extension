@@ -2,11 +2,12 @@
 namespace PaulGibbs\WordpressBehatExtension\Context;
 
 use Behat\MinkExtension\Context\MinkContext,
-    PaulGibbs\WordpressBehatExtension\Context\Initializer\WordpressContextInitializer,
+    Behat\Behat\Context\SnippetAcceptingContext,
     Behat\Gherkin\Node\TableNode,
+    PaulGibbs\WordpressBehatExtension\Context\Initializer\WordpressContextInitializer,
     Exception;
 
-class WordpressContext extends MinkContext
+class WordpressContext extends MinkContext implements SnippetAcceptingContext
 {
     /**
      * @var WordpressContextInitializer
