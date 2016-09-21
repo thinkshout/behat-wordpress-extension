@@ -10,20 +10,59 @@ use Behat\MinkExtension\Context\MinkContext,
 class WordpressContext extends MinkContext implements SnippetAcceptingContext
 {
     /**
-     * @var WordpressContextInitializer
+     * WordPress context parameters.
+     *
+     * @var array
      */
-    protected $initializer = null;
+    protected $wordpressParameters = null;
 
 
-    /**
-     * Set reference back to this context's initializer.
+    /*
+     * Sets parameters provided for WordPress.
      *
      * @param array $parameters
      */
-    public function setContextInitializer(WordpressContextInitializer $initializer)
+    public function setWordpressParameters(array $parameters)
     {
-        $this->initializer = $initializer;
+        $this->wordpressParameters = $parameters;
     }
+
+    /**
+     * Return the parameters provided for WordPress.
+     *
+     * @return array
+     */
+    public function getWordpressParameters()
+    {
+        return $this->wordpressParameters;
+    }
+
+    /**
+     * Set a specific WordPress parameter.
+     *
+     * @param string $name  The key of the parameter.
+     * @param mixed  $value The value of the parameter.
+     */
+    public function setWordpressParameter($name, $value)
+    {
+        $this->wordpressParameters[$name] = $value;
+    }
+
+    /**
+     * Return a specific WordPress parameter.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function getWordpressParameter($name)
+    {
+        return isset($this->wordpressParameters[$name]) ? $this->wordpressParameters[$name] : null;
+    }
+
+
+    /*
+     * Behat step definitions.
+     */
 
     /**
      * Install WordPress, with optional plugins.
@@ -37,7 +76,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
     {
         $cmd = sprintf(
             'wp --path=%s --url=%s core is-installed',
-            escapeshellarg($this->initializer->params['path']),
+            escapeshellarg($this->getWordpressParameter('path')),
             escapeshellarg($this->getMinkParameter('base_url'))
         );
         exec($cmd, $cmd_output, $exit_code);
@@ -46,7 +85,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
             // This means WordPress is installed. Let's remove its databases.
             $cmd = sprintf(
                 'wp --path=%s --url=%s db reset --yes',
-                escapeshellarg($this->initializer->params['path']),
+                escapeshellarg($this->getWordpressParameter('path')),
                 escapeshellarg($this->getMinkParameter('base_url'))
             );
             exec($cmd);
@@ -54,7 +93,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
 
         $cmd = sprintf(
             'wp --path=%s --url=%s core install --title=%s --admin_user=%s --admin_password=%s --admin_email=%s --skip-email',
-            escapeshellarg($this->initializer->params['path']),
+            escapeshellarg($this->getWordpressParameter('path')),
             escapeshellarg($this->getMinkParameter('base_url')),
             escapeshellarg('Test Site'),
             escapeshellarg('wordpress'),
@@ -87,7 +126,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
         foreach ($plugins as $plugin) {
             $cmd = sprintf(
                 'wp --path=%1$s --url=%2$s plugin is-installed %3$s',
-                escapeshellarg($this->initializer->params['path']),
+                escapeshellarg($this->getWordpressParameter('path')),
                 escapeshellarg($this->getMinkParameter('base_url')),
                 $plugin['plugin']
             );
@@ -97,7 +136,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
             if ($exit_code === 1) {
                 $cmd = sprintf(
                     'wp --path=%1$s --url=%2$s plugin install %3$s',
-                    escapeshellarg($this->initializer->params['path']),
+                    escapeshellarg($this->getWordpressParameter('path')),
                     escapeshellarg($this->getMinkParameter('base_url')),
                     $plugin['plugin']
                 );
@@ -112,7 +151,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
             // Activate/deactivate plugin as required.
             $cmd = sprintf(
                 'wp --path=%1$s --url=%2$s plugin %3$s %4$s',
-                escapeshellarg($this->initializer->params['path']),
+                escapeshellarg($this->getWordpressParameter('path')),
                 escapeshellarg($this->getMinkParameter('base_url')),
                 ($plugin['status'] === 'enabled') ? 'activate' : 'deactivate',
                 $plugin['plugin']
@@ -125,5 +164,4 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
             }
         }
     }
-
 }

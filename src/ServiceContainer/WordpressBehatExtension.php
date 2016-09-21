@@ -71,11 +71,7 @@ class WordpressBehatExtension implements ExtensionInterface
     {
         $definition = new Definition(
             'PaulGibbs\WordpressBehatExtension\Context\Initializer\WordpressContextInitializer',
-            array(
-                '%wordpress.parameters%',
-                '%mink.parameters%',
-                '%paths.base%',
-            )
+            array('%wordpress.parameters%')
         );
         $definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
 
