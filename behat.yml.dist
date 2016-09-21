@@ -10,3 +10,4 @@ default:
       goutte: ~
 
     PaulGibbs\WordpressBehatExtension:
+      path: /srv/www/wordpress-develop.dev/src

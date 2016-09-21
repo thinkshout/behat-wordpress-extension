@@ -55,7 +55,6 @@ class WordpressBehatExtension implements ExtensionInterface
             ->addDefaultsIfNotSet()
                 ->children()
                     ->scalarNode('path')
-                        ->defaultValue('/srv/www/wordpress-develop.dev/src')
                     ->end()
                 ->end()
             ->end();
