@@ -67,8 +67,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
     /**
      * Install WordPress, with optional plugins.
      *
-     * @Given I have a WordPress multisite
-     * @Given I have a WordPress site
+     * @Given /^I have a WordPress (multisite|site)$/
      *
      * @param string Optional. Type of WordPress, either "site" (default) or "multisite".
      */
@@ -111,8 +110,7 @@ class WordpressContext extends MinkContext implements SnippetAcceptingContext
     /**
      * Install WordPress plugins.
      *
-     * @Given I have these plugins:
-     * @Given I have this plugin:
+     * @Given /^I have (?:these|this) plugins?:$/
      *
      * @param TableNode {
      *     A table of plugins.
