@@ -3,6 +3,7 @@
   "type": "behat-extension",
   "description": "WordPress extension for Behat functional testing.",
   "keywords": ["WordPress", "behat", "extension", "bdd"],
+  "homepage": "https://github.com/paulgibbs/behat-wordpress-extension",
   "license": "GPL-3.0",
   "authors": [
     {
