@@ -5,7 +5,7 @@ The WordPress Behat Extension is an integration layer between [Behat](http://beh
 provides step definitions for common testing scenarios specific to WordPress
 sites.
 
-[![Build Status](https://travis-ci.org/paulgibbs/behat-wordpress-extension)](https://travis-ci.org/paulgibbs/behat-wordpress-extension)
+[![Build Status](https://travis-ci.org/paulgibbs/behat-wordpress-extension.svg?branch=master)](https://travis-ci.org/paulgibbs/behat-wordpress-extension)
 
 The WordPress Behat Extension supports WordPress versions 4.7 onwards.
 
