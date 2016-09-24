@@ -1,3 +1,6 @@
+# Enable Travis containers.
+sudo: false
+
 language: php
 
 php:
@@ -10,12 +13,20 @@ cache:
     - vendor
     - $HOME/.composer/cache
 
-# Enable Travis containers.
-sudo: false
+env:
+  global:
+    - GIT_NAME: "'Couscous auto deploy'"
+    - GIT_EMAIL: couscous@couscous.io
+    - GH_REF: github.com/paulgibbs/behat-wordpress-extension
+    - secure: hvzk1MOqJBYnQ9HQnZIxFo0DLjwqiiUgb6WaA4g6R/YwJWQy5Kh3dq1hcCiU99qCJtlhWoazlBvSfHWwJO2w/XZJP7C2SD+79u8mmgjNRY74FnUy4r0U1efQHji3phl/Uwkc888Q/+rWTagGOJvdtwMaEsdW+xfIeKGAXlfcAkYIdhSoLK1Bbg1wiurQYOUZIN7oCw0lIHS8q7iHbUMNXvT5Wrxd8IaWQPwm+tAmlJ7+JjQqIJ09wBQLNptbMGZoL6bvJPf5axJcRTorvK5/ou+BnNuhYfUYVpJHz6JfNSVQdWQ73hlzWfL2185j4dSeFIv2Kq/4UzJGCpAhHbccWjT3XFI74+3YpB1VZXRYWzSjtJqeh9CRdfjgc5bB86QazqOpVua5H3GFyrKNnTQzDzRtvhcLEqh7xErtMzaIVTpIkjWnSytlvfZBBPBvINPsu8vcXdSsXV9WQcvggq0OLYV1fjNf07OTAXzYn9yXhAhD24Vg7BeATbNQ9qUtsgogxLfIEGa1nXLK/BHP8WzCM+f+q5VVh+pIRI9vaX6WehePh9pVRm8jwdYWwgzitEQESNHvvJsxXFddBm7kI0oN9F5U0cJbrJ9sxI7Juux4dD1d5Hl+scHdJn+kXTM2KnMiEMI/s8z8dgqWJFhVdfBZSwJgf68xgIDHkLSqOseMvSU=
 
-before_install:
+
+before_script:
   - composer self-update
-  - composer install
+  - composer install --no-progress
 
 script:
   - find ./src -name "*.php" -print0 | xargs -0 -n1 -P8 php -l
+
+after_success:
+  - vendor/bin/couscous travis-auto-deploy
