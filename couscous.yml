@@ -11,3 +11,16 @@ exclude:
 branch: gh-pages
 
 baseUrl: https://paulgibbs.github.io/behat-wordpress-extension/
+
+github:
+  user: paulgibbs
+  repo: behat-wordpress-extension
+
+menu:
+  items:
+    home:
+      text: Home page
+      relativeUrl: doc/faq.html
+    foo:
+      text: Another link
+      absoluteUrl: https://example.com
