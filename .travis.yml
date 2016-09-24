@@ -6,12 +6,14 @@ php:
 cache:
   apt: true
   directories:
+    - node_modules
+    - vendor
     - $HOME/.composer/cache
 
 # Enable Travis containers.
 sudo: false
 
-install:
+before_install:
   - composer self-update
   - composer install
 
