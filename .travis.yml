@@ -29,4 +29,4 @@ script:
   - find ./src -name "*.php" -print0 | xargs -0 -n1 -P8 php -l
 
 after_success:
-  - vendor/bin/couscous travis-auto-deploy
+  - vendor/bin/couscous travis-auto-deploy --php-version=7.0
