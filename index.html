@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title></title>
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/highlight.dark.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="/">
+                The title
+                <small class="hidden-xs hidden-sm">
+                    This is the default subtitle!
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container">
+            <div class="row">
+
+                
+                <section id="content" class="col-sm-12">
+                    <p>This is just a sample. You can play around with your own text right here.</p>
+<h2 id="markdown">Markdown</h2>
+<p>...is really just ordinary text, <em>plain and simple</em>. How is it good for you?</p>
+<ul>
+<li>You just <strong>type naturally</strong>, and the result looks good.</li>
+<li>You <strong>don't have to worry</strong> about clicking formatting buttons.
+<ul>
+<li>Or fiddling with indentation. (Two spaces is all you need.)</li>
+</ul></li>
+</ul>
+<p>To see what else you can do with Markdown (including <strong>tables</strong>, <strong>images</strong>, <strong>numbered lists</strong>, and more) take a look at the <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">Cheatsheet</a>. And then try it out by typing in this box!</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>
