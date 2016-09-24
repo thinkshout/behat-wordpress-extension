@@ -2,4 +2,4 @@ vendor/
 behat.yml
 node_modules
 .DS_Store
-docs/.doctrees
+docs/.couscous
