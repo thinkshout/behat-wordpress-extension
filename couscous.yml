@@ -1,0 +1,13 @@
+template:
+  url: https://github.com/CouscousPHP/Template-Light.git
+  index: index.md
+
+include:
+  - docs
+
+exclude:
+  - %gitignore%
+
+branch: gh-pages
+
+baseUrl: https://paulgibbs.github.io/behat-wordpress-extension/
