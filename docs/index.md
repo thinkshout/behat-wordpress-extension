@@ -1,6 +1,3 @@
-# Welcome to Paul's Behat WordPress Extension.
+# About
 
-Contents:
-
-* [Page 1](http://example.com)
-* Page 2
+Hello world
