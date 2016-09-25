@@ -20,7 +20,7 @@ menu:
   items:
     about:
       text: About
-      relativeUrl: about.md
+      relativeUrl: index.html
 
 title: Behat WordPress Extension
 subTitle: 0.1.0

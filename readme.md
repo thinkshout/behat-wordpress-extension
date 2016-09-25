@@ -1,6 +1,6 @@
 # Paul's WordPress Behat Extension
 
-The WordPress Behat Extension is an integration layer between [Behat](http://behat.org), [Mink Extension](https://github.com/Behat/MinkExtension), and [WordPress](https://wordpress.org). It provides step definitions for common testing scenarios specific to WordPress sites.
+The WordPress Behat Extension is an integration layer between [Behat](http://behat.org), [Mink Extension](https://github.com/Behat/MinkExtension), and [WordPress](https://wordpress.org). It provides WordPress-specific functionality for common testing scenarios specific to WordPress sites.
 
 [![Build Status](https://travis-ci.org/paulgibbs/behat-wordpress-extension.svg?branch=master)](https://travis-ci.org/paulgibbs/behat-wordpress-extension)
 
@@ -19,7 +19,11 @@ If you're new to the WordPress Behat Extension, we recommend starting with the [
 
 ### Quick start
 
-1. Install using [Composer](https://getcomposer.org/):
+These intructions assume you have a local WordPress site that you want to test:
+
+1. Install [WP-CLI](http://wp-cli.org/) globally.
+
+1. Add the extension to your project using [Composer](https://getcomposer.org/):
 
     ``` bash
     mkdir projectdir
@@ -49,13 +53,13 @@ If you're new to the WordPress Behat Extension, we recommend starting with the [
 1. In the projectdir, run
 
     ``` bash
-    bin/behat --init
+    vendor/bin/behat --init
     ```
 
 1. Find pre-defined steps to work with using:
 
     ```bash
-    bin/behat -di
+    vendor/bin/behat -di
     ```
 
 1. Define your own steps in `projectdir\features\FeatureContext.php`
