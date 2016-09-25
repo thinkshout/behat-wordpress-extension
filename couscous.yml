@@ -18,12 +18,9 @@ github:
 
 menu:
   items:
-    home:
-      text: Home page
-      relativeUrl: doc/faq.html
-    foo:
-      text: Another link
-      absoluteUrl: https://example.com
+    about:
+      text: About
+      relativeUrl: about.md
 
 title: Behat WordPress Extension
 subTitle: 0.1.0
