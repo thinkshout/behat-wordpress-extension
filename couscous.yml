@@ -24,3 +24,6 @@ menu:
     foo:
       text: Another link
       absoluteUrl: https://example.com
+
+title: Paul's Behat WordPress Extension
+subTitle: 0.1.0

@@ -1,10 +1,10 @@
-# WordPress Behat Extension
+# Paul's WordPress Behat Extension
 
-The WordPress Behat Extension is an integration layer between [Behat](http://behat.org), [Mink Extension](https://github.com/Behat/MinkExtension), and WordPress. It provides step definitions for common testing scenarios specific to WordPress sites.
+Paul's WordPress Behat Extension is an integration layer between [Behat](http://behat.org), [Mink Extension](https://github.com/Behat/MinkExtension), and [WordPress](https://wordpress.org). It provides step definitions for common testing scenarios specific to WordPress sites.
 
 [![Build Status](https://travis-ci.org/paulgibbs/behat-wordpress-extension.svg?branch=master)](https://travis-ci.org/paulgibbs/behat-wordpress-extension)
 
-The WordPress Behat Extension supports WordPress versions 4.7 onwards.
+The extension supports WordPress versions 4.7+.
 
 [![Latest Stable Version](https://poser.pugx.org/paulgibbs/behat-wordpress-extension/v/stable.svg)](https://packagist.org/packages/paulgibbs/behat-wordpress-extension)
 [![Total Downloads](https://poser.pugx.org/paulgibbs/behat-wordpress-extension/downloads.svg)](https://packagist.org/packages/paulgibbs/behat-wordpress-extension)
@@ -14,7 +14,7 @@ The WordPress Behat Extension supports WordPress versions 4.7 onwards.
 
 ## Use it for testing your WordPress site.
 
-If you're new to the WordPress Behat Extension, we recommend starting with the [full documentation](https://example.com)
+If you're new to Paul's WordPress Behat Extension, we recommend starting with the [full documentation](https://paulgibbs.github.io/behat-wordpress-extension/).
 
 
 ### Quick start
@@ -28,7 +28,7 @@ If you're new to the WordPress Behat Extension, we recommend starting with the [
     php composer.phar require paulgibbs/behat-wordpress-extension='*'
     ```
 
-1.  In the projectdir, create a file called `behat.yml`. Below is the minimal configuration. Many more options are covered in the [full documentation](https://example.com).
+1.  In the projectdir, create a file called `behat.yml`. Below is the minimal configuration. Many more options are covered in the [full documentation](https://paulgibbs.github.io/behat-wordpress-extension/).
 
   ``` yaml
   default:
