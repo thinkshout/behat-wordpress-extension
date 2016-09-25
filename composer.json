@@ -24,7 +24,9 @@
     "php": ">=5.4.0",
     "symfony/config": "*",
     "symfony/dependency-injection": "*",
-    "composer/composer": "~1.0.0@dev",
+    "composer/composer": "~1.0.0@dev"
+  },
+  "require-dev": {
     "couscous/couscous": "^1.5"
   }
 }
