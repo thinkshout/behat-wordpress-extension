@@ -1,9 +1,9 @@
 # Settings
 
-* TODO
-* List
-* Of
-* Settings
+* `Behat\MinkExtension`
+  * `base_url`: URL to the WordPress site.
+* `PaulGibbs\WordpressBehatExtension`
+  * `path`: Absolute path to the WordPress files.
 
 # Environment-specific settings
 
