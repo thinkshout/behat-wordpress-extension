@@ -22,5 +22,26 @@ menu:
       text: About
       relativeUrl: index.html
 
+    requirements:
+      text: Requirements
+      relativeUrl: requirements.html
+
+    installation:
+      text: Installation
+      relativeUrl: installation.html
+
+    environment:
+      text: Settings
+      relativeUrl: environment.html
+
+    #environment:
+    #  text: Extension drivers
+    #  relativeUrl: drivers.html
+
+    #environment:
+    #  text: Contexts
+    #  relativeUrl: contexts.html
+
+
 title: Behat WordPress Extension
 subTitle: 0.1.0
