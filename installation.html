@@ -61,18 +61,73 @@
 
                 
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                    <h1 id="about">About</h1>
-<p>The WordPress Behat Extension is an integration layer between <a href="http://behat.org">Behat</a>, <a href="https://github.com/Behat/MinkExtension">Mink Extension</a>, and <a href="https://wordpress.org">WordPress</a>. It provides WordPress-specific functionality for common testing scenarios specific to WordPress sites.</p>
-<h2 id="what-does-behat-and-mink-do">What does Behat and Mink do?</h2>
-<p>Behat and Mink allow you to describe the behavior of a website in plain, but stylised, language, and then turn that description into an automated test that will visit the site and perform each step you describe. Such functional tests can help site builders ensure that the added value they've created when building a WordPress site continues to behave as expected after any sort of site change -- WordPress updates, new plugins, new features, and so on.</p>
-<h2 id="what-does-this-extension-do">What does this extension do?</h2>
-<p>The extension provides <a href="http://docs.behat.org/en/latest/user_guide/context/definitions.html">step definitions</a> that help you implement tests for common WordPress tasks:</p>
-<ul>
-<li>Set up test data.</li>
-<li>Manage themes, plugins, and users.</li>
-<li>Handle user authentication.</li>
-<li>And more!</li>
-</ul>
+                    <h1 id="installation">Installation</h1>
+<ol>
+<li>
+<p>Create a folder for your tests:</p>
+<pre><code class="language-Shell">mkdir projectfolder
+cd projectfolder</code></pre>
+<p>All the commands that follow are written to install from the root of your project folder.</p>
+</li>
+<li>
+<p>Install <a href="https://getcomposer.org/">Composer</a>:</p>
+<pre><code class="language-Shell">curl -s https://getcomposer.org/installer | php</code></pre>
+</li>
+<li>
+<p>Install <a href="http://wp-cli.org/">WP-CLI</a> globally:</p>
+<pre><code class="language-Shell">curl -o wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+chmod +x wp</code></pre>
+<p>Note: this executable <em>must</em> be named <code>wp</code> and be within your system's <a href="https://en.wikipedia.org/wiki/PATH_(variable)">$PATH</a>. For example:</p>
+<pre><code class="language-Shell">sudo mv wp /usr/local/bin/</code></pre>
+</li>
+<li>
+<p>Create a configuration file to tell Composer what to install. To do that, paste the following code into your editor and save as <code>composer.json</code>:</p>
+<pre><code class="language-YAML">{
+  "require": {
+    "paulgibbs/behat-wordpress-extension": "*"
+  }
+}</code></pre>
+</li>
+<li>
+<p>Run the following command to install the WordPress Behat Extension:</p>
+<pre><code class="language-Shell">php composer.phar install</code></pre>
+</li>
+<li>
+<p>Configure your testing environment by creating a file called behat.yml with the following. Be sure that you point the base_url at the web site YOU intend to test. Do not include a trailing slash:</p>
+<dl>
+<dt>.. literalinclude: _static/snippets/behat-1.yml</dt>
+<dd>language: yaml</dd>
+<dd>linenos:</dd>
+</dl>
+</li>
+<li>
+<p>Initialize behat. This creates the features folder with some basic things to get you started, including your own FeatureContext.php file:</p>
+<p>bin/behat --init</p>
+</li>
+<li>
+<p>This will generate a FeatureContext.php file that looks like:</p>
+<dl>
+<dt>.. literalinclude: _static/snippets/FeatureContext.php.inc</dt>
+<dd>language: php</dd>
+<dd>linenos:</dd>
+<dd>emphasize-lines: 12</dd>
+</dl>
+<p>This FeatureContext.php will be aware of both the Drupal Extension and the Mink Extension, so you'll be able to take advantage of their drivers add your own custom step definitions as well.</p>
+</li>
+<li>
+<p>To ensure everything is set up appropriately, type:</p>
+<p>bin/behat -dl</p>
+<p>You'll see a list of steps like the following, but longer, if you've installed everything successfully:</p>
+<dl>
+<dt>.. code-block: gherkin</dt>
+<dd><p>linenos:</p>
+<p>default | Given I am an anonymous user
+default | Given I am not logged in
+default | Given I am logged in as a user with the :role role(s)
+default | Given I am logged in as :name</p></dd>
+</dl>
+</li>
+</ol>
                 </section>
 
             </div>

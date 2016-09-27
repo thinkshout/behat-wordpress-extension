@@ -61,17 +61,15 @@
 
                 
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                    <h1 id="about">About</h1>
-<p>The WordPress Behat Extension is an integration layer between <a href="http://behat.org">Behat</a>, <a href="https://github.com/Behat/MinkExtension">Mink Extension</a>, and <a href="https://wordpress.org">WordPress</a>. It provides WordPress-specific functionality for common testing scenarios specific to WordPress sites.</p>
-<h2 id="what-does-behat-and-mink-do">What does Behat and Mink do?</h2>
-<p>Behat and Mink allow you to describe the behavior of a website in plain, but stylised, language, and then turn that description into an automated test that will visit the site and perform each step you describe. Such functional tests can help site builders ensure that the added value they've created when building a WordPress site continues to behave as expected after any sort of site change -- WordPress updates, new plugins, new features, and so on.</p>
-<h2 id="what-does-this-extension-do">What does this extension do?</h2>
-<p>The extension provides <a href="http://docs.behat.org/en/latest/user_guide/context/definitions.html">step definitions</a> that help you implement tests for common WordPress tasks:</p>
+                    <h1 id="system-requirements">System Requirements</h1>
 <ul>
-<li>Set up test data.</li>
-<li>Manage themes, plugins, and users.</li>
-<li>Handle user authentication.</li>
-<li>And more!</li>
+<li>A <a href="https://wordpress.org/">WordPress</a> site, running version 4.7+.</li>
+<li><a href="http://wp-cli.org/">WP-CLI</a> installed globally.
+<ul>
+<li>Executable must be named <code>wp</code> and be within your system's <a href="https://en.wikipedia.org/wiki/PATH_(variable)">$PATH</a>.</li>
+</ul></li>
+<li>PHP 5.4+, with the <a href="https://curl.haxx.se/libcurl/php/install.html">cURL extension</a>.</li>
+<li><a href="https://getcomposer.org/">Composer</a>.</li>
 </ul>
                 </section>
 
