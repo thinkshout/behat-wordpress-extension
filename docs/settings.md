@@ -2,7 +2,7 @@
 
 * `Behat\MinkExtension`
   * `base_url`: URL to the WordPress site.
-* `PaulGibbs\WordpressBehatExtension`
+* `PaulGibbs\WordpressExtension`
   * `path`: Absolute path to the WordPress files.
 
 # Environment-specific settings
@@ -19,7 +19,7 @@ Example JSON object:
     "Behat\\MinkExtension": {
       "base_url": "http://development.dev"
     },
-    "PaulGibbs\\WordpressBehatExtension": {
+    "PaulGibbs\\WordpressExtension": {
       "path": "/www/development.dev"
     }
   }
@@ -29,5 +29,5 @@ Example JSON object:
 To export this into the ``BEHAT_PARAMS`` environment variable, squash the JSON object into a single line and surround with single quotes:
 
 ```Shell
-export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"http://development.dev"},"PaulGibbs\\WordpressBehatExtension":{"path":"/www/development.dev"}}}'
+export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"http://development.dev"},"PaulGibbs\\WordpressExtension":{"path":"/www/development.dev"}}}'
 ```
