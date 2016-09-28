@@ -25,7 +25,7 @@ These intructions assume you have a local WordPress site that you want to test:
 
 1. Add the extension to your project using [Composer](https://getcomposer.org/):
 
-    ``` bash
+    ```Shell
     mkdir projectdir
     cd projectdir
     curl -sS https://getcomposer.org/installer | php
@@ -34,7 +34,7 @@ These intructions assume you have a local WordPress site that you want to test:
 
 1.  In the projectdir, create a file called `behat.yml`. Below is the minimal configuration. Many more options are covered in the [full documentation](https://paulgibbs.github.io/behat-wordpress-extension/).
 
-  ``` yaml
+  ```YAML
   default:
     suites:
       default:
@@ -52,13 +52,13 @@ These intructions assume you have a local WordPress site that you want to test:
 
 1. In the projectdir, run
 
-    ``` bash
+    ```Shell
     vendor/bin/behat --init
     ```
 
 1. Find pre-defined steps to work with using:
 
-    ```bash
+    ```Shell
     vendor/bin/behat -di
     ```
 
