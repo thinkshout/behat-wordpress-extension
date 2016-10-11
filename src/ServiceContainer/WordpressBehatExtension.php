@@ -1,17 +1,18 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\ServiceContainer;
 
-use Behat\Behat\Context\ServiceContainer\ContextExtension;
-use Behat\Testwork\ServiceContainer\Extension as ExtensionInterface;
-use Behat\Testwork\ServiceContainer\ExtensionManager;
-use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
+use Behat\Behat\Context\ServiceContainer\ContextExtension,
+    Behat\Testwork\ServiceContainer\Extension,
+    Behat\Testwork\ServiceContainer\ExtensionManager;
+
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition,
+    Symfony\Component\DependencyInjection\ContainerBuilder,
+    Symfony\Component\DependencyInjection\Definition;
 
 /**
  * WordpressBehatExtension is an integration layer between Behat and WordPress.
  */
-class WordpressBehatExtension implements ExtensionInterface
+class WordpressBehatExtension implements Extension
 {
     /**
      * Returns the extension config key.
@@ -25,11 +26,6 @@ class WordpressBehatExtension implements ExtensionInterface
 
     /**
      * Initializes extension.
-     *
-     * This method is called immediately after all extensions are activated but
-     * before any extension's `configure()` method is called. This allows extensions
-     * to hook into the configuration of other extensions providing such an
-     * extension point.
      *
      * @param ExtensionManager $extensionManager
      */
@@ -56,6 +52,9 @@ class WordpressBehatExtension implements ExtensionInterface
                 ->children()
                     ->scalarNode('path')
                     ->end()
+                    ->scalarNode('driver')
+                        ->defaultValue('wp-cli')
+                    ->end()
                 ->end()
             ->end();
     }
@@ -69,7 +68,7 @@ class WordpressBehatExtension implements ExtensionInterface
     public function load(ContainerBuilder $container, array $config)
     {
         $definition = new Definition(
-            'PaulGibbs\WordpressBehatExtension\Context\Initializer\WordpressContextInitializer',
+            'PaulGibbs\WordpressBehatExtension\Context\Initializer\WordpressAwareInitializer',
             array('%wordpress.parameters%')
         );
         $definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
