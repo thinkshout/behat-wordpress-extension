@@ -12,7 +12,7 @@ use PaulGibbs\WordpressBehatExtension\WordpressDriverManager;
 class RawWordpressContext extends RawMinkContext implements WordpressAwareInterface, SnippetAcceptingContext
 {
     /**
-     * Drupal driver manager.
+     * WordPress driver manager.
      *
      * @var WordpressDriverManager
      */
@@ -68,7 +68,7 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
     }
 
     /**
-     * Get active Drupal Driver.
+     * Get active WordPress Driver.
      *
      * @param string $name Optional. Name of specific driver to retrieve.
      * @return PaulGibbs\WordpressBehatExtension\Driver\WordpressDriver
