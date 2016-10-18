@@ -54,6 +54,6 @@ class WpcliDriver extends BaseDriver
 
         exec("wp {$alias} {$command} {$subcommand} {$arguments} --no-color", $cmd_output, $exit_code);
 
-        return compact('cmd_output', 'exit_code';
+        return compact('cmd_output', 'exit_code');
     }
 }
