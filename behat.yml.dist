@@ -11,4 +11,6 @@ default:
       goutte: ~
 
     PaulGibbs\WordpressBehatExtension:
-      path: /srv/www/wordpress-develop.dev/src
+      default_driver: wpcliWUT
+      wpcli:
+        alias: devwUT

@@ -2,7 +2,7 @@
 namespace PaulGibbs\WordpressBehatExtension\ServiceContainer;
 
 use Behat\Behat\Context\ServiceContainer\ContextExtension,
-    Behat\Testwork\ServiceContainer\Extension,
+    Behat\Testwork\ServiceContainer\Extension as ExtensionInterface,
     Behat\Testwork\ServiceContainer\ExtensionManager;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition,
@@ -12,7 +12,7 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition,
 /**
  * WordpressBehatExtension is an integration layer between Behat and WordPress.
  */
-class WordpressBehatExtension implements Extension
+class WordpressBehatExtension implements ExtensionInterface
 {
     /**
      * Returns the extension config key.
@@ -48,12 +48,15 @@ class WordpressBehatExtension implements Extension
     public function configure(ArrayNodeDefinition $builder)
     {
         $builder
-            ->addDefaultsIfNotSet()
-                ->children()
-                    ->scalarNode('path')
-                    ->end()
-                    ->scalarNode('driver')
-                        ->defaultValue('wp-cli')
+            ->children()
+                ->scalarNode('default_driver')
+                    ->defaultValue('wpcli')
+                ->end()
+                ->arrayNode('wpcli')
+                    ->addDefaultsIfNotSet()
+                        ->children()
+                            ->scalarNode('alias')->end()
+                        ->end()
                     ->end()
                 ->end()
             ->end();
@@ -72,8 +75,26 @@ class WordpressBehatExtension implements Extension
             array('%wordpress.parameters%')
         );
         $definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
-
         $container->setDefinition('PaulGibbs.wordpress.initializer', $definition);
+
         $container->setParameter('wordpress.parameters', $config);
+        $container->setParameter('wordpress.default_driver', $config['default_driver']);
+
+        $this->loadWpcliDriverSettings($container, $config);
+    }
+
+    /**
+     * Loads settings for the WP-CLI driver.
+     *
+     * @param ContainerBuilder $container
+     * @param array            $config
+     */
+    protected function loadWpcliDriverSettings(ContainerBuilder $container, array $config)
+    {
+        if (empty($config['wpcli']['alias'])) {
+            die('WP-CLI driver requires `alias` set.');
+        }
+
+        $container->setParameter('wordpress.wpcli.alias', $config['wpcli']['alias']);
     }
 }

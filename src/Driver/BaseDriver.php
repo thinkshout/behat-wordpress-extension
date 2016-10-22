@@ -6,6 +6,6 @@ namespace PaulGibbs\WordpressBehatExtension\Driver;
  *
  * A Driver represents and manages the connection between the Behat environment and a WordPress site.
  */
-abstract class BaseDriver
+abstract class BaseDriver implements DriverInterface
 {
 }
