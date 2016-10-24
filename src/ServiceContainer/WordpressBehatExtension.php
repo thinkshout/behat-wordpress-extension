@@ -70,9 +70,22 @@ class WordpressBehatExtension implements ExtensionInterface
      */
     public function load(ContainerBuilder $container, array $config)
     {
+        // http://symfony.com/doc/current/service_container.html
+        $container->setDefinition('wordpress.driver.wpcli', new Definition(
+            'PaulGibbs\WordpressBehatExtension\Driver\WpcliDriver',
+            array('%wordpress.parameters.wpcli.alias%')
+        ));
+        $definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
+
+        // $definition = $container->getDefinition('wordpress.driver.wpcli');
+        // $definition->addMethodCall('setArguments', array($config['drush']['global_options']));
+
         $definition = new Definition(
             'PaulGibbs\WordpressBehatExtension\Context\Initializer\WordpressAwareInitializer',
-            array('%wordpress.parameters%')
+            array(
+                $container->get('wordpress.driver.wpcli'),
+                '%wordpress.parameters%'
+            )
         );
         $definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
         $container->setDefinition('PaulGibbs.wordpress.initializer', $definition);
