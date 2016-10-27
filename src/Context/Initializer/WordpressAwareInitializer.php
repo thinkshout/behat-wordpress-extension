@@ -32,10 +32,10 @@ class WordpressAwareInitializer implements ContextInitializer
      * @param WordpressDriverManager $wordpress
      * @param array               $wordpressParams
      */
-    public function __construct(WordpressDriverManager $wordpress, $wordpressParams)
+    public function __construct(WordpressDriverManager $wordpress, array $parameters)
     {
         $this->wordpress  = $wordpress;
-        $this->parameters = $wordpressParams;
+        $this->parameters = $parameters;
     }
 
     /**

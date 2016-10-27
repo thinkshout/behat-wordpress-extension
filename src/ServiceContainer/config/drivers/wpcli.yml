@@ -1,0 +1,12 @@
+parameters:
+  wordpress.driver.wpcli.class: PaulGibbs\WordpressBehatExtension\Driver\WpcliDriver
+
+services:
+  wordpress.driver.wpcli:
+    class: %wordpress.driver.wpcli.class%
+    arguments:
+      - %wordpress.driver.wpcli.alias%
+      - %wordpress.driver.wpcli.path%
+      - %wordpress.driver.wpcli.url%
+    tags:
+      - { name: wordpress.driver, alias: wpcli }

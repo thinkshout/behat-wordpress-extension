@@ -13,7 +13,7 @@ class WordpressDriverManager
      *
      * @var string $defaultDriver
      */
-    const defaultDriver = 'wp-cli';
+    const defaultDriver = 'wpcli';
 
     /**
      * All registered drivers.
@@ -73,5 +73,21 @@ class WordpressDriverManager
     public function getDrivers()
     {
        return $this->drivers;
+    }
+
+    /**
+     * Set the default driver name.
+     *
+     * @param string $name Default driver name to set.
+     */
+    public function setDefaultDriverName($name)
+    {
+        $name = strtolower($name);
+
+        if (! isset($this->drivers[$name])) {
+            throw new \InvalidArgumentException(sprintf('Driver "%s" is not registered.', $name));
+        }
+
+        $this->defaultDriverName = $name;
     }
 }

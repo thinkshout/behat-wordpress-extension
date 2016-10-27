@@ -3,11 +3,18 @@ namespace PaulGibbs\WordpressBehatExtension\ServiceContainer;
 
 use Behat\Behat\Context\ServiceContainer\ContextExtension,
     Behat\Testwork\ServiceContainer\Extension as ExtensionInterface,
-    Behat\Testwork\ServiceContainer\ExtensionManager;
+    Behat\Testwork\ServiceContainer\ExtensionManager,
+    Behat\Testwork\ServiceContainer\ServiceProcessor;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition,
+    Symfony\Component\Config\FileLocator,
     Symfony\Component\DependencyInjection\ContainerBuilder,
-    Symfony\Component\DependencyInjection\Definition;
+    Symfony\Component\DependencyInjection\Definition,
+    Symfony\Component\DependencyInjection\Loader\FileLoader,
+    Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
+use PaulGibbs\WordpressBehatExtension\Compiler\DriverPass;
+
 
 /**
  * WordpressBehatExtension is an integration layer between Behat and WordPress.
@@ -15,28 +22,40 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition,
 class WordpressBehatExtension implements ExtensionInterface
 {
     /**
+     * @var ServiceProcessor
+     */
+    protected $processor;
+
+    /**
+     * Constructor.
+     *
+     * @param ServiceProcessor|null $processor Optional.
+     */
+    public function __construct(ServiceProcessor $processor = null)
+    {
+        $this->processor = $processor ?: new ServiceProcessor();
+    }
+
+    /**
      * Returns the extension config key.
      *
      * @return string
      */
-    public function getConfigKey()
-    {
+    public function getConfigKey() {
         return 'wordpress';
     }
 
     /**
-     * Initializes extension.
+     * Initialise extension.
+     *
+     * This method is called immediately after all extensions are activated but
+     * before any extension `configure()` method is called. This allows extensions
+     * to hook into the configuration of other extensions providing such an
+     * extension point.
      *
      * @param ExtensionManager $extensionManager
      */
     public function initialize(ExtensionManager $extensionManager)
-    {
-    }
-
-    /**
-     * @param ContainerBuilder $container
-     */
-    public function process(ContainerBuilder $container)
     {
     }
 
@@ -56,6 +75,8 @@ class WordpressBehatExtension implements ExtensionInterface
                     ->addDefaultsIfNotSet()
                         ->children()
                             ->scalarNode('alias')->end()
+                            ->scalarNode('path')->end()
+                            ->scalarNode('url')->end()
                         ->end()
                     ->end()
                 ->end()
@@ -63,51 +84,59 @@ class WordpressBehatExtension implements ExtensionInterface
     }
 
     /**
-     * Loads extension services into temporary container.
+     * Load extension services into temporary container.
      *
      * @param ContainerBuilder $container
      * @param array            $config
      */
     public function load(ContainerBuilder $container, array $config)
     {
-        // http://symfony.com/doc/current/service_container.html
-        $container->setDefinition('wordpress.driver.wpcli', new Definition(
-            'PaulGibbs\WordpressBehatExtension\Driver\WpcliDriver',
-            array('%wordpress.parameters.wpcli.alias%')
-        ));
-        $definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/config'));
+        $loader->load('services.yml');
 
-        // $definition = $container->getDefinition('wordpress.driver.wpcli');
-        // $definition->addMethodCall('setArguments', array($config['drush']['global_options']));
-
-        $definition = new Definition(
-            'PaulGibbs\WordpressBehatExtension\Context\Initializer\WordpressAwareInitializer',
-            array(
-                $container->get('wordpress.driver.wpcli'),
-                '%wordpress.parameters%'
-            )
-        );
-        $definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
-        $container->setDefinition('PaulGibbs.wordpress.initializer', $definition);
-
+        $container->setParameter('wordpress.wordpress.default_driver', $config['default_driver']);
         $container->setParameter('wordpress.parameters', $config);
-        $container->setParameter('wordpress.default_driver', $config['default_driver']);
 
-        $this->loadWpcliDriverSettings($container, $config);
+        $this->setupWpcliDriver($loader, $container, $config);
     }
 
     /**
      * Loads settings for the WP-CLI driver.
      *
+     * @param FileLoader       $loader
      * @param ContainerBuilder $container
      * @param array            $config
      */
-    protected function loadWpcliDriverSettings(ContainerBuilder $container, array $config)
+    protected function setupWpcliDriver(FileLoader $loader, ContainerBuilder $container, array $config)
     {
-        if (empty($config['wpcli']['alias'])) {
-            die('WP-CLI driver requires `alias` set.');
+        if (empty($config['wpcli'])) {
+            return;
         }
 
-        $container->setParameter('wordpress.wpcli.alias', $config['wpcli']['alias']);
+        $loader->load('drivers/wpcli.yml');
+
+        if (empty($config['wpcli']['alias']) && empty($config['wpcli']['path'])) {
+            throw new \RuntimeException('WP-CLI driver requires an `alias` or `root` path.');
+        }
+
+        $config['wpcli']['alias'] = isset($config['wpcli']['alias']) ? $config['wpcli']['alias'] : '';
+        $container->setParameter('wordpress.driver.wpcli.alias', $config['wpcli']['alias']);
+
+        $config['wpcli']['path'] = isset($config['wpcli']['path']) ? $config['wpcli']['path'] : '';
+        $container->setParameter('wordpress.driver.wpcli.path', $config['wpcli']['path']);
+
+        $config['wpcli']['url'] = isset($config['wpcli']['url']) ? $config['wpcli']['url'] : '';
+        $container->setParameter('wordpress.driver.wpcli.url', $config['wpcli']['url']);
+    }
+
+    /**
+     * Modify the container before Symfony compiles it.
+     *
+     * @param ContainerBuilder $container
+     */
+    public function process(ContainerBuilder $container)
+    {
+        $driver = new DriverPass();
+        $driver->process($container);
     }
 }
