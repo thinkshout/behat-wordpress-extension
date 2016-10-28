@@ -11,8 +11,6 @@ default:
       goutte: ~
 
     PaulGibbs\WordpressBehatExtension:
-      default_driver: wpcliWUT
+      default_driver: wpcli
       wpcli:
-        alias: devwUT
-        path: /path/example
-        url: http://url/example.com
+        alias: dev
