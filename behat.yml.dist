@@ -3,7 +3,7 @@ default:
     default:
       path: %paths.base%/features
       contexts:
-        - PaulGibbs\WordpressBehatExtension\Context\WordpressContext
+        - PaulGibbs\WordpressBehatExtension\Context\TestContext
 
   extensions:
     Behat\MinkExtension:

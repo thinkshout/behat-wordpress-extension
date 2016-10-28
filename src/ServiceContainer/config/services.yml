@@ -4,7 +4,7 @@ parameters:
   wordpress.wordpress.class: PaulGibbs\WordpressBehatExtension\WordpressDriverManager
 
   # Context initializer.
-  wordpress.context.initializer.class: PaulGibbs\WordpressBehatExtension\Context\WordpressAwareInterface
+  wordpress.context.initializer.class: PaulGibbs\WordpressBehatExtension\Context\Initializer\WordpressAwareInitializer
 
   # Parameters.
   wordpress.parameters: {}
