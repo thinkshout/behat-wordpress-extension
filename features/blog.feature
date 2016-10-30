@@ -1,14 +1,11 @@
-Feature: You can read blog posts
-    In order to read blogs
-    As a user
-    I need to go to the blog
+Feature: Search
+    In order to test something
+    As a website user
+    I need to be able to start a test
 
-    Background:
-        Given I have a WordPress site
-        And I have these plugins:
-            | plugin     | status  |
-            | buddypress | enabled |
-
-    Scenario: List my blog posts
-        Given I am on the homepage
-        Then I should see "Hello world!"
+    @javascript
+    Scenario: Searching for a page with autocompletion
+        Given I am on "http://google.com"
+        When I fill in "lst-ib" with "Behavior Driv"
+        And I wait for the suggestion box to appear
+        Then I should see "Behavior-driven development"
