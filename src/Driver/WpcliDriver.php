@@ -13,6 +13,20 @@ class WpcliDriver extends BaseDriver
      */
     protected $alias = '';
 
+    /**
+     * WP-CLI path (to the WordPress files).
+     *
+     * @var string
+     */
+    protected $path = '';
+
+    /**
+     * WP-CLI URL (to the WordPress site).
+     *
+     * @var string
+     */
+    protected $url = '';
+
 
     /**
      * Constructor.
