@@ -4,7 +4,8 @@ namespace PaulGibbs\WordpressBehatExtension\Context\Initialiser;
 use Behat\Behat\Context\Context,
     Behat\Behat\Context\Initializer\ContextInitializer;
 
-use PaulGibbs\WordpressBehatExtension\WordpressDriverManager;
+use PaulGibbs\WordpressBehatExtension\WordpressDriverManager,
+    PaulGibbs\WordpressBehatExtension\Context\WordpressAwareInterface;
 
 /**
  * Behat Context initialiser.
