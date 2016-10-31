@@ -2,7 +2,7 @@
 namespace PaulGibbs\WordpressBehatExtension\Driver;
 
 /**
- * Connect the Behat environment to WordPress with WP-CLI.
+ * Connect Behat to WordPress using WP-CLI.
  */
 class WpcliDriver extends BaseDriver
 {

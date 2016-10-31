@@ -42,6 +42,5 @@ menu:
       text: Contexts
       relativeUrl: contexts.html
 
-
-title: Behat WordPress Extension
+title: WordPress Extension for Behat
 subTitle: 0.1.0

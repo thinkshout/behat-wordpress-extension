@@ -4,7 +4,7 @@ namespace PaulGibbs\WordpressBehatExtension;
 use PaulGibbs\WordpressBehatExtension\Driver\DriverInterface;
 
 /**
- * WordPress driver manager.
+ * Driver manager.
  */
 class WordpressDriverManager
 {
@@ -24,7 +24,7 @@ class WordpressDriverManager
 
 
     /**
-     * Initialize the driver manager.
+     * Initialise the driver manager.
      *
      * @param DriverInterface[] $drivers An array of drivers to register.
      */

@@ -7,7 +7,9 @@ use Behat\Behat\Context\SnippetAcceptingContext,
 use PaulGibbs\WordpressBehatExtension\WordpressDriverManager;
 
 /**
- * Base class for WordPress Behat extensions. Does not define any steps.
+ * Base Behat Context class.
+ *
+ * Does not define any steps.
  */
 class RawWordpressContext extends RawMinkContext implements WordpressAwareInterface, SnippetAcceptingContext
 {

@@ -17,7 +17,7 @@ use PaulGibbs\WordpressBehatExtension\Compiler\DriverPass;
 
 
 /**
- * WordpressBehatExtension is an integration layer between Behat and WordPress.
+ * Behat extension for WordPress configuration and loading.
  */
 class WordpressBehatExtension implements ExtensionInterface
 {

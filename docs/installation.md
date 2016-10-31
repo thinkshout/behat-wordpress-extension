@@ -38,7 +38,7 @@
   }
   ```
 
-5. Run the following command to install the WordPress Behat Extension:
+5. Run the following command to install the WordPress Extension for Behat:
 
   ```Shell
   php composer.phar install

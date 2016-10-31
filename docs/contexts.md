@@ -4,7 +4,7 @@ With Behat, it is possible to flexibly structure your code by using multiple con
 
 ## Available Contexts
 
-The WordPress Behat Extension includes the following contexts:
+The WordPress Extension for Behat includes the following contexts:
 
 * _**RawWordpressContext**_
   A context that provides no step definitions, but all of the necessary functionality for interacting with WordPress, and with the browser, via Mink sessions.

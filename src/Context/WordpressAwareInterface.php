@@ -6,19 +6,19 @@ use Behat\Behat\Context\Context;
 use PaulGibbs\WordpressBehatExtension\WordpressDriverManager;
 
 /**
- * An interface for a WordPress object.
+ * Common interface for Behat contexts.
  */
 interface WordpressAwareInterface extends Context
 {
     /**
-     * Set WordPress instance.
+     * Set WordPress driver manager instance.
      *
      * @param WordpressDriverManager $wordpress
      */
     public function setWordpress(WordpressDriverManager $wordpress);
 
     /**
-     * Get WordPress instance.
+     * Get WordPress driver manager instance.
      *
      * @return WordpressDriverManager
      */
