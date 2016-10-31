@@ -53,9 +53,9 @@ class WordpressBehatExtension implements ExtensionInterface
      * to hook into the configuration of other extensions providing such an
      * extension point.
      *
-     * @param ExtensionManager $extensionManager
+     * @param ExtensionManager $extension_manager
      */
-    public function initialize(ExtensionManager $extensionManager)
+    public function initialize(ExtensionManager $extension_manager)
     {
     }
 

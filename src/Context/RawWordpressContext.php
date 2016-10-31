@@ -18,14 +18,14 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      *
      * @var WordpressDriverManager
      */
-    private $wordpress;
+    protected $wordpress;
 
     /**
      * WordPress parameters.
      *
      * @var array
      */
-    protected $wordpressParameters;
+    protected $wordpress_parameters;
 
 
     /**
@@ -55,7 +55,7 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      */
     public function setWordpressParameters(array $parameters)
     {
-        $this->wordpressParameters = $parameters;
+        $this->wordpress_parameters = $parameters;
     }
 
     /**
@@ -66,7 +66,7 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
     */
     public function getWordpressParameter($name)
     {
-        return isset($this->wordpressParameters[$name]) ? $this->wordpressParameters[$name] : null;
+        return isset($this->wordpress_parameters[$name]) ? $this->wordpress_parameters[$name] : null;
     }
 
     /**

@@ -11,9 +11,9 @@ class WordpressDriverManager
     /**
      * The name of the default driver.
      *
-     * @var string $defaultDriver
+     * @var string $default_driver
      */
-    const defaultDriver = 'wpcli';
+    protected $default_driver = 'wpcli';
 
     /**
      * All registered drivers.
@@ -55,7 +55,7 @@ class WordpressDriverManager
      */
     public function getDriver($name = '')
     {
-        $name   = strtolower($name) ?: $this->defaultDriver;
+        $name   = strtolower($name) ?: $this->default_driver;
         $driver = $this->drivers[$name];
 
         if (! $driver->isBootstrapped()) {
@@ -88,6 +88,6 @@ class WordpressDriverManager
             throw new \InvalidArgumentException(sprintf('Driver "%s" is not registered.', $name));
         }
 
-        $this->defaultDriverName = $name;
+        $this->default_driver = $name;
     }
 }
