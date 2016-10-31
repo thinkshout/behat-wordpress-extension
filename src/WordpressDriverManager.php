@@ -58,10 +58,6 @@ class WordpressDriverManager
         $name   = strtolower($name) ?: $this->default_driver;
         $driver = $this->drivers[$name];
 
-        if (! $driver->isBootstrapped()) {
-            $driver->bootstrap();
-        }
-
         return $driver;
     }
 
