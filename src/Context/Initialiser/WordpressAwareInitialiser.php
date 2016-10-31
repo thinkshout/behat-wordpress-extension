@@ -2,14 +2,14 @@
 namespace PaulGibbs\WordpressBehatExtension\Context\Initialiser;
 
 use Behat\Behat\Context\Context,
-    Behat\Behat\Context\Initialiser\ContextInitialiser;
+    Behat\Behat\Context\Initializer\ContextInitializer;
 
 use PaulGibbs\WordpressBehatExtension\WordpressDriverManager;
 
 /**
  * Behat Context initialiser.
  */
-class WordpressAwareInitialiser implements ContextInitialiser
+class WordpressAwareInitialiser implements ContextInitializer
 {
     /**
      * WordPress driver manager.

@@ -3,8 +3,8 @@ parameters:
   wordpress.wordpress.api_driver: wpcli
   wordpress.wordpress.class: PaulGibbs\WordpressBehatExtension\WordpressDriverManager
 
-  # Context initializsr.
-  wordpress.context.initialiser.class: PaulGibbs\WordpressBehatExtension\Context\Initialiser\WordpressAwareInitialiser
+  # Context initialiser.
+  wordpress.context.initializer.class: PaulGibbs\WordpressBehatExtension\Context\Initialiser\WordpressAwareInitialiser
 
   # Parameters.
   wordpress.parameters: {}
@@ -14,10 +14,10 @@ services:
     class: %wordpress.wordpress.class%
     arguments:
       - {}
-  wordpress.context.initialiser:
-    class: %wordpress.context.initialiser.class%
+  wordpress.context.initializer:
+    class: %wordpress.context.initializer.class%
     arguments:
       - "@wordpress.wordpress"
       - %wordpress.parameters%
     tags:
-      - { name: context.initialiser }
+      - { name: context.initializer }
