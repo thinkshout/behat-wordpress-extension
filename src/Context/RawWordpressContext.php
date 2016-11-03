@@ -94,7 +94,7 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
     {
         for ($i = 0; $i <= $tries; $i++) {
             try {
-                call_user_func( $closure );
+                call_user_func($closure);
                 return;
             } catch (\Exception $e) {
                 if ($i === $tries) {
