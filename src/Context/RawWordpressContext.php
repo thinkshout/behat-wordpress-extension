@@ -53,7 +53,7 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      *
      * @param array $parameters
      */
-    public function setWordpressParameters(array $parameters)
+    public function setWordpressParameters($parameters)
     {
         $this->wordpress_parameters = $parameters;
     }
@@ -90,11 +90,11 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * @param callable $closure Action to execute.
      * @param int      $tries Optional. Number of attempts to make before giving up.
      */
-    public function spins($closure, $tries = 10)
+    public function spins(callable $closure, $tries = 10)
     {
         for ($i = 0; $i <= $tries; $i++) {
             try {
-                $closure();
+                call_user_func( $closure );
                 return;
             } catch (\Exception $e) {
                 if ($i === $tries) {

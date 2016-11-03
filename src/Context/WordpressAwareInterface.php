@@ -29,7 +29,7 @@ interface WordpressAwareInterface extends Context
      *
      * @param array $parameters
      */
-    public function setWordpressParameters(array $parameters);
+    public function setWordpressParameters($parameters);
 
     /**
      * Get a specific WordPress parameter.

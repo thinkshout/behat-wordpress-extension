@@ -28,7 +28,7 @@ class WordpressDriverManager
      *
      * @param DriverInterface[] $drivers An array of drivers to register.
      */
-    public function __construct(array $drivers = array())
+    public function __construct($drivers = array())
     {
         foreach ($drivers as $name => $driver) {
             $this->registerDriver($name, $driver);

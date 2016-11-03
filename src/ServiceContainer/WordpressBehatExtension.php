@@ -89,7 +89,7 @@ class WordpressBehatExtension implements ExtensionInterface
      * @param ContainerBuilder $container
      * @param array            $config
      */
-    public function load(ContainerBuilder $container, array $config)
+    public function load(ContainerBuilder $container, $config)
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/config'));
         $loader->load('services.yml');
@@ -107,7 +107,7 @@ class WordpressBehatExtension implements ExtensionInterface
      * @param ContainerBuilder $container
      * @param array            $config
      */
-    protected function setupWpcliDriver(FileLoader $loader, ContainerBuilder $container, array $config)
+    protected function setupWpcliDriver(FileLoader $loader, ContainerBuilder $container, $config)
     {
         if (empty($config['wpcli'])) {
             return;
