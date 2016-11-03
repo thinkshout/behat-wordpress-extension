@@ -14,3 +14,5 @@ The extension provides [step definitions](http://docs.behat.org/en/latest/user_g
 * Manage themes, plugins, and users.
 * Handle user authentication.
 * And more!
+
+Testing
