@@ -45,7 +45,7 @@
                                         Requirements
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="active">
                                     <a href="https://paulgibbs.github.io/behat-wordpress-extension/installation.html">
                                         Installation
                                     </a>
@@ -66,6 +66,9 @@
 
                 
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <nav id="topbar" role="navigation">
+                                                                                                                                                                                                                                                                                                                                                                                                            </nav>
+
                     <h1 id="installation">Installation</h1>
 <ol>
 <li>
@@ -86,10 +89,10 @@ chmod +x wp</code></pre>
 <pre><code class="language-Shell">sudo mv wp /usr/local/bin/</code></pre>
 </li>
 <li>
-<p>Create a configuration file to tell Composer what to install. To do that, paste the following code into your editor and save as <code>composer.json</code>:</p>
+<p>Create a configuration file to tell Composer to install the WordPress Extension for Behat. To do that, paste the following code into your editor and save as <code>composer.json</code>:</p>
 <pre><code class="language-YAML">{
   "require": {
-    "paulgibbs/behat-wordpress-extension": "*"
+    "paulgibbs/behat-wordpress-extension": "~0.1"
   }
 }</code></pre>
 </li>
@@ -106,10 +109,8 @@ chmod +x wp</code></pre>
 </dl>
 </li>
 <li>
-<p>Initialize behat. This creates the features folder with some basic things to get you started, including your own FeatureContext.php file:</p>
-<p>bin/behat --init</p>
-</li>
-<li>
+<p>Initialise behat.</p>
+<pre><code class="language-Shell">vendor/bin/behat --init</code></pre>
 <p>This will generate a FeatureContext.php file that looks like:</p>
 <dl>
 <dt>.. literalinclude: _static/snippets/FeatureContext.php.inc</dt>
