@@ -136,7 +136,27 @@ class WordpressBehatExtension implements ExtensionInterface
      */
     public function process(ContainerBuilder $container)
     {
+        $this->processDriverPass($container);
+        $this->processContextGenerator($container);
+    }
+
+    /**
+     * Set up Driver registration.
+     *
+     * @param ContainerBuilder $container
+     */
+    protected function processDriverPass(ContainerBuilder $container) {
         $driver = new DriverPass();
         $driver->process($container);
+    }
+
+    /**
+     * Set up custom Context class.
+     *
+     * `behat --init` creates an inital Context class. Here, we switch the template used for that.
+     */
+    protected function processContextGenerator(ContainerBuilder $container) {
+        $definition = new Definition('PaulGibbs\WordpressBehatExtension\Context\ContextGenerator');
+        $container->setDefinition(ContextExtension::CLASS_GENERATOR_TAG . '.simple', $definition);
     }
 }
