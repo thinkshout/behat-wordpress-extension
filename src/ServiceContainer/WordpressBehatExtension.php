@@ -89,7 +89,7 @@ class WordpressBehatExtension implements ExtensionInterface
      * @param ContainerBuilder $container
      * @param array            $config
      */
-    public function load(ContainerBuilder $container, $config)
+    public function load(ContainerBuilder $container, array $config)
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/config'));
         $loader->load('services.yml');
