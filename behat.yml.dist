@@ -21,4 +21,6 @@ default:
     PaulGibbs\WordpressBehatExtension:
       default_driver: wpcli
       wpcli:
-        alias: dev
+        alias: ~
+        path: ~
+        url: ~
