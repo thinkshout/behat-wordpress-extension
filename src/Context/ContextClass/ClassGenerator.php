@@ -1,5 +1,5 @@
 <?php
-namespace PaulGibbs\WordpressBehatExtension\Context;
+namespace PaulGibbs\WordpressBehatExtension\Context\ContextClass;
 
 use Behat\Behat\Context\ContextClass\ClassGenerator as BehatContextGenerator,
     Behat\Testwork\Suite\Suite;
@@ -7,7 +7,7 @@ use Behat\Behat\Context\ContextClass\ClassGenerator as BehatContextGenerator,
 /**
  * Generates a starting Context class (as a string).
  */
-class ContextGenerator implements BehatContextGenerator {
+class ClassGenerator implements BehatContextGenerator {
 
     /**
      * @var string

@@ -156,7 +156,7 @@ class WordpressBehatExtension implements ExtensionInterface
      * `behat --init` creates an inital Context class. Here, we switch the template used for that.
      */
     protected function processClassGenerator(ContainerBuilder $container) {
-        $definition = new Definition('PaulGibbs\WordpressBehatExtension\Context\ContextGenerator');
+        $definition = new Definition('PaulGibbs\WordpressBehatExtension\Context\ContextClass\ClassGenerator');
         $container->setDefinition(ContextExtension::CLASS_GENERATOR_TAG . '.simple', $definition);
     }
 }
