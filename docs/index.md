@@ -1,3 +1,7 @@
+---
+currentMenu: about
+---
+
 # About
 
 The WordPress Extension for Behat is an integration layer between [Behat](http://behat.org), [Mink Extension](https://github.com/Behat/MinkExtension), and [WordPress](https://wordpress.org). It provides WordPress-specific functionality for common testing scenarios specific to WordPress sites.
@@ -10,9 +14,6 @@ Behat and Mink allow you to describe the behavior of a website in plain, but sty
 
 The extension provides [step definitions](http://docs.behat.org/en/latest/user_guide/context/definitions.html) that help you implement tests for common WordPress tasks:
 
-* Set up test data.
-* Manage themes, plugins, and users.
-* Handle user authentication.
-* And more!
-
-Testing
+* Manage themes and plugins.
+* Manipulate site content, and create test data.
+* Handle user authentication, clear the cache, and other useful steps.

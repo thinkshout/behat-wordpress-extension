@@ -1,3 +1,7 @@
+---
+currentMenu: installation
+---
+
 # Installation
 
 1. Create a folder for your tests:
@@ -28,12 +32,12 @@
   sudo mv wp /usr/local/bin/
   ```
 
-4. Create a configuration file to tell Composer what to install. To do that, paste the following code into your editor and save as `composer.json`:
+4. Create a configuration file to tell Composer to install the WordPress Extension for Behat. To do that, paste the following code into your editor and save as `composer.json`:
 
   ```YAML
   {
       "require": {
-        "paulgibbs/behat-wordpress-extension": "*"
+        "paulgibbs/behat-wordpress-extension": "~0.1"
       }
   }
   ```
@@ -50,11 +54,13 @@
      :language: yaml
      :linenos:
 
-7. Initialize behat. This creates the features folder with some basic things to get you started, including your own FeatureContext.php file:
+7. Initialise behat.
 
-    bin/behat --init
+    ```Shell
+    vendor/bin/behat --init
+    ```
 
-8. This will generate a FeatureContext.php file that looks like:
+  This will generate a FeatureContext.php file that looks like:
 
   .. literalinclude: _static/snippets/FeatureContext.php.inc
      :language: php
