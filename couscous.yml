@@ -1,5 +1,5 @@
 template:
-  url: https://github.com/CouscousPHP/Template-Light.git
+  url: https://github.com/paulgibbs/Template-Light.git
   index: index.md
 
 include:
@@ -38,7 +38,7 @@ menu:
     #  text: Extension drivers
     #  relativeUrl: drivers.html
 
-    environment:
+    contexts:
       text: Contexts
       relativeUrl: contexts.html
 
