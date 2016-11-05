@@ -157,6 +157,7 @@ class WordpressBehatExtension implements ExtensionInterface
      */
     protected function processClassGenerator(ContainerBuilder $container) {
         $definition = new Definition('PaulGibbs\WordpressBehatExtension\Context\ContextClass\ClassGenerator');
+        $definition->addTag(ContextExtension::CLASS_GENERATOR_TAG, array('priority' => 50));
         $container->setDefinition(ContextExtension::CLASS_GENERATOR_TAG . '.simple', $definition);
     }
 }
