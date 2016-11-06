@@ -70,6 +70,10 @@
                                                                                                                                                                                                                                                                                                                                                                                                             </nav>
 
                     <h1 id="installation">Installation</h1>
+<blockquote>
+<p>Do you know how to use Composer? tl;dr?</p>
+<p>Require <code>paulgibbs/behat-wordpress-extension</code> and copy its <code>behat.yml.dist</code> into your project (minus <code>.dist</code>), install <a href="https://wp-cli.org/">WP-CLI</a> globally, and run <code>vendor/bin/behat --init</code>.</p>
+</blockquote>
 <ol>
 <li>
 <p>Create a folder for your tests:</p>
@@ -78,60 +82,29 @@ cd projectfolder</code></pre>
 <p>All the commands that follow are written to install from the root of your project folder.</p>
 </li>
 <li>
-<p>Install <a href="https://getcomposer.org/">Composer</a>:</p>
-<pre><code class="language-Shell">curl -s https://getcomposer.org/installer | php</code></pre>
+<p>Tell <a href="https://getcomposer.org/">Composer</a> to install the WordPress Extension for Behat. To do this conveniently, run:</p>
+<pre><code class="language-Shell">php composer.phar require paulgibbs/behat-wordpress-extension="^0.1"</code></pre>
+<p>This will create a <code>composer.json</code> file you, and download the WordPress Extension for Behat, and all dependencies.</p>
 </li>
 <li>
-<p>Install <a href="http://wp-cli.org/">WP-CLI</a> globally:</p>
-<pre><code class="language-Shell">curl -o wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-chmod +x wp</code></pre>
-<p>Note: this executable <em>must</em> be named <code>wp</code> and be within your system's <a href="https://en.wikipedia.org/wiki/PATH_(variable)">$PATH</a>. For example:</p>
-<pre><code class="language-Shell">sudo mv wp /usr/local/bin/</code></pre>
+<p>The WordPress Extension for Behat comes with a sample configuration file to help you configure the test environment. Copy it into your project folder and name it <code>behat.yml</code>:</p>
+<pre><code class="language-Shell">cp vendor/paulgibbs/behat-wordpress-extension/behat.yml.dist behat.yml</code></pre>
+<p>You need to change the <code>base_url</code> setting to point at the website that you intend to test. Open your <code>behat.yml</code> and make the change. Do not include a trailing slash!</p>
+<pre><code class="language-YAML">base_url: http://put-your-site-url-here.com</code></pre>
 </li>
 <li>
-<p>Create a configuration file to tell Composer to install the WordPress Extension for Behat. To do that, paste the following code into your editor and save as <code>composer.json</code>:</p>
-<pre><code class="language-YAML">{
-  "require": {
-    "paulgibbs/behat-wordpress-extension": "~0.1"
-  }
-}</code></pre>
-</li>
-<li>
-<p>Run the following command to install the WordPress Extension for Behat:</p>
-<pre><code class="language-Shell">php composer.phar install</code></pre>
-</li>
-<li>
-<p>Configure your testing environment by creating a file called behat.yml with the following. Be sure that you point the base_url at the web site YOU intend to test. Do not include a trailing slash:</p>
-<dl>
-<dt>.. literalinclude: _static/snippets/behat-1.yml</dt>
-<dd>language: yaml</dd>
-<dd>linenos:</dd>
-</dl>
-</li>
-<li>
-<p>Initialise behat.</p>
+<p>Initialise Behat:</p>
 <pre><code class="language-Shell">vendor/bin/behat --init</code></pre>
-<p>This will generate a FeatureContext.php file that looks like:</p>
-<dl>
-<dt>.. literalinclude: _static/snippets/FeatureContext.php.inc</dt>
-<dd>language: php</dd>
-<dd>linenos:</dd>
-<dd>emphasize-lines: 12</dd>
-</dl>
-<p>This FeatureContext.php will be aware of both the Drupal Extension and the Mink Extension, so you'll be able to take advantage of their drivers add your own custom step definitions as well.</p>
+<p>This will generate a <code>features</code> folder for your <a href="http://docs.behat.org/en/latest/user_guide/features_scenarios.html#features">Behat features</a>, and a new context class at <code>features/bootstrap/FeatureContext.php</code>, which will be aware of both the WordPress Extension and the <a href="https://github.com/Behat/MinkExtension">Mink Extension</a>, so you'll be able to take advantage of their drivers as you add your own custom <a href="http://docs.behat.org/en/latest/user_guide/writing_scenarios.html">step definitions or hooks</a>.</p>
 </li>
 <li>
-<p>To ensure everything is set up appropriately, type:</p>
-<p>bin/behat -dl</p>
-<p>You'll see a list of steps like the following, but longer, if you've installed everything successfully:</p>
-<dl>
-<dt>.. code-block: gherkin</dt>
-<dd><p>linenos:</p>
-<p>default | Given I am an anonymous user
-default | Given I am not logged in
-default | Given I am logged in as a user with the :role role(s)
-default | Given I am logged in as :name</p></dd>
-</dl>
+<p>To confirm that everything is set up correctly, run:</p>
+<pre><code class="language-Shell">vendor/bin/behat -dl</code></pre>
+<p>If everything worked, you will see a list of steps like the following (but much longer):</p>
+<pre><code class="language-Gherkin">Given I am an anonymous user
+Given I am not logged in
+Given I am logged in as a user with the :role role(s)
+Given I am logged in as :name</code></pre>
 </li>
 </ol>
                 </section>
