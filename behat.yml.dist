@@ -1,9 +1,8 @@
 default:
   suites:
     default:
-      path: %paths.base%/features
       contexts:
-        - Behat\MinkExtension\Context\MinkContext
+        - FeatureContext
         - PaulGibbs\WordpressBehatExtension\Context\TestContext
 
   extensions:
@@ -21,6 +20,4 @@ default:
     PaulGibbs\WordpressBehatExtension:
       default_driver: wpcli
       wpcli:
-        alias: ~
-        path: ~
-        url: ~
+        path: /www/example.com
