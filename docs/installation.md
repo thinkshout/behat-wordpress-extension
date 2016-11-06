@@ -4,6 +4,10 @@ currentMenu: installation
 
 # Installation
 
+> Do you know how to use Composer? tl;dr?
+>
+> Require `paulgibbs/behat-wordpress-extension` and copy its `behat.yml.dist` into your project (minus `.dist`), install <a href="https://wp-cli.org/">WP-CLI</a> globally, and run `vendor/bin/behat --init`.
+
 1. Create a folder for your tests:
 
   ```Shell
@@ -13,72 +17,45 @@ currentMenu: installation
 
   All the commands that follow are written to install from the root of your project folder.
 
-2. Install [Composer](https://getcomposer.org/):
+2. Tell [Composer](https://getcomposer.org/) to install the WordPress Extension for Behat. To do this conveniently, run:
 
   ```Shell
-  curl -s https://getcomposer.org/installer | php
+  php composer.phar require paulgibbs/behat-wordpress-extension="^0.1"
   ```
 
-3. Install [WP-CLI](http://wp-cli.org/) globally:
+  This will create a `composer.json` file you, and download the WordPress Extension for Behat, and all dependencies.
+
+3. The WordPress Extension for Behat comes with a sample configuration file to help you configure the test environment. Copy it into your project folder and name it `behat.yml`:
 
   ```Shell
-  curl -o wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-  chmod +x wp
+  cp vendor/paulgibbs/behat-wordpress-extension/behat.yml.dist behat.yml
   ```
 
-  Note: this executable *must* be named `wp` and be within your system's [$PATH](https://en.wikipedia.org/wiki/PATH_(variable)). For example:
-
-  ```Shell
-  sudo mv wp /usr/local/bin/
-  ```
-
-4. Create a configuration file to tell Composer to install the WordPress Extension for Behat. To do that, paste the following code into your editor and save as `composer.json`:
+  You need to change the `base_url` setting to point at the website that you intend to test. Open your `behat.yml` and make the change. Do not include a trailing slash!
 
   ```YAML
-  {
-      "require": {
-        "paulgibbs/behat-wordpress-extension": "~0.1"
-      }
-  }
+  base_url: http://put-your-site-url-here.com
   ```
 
-5. Run the following command to install the WordPress Extension for Behat:
-
-  ```Shell
-  php composer.phar install
-  ```
-
-6. Configure your testing environment by creating a file called behat.yml with the following. Be sure that you point the base_url at the web site YOU intend to test. Do not include a trailing slash:
-
-  .. literalinclude: _static/snippets/behat-1.yml
-     :language: yaml
-     :linenos:
-
-7. Initialise behat.
+4. Initialise Behat:
 
     ```Shell
     vendor/bin/behat --init
     ```
 
-  This will generate a FeatureContext.php file that looks like:
+  This will generate a `features` folder for your [Behat features](http://docs.behat.org/en/latest/user_guide/features_scenarios.html#features), and a new context class at `features/bootstrap/FeatureContext.php`, which will be aware of both the WordPress Extension and the [Mink Extension](https://github.com/Behat/MinkExtension), so you'll be able to take advantage of their drivers as you add your own custom [step definitions or hooks](http://docs.behat.org/en/latest/user_guide/writing_scenarios.html).
 
-  .. literalinclude: _static/snippets/FeatureContext.php.inc
-     :language: php
-     :linenos:
-     :emphasize-lines: 12
+5. To confirm that everything is set up correctly, run:
 
-  This FeatureContext.php will be aware of both the Drupal Extension and the Mink Extension, so you'll be able to take advantage of their drivers add your own custom step definitions as well.
+  ```Shell
+  vendor/bin/behat -dl
+  ```
 
-9. To ensure everything is set up appropriately, type:
+  If everything worked, you will see a list of steps like the following (but much longer):
 
-    bin/behat -dl
-
-   You'll see a list of steps like the following, but longer, if you've installed everything successfully:
-
-  .. code-block: gherkin
-     :linenos:
-
-      default | Given I am an anonymous user
-      default | Given I am not logged in
-      default | Given I am logged in as a user with the :role role(s)
-      default | Given I am logged in as :name
+  ```Gherkin
+  Given I am an anonymous user
+  Given I am not logged in
+  Given I am logged in as a user with the :role role(s)
+  Given I am logged in as :name
+  ```
