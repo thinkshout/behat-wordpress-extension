@@ -99,9 +99,16 @@ Step-definitions that are specific to WordPress messages that get displayed (not
 
         <script>
             $(function() {
-                $("section>h1").wrap('<div class="page-header" />');
-                // Syntax highlighting
                 hljs.initHighlightingOnLoad();
+
+                $("section>h1").wrap('<div class="page-header" />');
+                $('table').map(function() {
+                    var table = $(this);
+                    table.addClass('table table-striped');
+                    table.wrap(function() {
+                        return '<div class="table-responsive"></div>';
+                    });
+                });
             });
         </script>
 
