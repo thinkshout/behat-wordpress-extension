@@ -4,31 +4,25 @@ currentMenu: settings
 
 # Settings
 
-* `Behat\MinkExtension`
-  * `base_url`: URL to the WordPress site.
-* `PaulGibbs\WordpressExtension`
-  * `path`: Absolute path to the WordPress files.
+## PaulGibbs\WordpressBehatExtension
 
-# Environment-specific settings
+Extension `PaulGibbs\WordpressBehatExtension` integrates [WordPress](https://wordpress.org/) into Behat. These are its configuration options:
 
-Some of the settings in `behat.yml` are environment specific. For example, the base URL may be `development.dev` on your local development environment, while on a test server it might be `test.dev`. Other environment specific settings include the WordPress root path.
-
-If you intend to run your tests on different environments these settings should not be committed to `behat.yml`. Instead they should be exported in an environment variable. Before running tests, Behat will check the `BEHAT_PARAMS` environment variable and add these settings to the ones that are present in `behat.yml`. This variable should contain a JSON object with your settings.
-
-Example JSON object:
-
-```JSON
-{
-  "extensions": {
-    "Behat\\MinkExtension": {
-      "base_url": "http://development.dev"
-    }
-  }
-}
+```YAML
+PaulGibbs\WordpressBehatExtension:
+  default_driver: wpcli
+  wpcli:
+    alias: dev
+    path: /www/example.com
 ```
 
-To export this into the ``BEHAT_PARAMS`` environment variable, squash the JSON object into a single line and surround with single quotes:
+Option              | Default value      | Description
+------------------- | ------------------ | -----------
+**default_driver**  | wpcli              | Name of the Driver to use.
+**wpcli.alias**     | _not set_          | Optional. [WP-CLI alias](https://wp-cli.org/commands/cli/alias/) (preferred over `wpcli.path`).
+**wpcli.path**      | `/www/example.com` | Path to WordPress files.
 
-```Shell
-export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"http://development.dev"}}}'
-```
+
+## Behat\MinkExtension
+
+Extension `Behat\MinkExtension` integrates [Mink](http://mink.behat.org/en/latest/) into Behat. [Visit its website](https://github.com/Behat/MinkExtension/blob/master/doc/index.rst) for more information.
