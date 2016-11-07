@@ -2,7 +2,7 @@
 currentMenu: requirements
 ---
 
-# System Requirements
+# Requirements
 
 * A [WordPress](https://wordpress.org/) site, running version 4.7+.
 * [WP-CLI](http://wp-cli.org/) installed globally:
@@ -14,8 +14,7 @@ currentMenu: requirements
 
 * PHP 5.4+, with the [cURL extension](https://curl.haxx.se/libcurl/php/install.html) enabled.
 * [Composer](https://getcomposer.org/).
-* [Selenium](http://docs.seleniumhq.org/download/).
-  * Download the Standalone Server, place the file wherever you want, and run with the following command:
-```Shell
-java -jar selenium-server-standalone-3.0.1.jar
-```
+* [Selenium](http://docs.seleniumhq.org/download/) (Standalone Server version).
+  ```Shell
+  java -jar selenium-server-standalone-3.0.1.jar
+  ```
