@@ -12,10 +12,6 @@ branch: gh-pages
 
 baseUrl: https://paulgibbs.github.io/behat-wordpress-extension/
 
-github:
-  user: paulgibbs
-  repo: behat-wordpress-extension
-
 menu:
   items:
     about:
