@@ -43,7 +43,7 @@ currentMenu: installation
     vendor/bin/behat --init
     ```
 
-  This will generate a `features` folder for your [Behat features](http://docs.behat.org/en/latest/user_guide/features_scenarios.html#features), and a new context class at `features/bootstrap/FeatureContext.php`, which will be aware of both the WordPress Extension and the [Mink Extension](https://github.com/Behat/MinkExtension), so you'll be able to take advantage of their drivers as you add your own custom [step definitions or hooks](http://docs.behat.org/en/latest/user_guide/writing_scenarios.html).
+  This will generate a `features/` folder for your [Behat features](http://docs.behat.org/en/latest/user_guide/features_scenarios.html#features), and a new context class in `features/bootstrap/`. The latter is aware of both the WordPress Extension and the [Mink Extension](https://github.com/Behat/MinkExtension), so you'll be able to take advantage of their drivers as you add your own custom [step definitions or hooks](http://docs.behat.org/en/latest/user_guide/writing_scenarios.html).
 
 5. To confirm that everything is set up correctly, run:
 
