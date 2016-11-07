@@ -22,9 +22,6 @@ Example JSON object:
   "extensions": {
     "Behat\\MinkExtension": {
       "base_url": "http://development.dev"
-    },
-    "PaulGibbs\\WordpressExtension": {
-      "path": "/srv/www/development.dev"
     }
   }
 }
@@ -33,5 +30,5 @@ Example JSON object:
 To export this into the ``BEHAT_PARAMS`` environment variable, squash the JSON object into a single line and surround with single quotes:
 
 ```Shell
-export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"http://development.dev"},"PaulGibbs\\WordpressExtension":{"path":"/www/development.dev"}}}'
+export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"http://development.dev"}}}'
 ```
