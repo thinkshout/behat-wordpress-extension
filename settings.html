@@ -83,14 +83,11 @@
   "extensions": {
     "Behat\\MinkExtension": {
       "base_url": "http://development.dev"
-    },
-    "PaulGibbs\\WordpressExtension": {
-      "path": "/srv/www/development.dev"
     }
   }
 }</code></pre>
 <p>To export this into the <code>BEHAT_PARAMS</code> environment variable, squash the JSON object into a single line and surround with single quotes:</p>
-<pre><code class="language-Shell">export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"http://development.dev"},"PaulGibbs\\WordpressExtension":{"path":"/www/development.dev"}}}'</code></pre>
+<pre><code class="language-Shell">export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"http://development.dev"}}}'</code></pre>
                 </section>
 
             </div>
