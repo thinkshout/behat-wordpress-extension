@@ -17,4 +17,4 @@ The WordPress Extension for Behat includes the following contexts:
   Provides step-definitions for creating TODO, TODO, and TODO.
 
 * _**MessageContext**_
-  Step-definitions that are specific to WordPress messages that get displayed (notice, warning, and error).
+  Step-definitions that are specific to WordPress messages that get displayed (notice, warning, and error)
