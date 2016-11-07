@@ -17,7 +17,7 @@ use PaulGibbs\WordpressBehatExtension\Compiler\DriverPass;
 
 
 /**
- * Behat extension for WordPress configuration and loading.
+ * Behat extension for loading and configuring WordPress.
  */
 class WordpressBehatExtension implements ExtensionInterface
 {
@@ -76,7 +76,6 @@ class WordpressBehatExtension implements ExtensionInterface
                         ->children()
                             ->scalarNode('alias')->end()
                             ->scalarNode('path')->end()
-                            ->scalarNode('url')->end()
                         ->end()
                     ->end()
                 ->end()
@@ -124,9 +123,6 @@ class WordpressBehatExtension implements ExtensionInterface
 
         $config['wpcli']['path'] = isset($config['wpcli']['path']) ? $config['wpcli']['path'] : '';
         $container->setParameter('wordpress.driver.wpcli.path', $config['wpcli']['path']);
-
-        $config['wpcli']['url'] = isset($config['wpcli']['url']) ? $config['wpcli']['url'] : '';
-        $container->setParameter('wordpress.driver.wpcli.url', $config['wpcli']['url']);
     }
 
     /**

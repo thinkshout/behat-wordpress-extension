@@ -7,6 +7,5 @@ services:
     arguments:
       - %wordpress.driver.wpcli.alias%
       - %wordpress.driver.wpcli.path%
-      - %wordpress.driver.wpcli.url%
     tags:
       - { name: wordpress.driver, alias: wpcli }
