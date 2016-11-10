@@ -20,17 +20,26 @@ class WpcliDriver extends BaseDriver
      */
     protected $path = '';
 
+    /**
+     * WordPress site URL.
+     *
+     * @var string
+     */
+    protected $url = '';
+
 
     /**
      * Constructor.
      *
-     * @param string $alias Optional. WP-CLI alias.
-     * @param string $path Optional. Absolute path to WordPress site files.
+     * @param string $alias WP-CLI alias. This or $path must be not falsey.
+     * @param string $path Absolute path to WordPress site files. This or $alias must be not falsey.
+     * @param string $url WordPress site URL.
      */
-    public function __construct($alias = '', $path = '')
+    public function __construct($alias, $path, $url)
     {
         $this->alias = ltrim($alias, '@');
         $this->path  = realpath($path);
+        $this->url   = rtrim(filter_var($url, FILTER_SANITIZE_URL), '/');
 
         if (! $this->alias && ! $this->path) {
             throw new \RuntimeException('WP-CLI driver requires an `alias` or `root` path.');
@@ -54,6 +63,9 @@ class WpcliDriver extends BaseDriver
     {
         // TODO: update for path.
         $alias = "@{$this->alias}";
+        $path  = $this->path;
+        $url   = $this->url;
+
         $arguments  = '';
         $cmd_output = array();
         $exit_code  = 0;

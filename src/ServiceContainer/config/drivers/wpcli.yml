@@ -7,5 +7,6 @@ services:
     arguments:
       - %wordpress.driver.wpcli.alias%
       - %wordpress.driver.wpcli.path%
+      - %mink.base_url%
     tags:
       - { name: wordpress.driver, alias: wpcli }
