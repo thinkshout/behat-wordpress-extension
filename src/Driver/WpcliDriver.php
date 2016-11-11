@@ -61,21 +61,25 @@ class WpcliDriver extends BaseDriver
      */
     public function run($command, $subcommand, $raw_arguments = array())
     {
-        // TODO: update for path.
-        $alias = "@{$this->alias}";
-        $path  = $this->path;
-        $url   = $this->url;
-
         $arguments  = '';
         $cmd_output = array();
         $exit_code  = 0;
 
+        // Build parameter list.
         foreach ($raw_arguments as $name => $value) {
             if (is_int($name)) {
                 $arguments .= "{$value} ";
             } else {
                 $arguments .= sprintf('%s=%s ', $name, escapeshellarg($value));
             }
+        }
+
+        // Support WP-CLI environment alias, or path and URL.
+        if ($this->alias) {
+            $config = "@{$this->alias}";
+        } else {
+            // TODO: review best practice with escapeshellcmd() here, and impact on metacharactes.
+            $config = sprintf('--path=%s --url=%s', escapeshellarg($this->path), escapeshellarg($this->url));
         }
 
         exec("wp {$alias} {$command} {$subcommand} {$arguments} --no-color", $cmd_output, $exit_code);
