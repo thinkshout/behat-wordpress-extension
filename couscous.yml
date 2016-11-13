@@ -34,9 +34,9 @@ menu:
           text: Environment
           relativeUrl: environment-settings.html
 
-    #environment:
-    #  text: Extension drivers
-    #  relativeUrl: drivers.html
+    drivers:
+      text: Drivers
+      relativeUrl: drivers.html
 
     contexts:
       text: Contexts

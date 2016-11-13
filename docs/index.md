@@ -17,5 +17,5 @@ Such functional tests can help site builders ensure that the added value they've
 The extension provides [step definitions](http://docs.behat.org/en/latest/user_guide/context/definitions.html) that help you implement tests for common WordPress tasks:
 
 * Manage themes and plugins.
-* Manipulate site content, and create test data.
-* Handle user authentication, clear the cache, and other useful steps.
+* Manipulate site content.
+* And more!

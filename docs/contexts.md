@@ -6,7 +6,7 @@ currentMenu: contexts
 
 With Behat, it is possible to flexibly structure your code by using multiple contexts in a single test suite.
 
-## Available Contexts
+## Available contexts
 
 The WordPress Extension for Behat includes the following contexts:
 
