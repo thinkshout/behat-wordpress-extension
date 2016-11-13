@@ -52,12 +52,12 @@
                                         Settings
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="active">
                                     <a href="https://paulgibbs.github.io/behat-wordpress-extension/drivers.html">
                                         Drivers
                                     </a>
                                 </li>
-                                                            <li class="active">
+                                                            <li class="">
                                     <a href="https://paulgibbs.github.io/behat-wordpress-extension/contexts.html">
                                         Contexts
                                     </a>
@@ -69,22 +69,39 @@
                 
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
                                                                                                                                                                                                                                                                                                                                                                                         
-                    <h1 id="contexts">Contexts</h1>
-<p>With Behat, it is possible to flexibly structure your code by using multiple contexts in a single test suite.</p>
-<h2 id="available-contexts">Available contexts</h2>
-<p>The WordPress Extension for Behat includes the following contexts:</p>
-<ul>
-<li>
-<p><em><strong>RawWordpressContext</strong></em>
-A context that provides no step definitions, but all of the necessary functionality for interacting with WordPress, and with the browser, via Mink sessions.</p>
-</li>
-<li>
-<p><em><strong>WordpressContext</strong></em>
-Provides step-definitions for creating TODO, TODO, and TODO.</p>
-</li>
-<li><em><strong>MessageContext</strong></em>
-Step-definitions that are specific to WordPress messages that get displayed (notice, warning, and error)</li>
-</ul>
+                    <h1 id="drivers">Drivers</h1>
+<p>The WordPress Extension for Behat provides multiple drivers for interacting with the WordPress site you are testing.
+The default driver is WP-CLI.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>WP-CLI</th>
+<th>Browser<sup><a href="#NYI">1</a></sup></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Activate/deactive plugins</td>
+<td>Yes</td>
+<td>~</td>
+</tr>
+<tr>
+<td>Switch theme</td>
+<td>Yes</td>
+<td>~</td>
+</tr>
+<tr>
+<td>Run tests and site on different servers</td>
+<td>Yes<sup><a href="#WP-CLI">2</a></sup></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><a id="NYI"></a> Feature planned, not yet implemented.</li>
+<li>WP-CLI <a href="https://wp-cli.org/blog/version-0.24.0.html#but-wait-whats-the-ssh-in-there" id="WP-CLI">supports SSH connections</a> to remote WordPress sites.</li>
+</ol>
                 </section>
 
             </div>
