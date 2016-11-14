@@ -20,4 +20,4 @@ default:
     PaulGibbs\WordpressBehatExtension:
       default_driver: wpcli
       wpcli:
-        path: /www/example.com
+        path: /path/to/wordpress

@@ -7,7 +7,7 @@ currentMenu: requirements
 * A [WordPress](https://wordpress.org/) site, running version 4.7+.
 * PHP 5.4+, with the [cURL extension](https://curl.haxx.se/libcurl/php/install.html) enabled.
 * [Composer](https://getcomposer.org/).
-* [Selenium](http://docs.seleniumhq.org/download/) (Standalone Server version).
+* [Selenium](http://docs.seleniumhq.org/download/) ("Standalone Server" version).
   ```Shell
   java -jar selenium-server-standalone-3.0.1.jar
   ```

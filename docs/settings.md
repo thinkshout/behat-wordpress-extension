@@ -18,9 +18,9 @@ PaulGibbs\WordpressBehatExtension:
 
 Option              | Default value      | Description
 ------------------- | ------------------ | -----------
-**default_driver**  | wpcli              | Name of the Driver to use.
+**default_driver**  | wpcli              | The driver to use (either "wpcli" or "browser").
 **wpcli.alias**     | _not set_          | Optional. [WP-CLI alias](https://wp-cli.org/commands/cli/alias/) (preferred over `wpcli.path`).
-**wpcli.path**      | `/www/example.com` | Path to WordPress files.
+**wpcli.path**      | _not set_          | Optional. Path to WordPress files.
 
 
 ## Behat\MinkExtension
