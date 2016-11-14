@@ -115,7 +115,7 @@ class WordpressBehatExtension implements ExtensionInterface
         $loader->load('drivers/wpcli.yml');
 
         if (empty($config['wpcli']['alias']) && empty($config['wpcli']['path'])) {
-            throw new \RuntimeException('WP-CLI driver requires an `alias` or `root` path.');
+            throw new \RuntimeException('WP-CLI driver requires an `alias` or root `path` set.');
         }
 
         $config['wpcli']['alias'] = isset($config['wpcli']['alias']) ? $config['wpcli']['alias'] : '';
