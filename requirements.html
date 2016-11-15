@@ -62,13 +62,18 @@
                                         Contexts
                                     </a>
                                 </li>
+                                                            <li class="">
+                                    <a href="https://paulgibbs.github.io/behat-wordpress-extension/license.html">
+                                        License
+                                    </a>
+                                </li>
                                                     </ul>
 
                     </nav>
 
                 
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                                                                                                            
                     <h1 id="requirements">Requirements</h1>
 <ul>
 <li>A <a href="https://wordpress.org/">WordPress</a> site, running version 4.7+.</li>
@@ -103,7 +108,7 @@
             $(function() {
                 hljs.initHighlightingOnLoad();
 
-                $("section>h1").wrap('<div class="page-header" />');
+                $("section>h1").addClass('screen-reader-text').wrap('<div class="page-header" />');
                 $('table').map(function() {
                     var table = $(this);
                     table.addClass('table table-striped');

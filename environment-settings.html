@@ -62,6 +62,11 @@
                                         Contexts
                                     </a>
                                 </li>
+                                                            <li class="">
+                                    <a href="https://paulgibbs.github.io/behat-wordpress-extension/license.html">
+                                        License
+                                    </a>
+                                </li>
                                                     </ul>
 
                     </nav>
@@ -84,7 +89,7 @@
                                             </li>
                                                                             </ul>
                                 </nav>
-                                                                                                                                                                                
+                                                                                                                                                                                                                                    
                     <h1 id="environment-settings">Environment Settings</h1>
 <p>Some of the settings in <code>behat.yml</code> are environment specific. For example, the <code>base_url</code> may be <code>http://test.example.dev</code> on your local development environment, while on a test server it might be <code>http://test.example.com</code>.</p>
 <p>If you intend to run your tests on different environments, these sorts of settings should not be committed to <code>behat.yml</code>; instead, they should be exported in an environment variable.</p>
@@ -120,7 +125,7 @@
             $(function() {
                 hljs.initHighlightingOnLoad();
 
-                $("section>h1").wrap('<div class="page-header" />');
+                $("section>h1").addClass('screen-reader-text').wrap('<div class="page-header" />');
                 $('table').map(function() {
                     var table = $(this);
                     table.addClass('table table-striped');

@@ -62,6 +62,11 @@
                                         Contexts
                                     </a>
                                 </li>
+                                                            <li class="">
+                                    <a href="https://paulgibbs.github.io/behat-wordpress-extension/license.html">
+                                        License
+                                    </a>
+                                </li>
                                                     </ul>
 
                     </nav>
@@ -84,7 +89,7 @@
                                             </li>
                                                                             </ul>
                                 </nav>
-                                                                                                                                                                                
+                                                                                                                                                                                                                                    
                     <h1 id="settings">Settings</h1>
 <h2 id="paulgibbswordpressbehatextension">PaulGibbs\WordpressBehatExtension</h2>
 <p>Extension <code>PaulGibbs\WordpressBehatExtension</code> integrates <a href="https://wordpress.org/">WordPress</a> into Behat. These are its configuration options:</p>
@@ -142,7 +147,7 @@
             $(function() {
                 hljs.initHighlightingOnLoad();
 
-                $("section>h1").wrap('<div class="page-header" />');
+                $("section>h1").addClass('screen-reader-text').wrap('<div class="page-header" />');
                 $('table').map(function() {
                     var table = $(this);
                     table.addClass('table table-striped');
