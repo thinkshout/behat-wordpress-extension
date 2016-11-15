@@ -42,5 +42,9 @@ menu:
       text: Contexts
       relativeUrl: contexts.html
 
+    license:
+      text: License
+      relativeUrl: license.html
+
 title: WordPress Extension for Behat
 subTitle: 0.1.0
