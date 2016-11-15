@@ -15,7 +15,9 @@ class ClassGenerator implements BehatContextGenerator {
     protected static $template = <<<'PHP'
 <?php
 {namespace}use PaulGibbs\WordpressBehatExtension\Context\RawWordpressContext;
-use Behat\Behat\Context\SnippetAcceptingContext;
+
+use Behat\Behat\Context\SnippetAcceptingContext,
+    Behat\Behat\Tester\Exception\PendingException;
 
 /**
  * Define application features from the specific context.
