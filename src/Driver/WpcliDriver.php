@@ -59,7 +59,7 @@ class WpcliDriver extends BaseDriver
      *     @type int   $exit_code  Returned status code of the executed command.
      * }
      */
-    public function run($command, $subcommand, $raw_arguments = array())
+    public function wpcli($command, $subcommand, $raw_arguments = array())
     {
         $arguments  = '';
         $cmd_output = array();
@@ -82,8 +82,46 @@ class WpcliDriver extends BaseDriver
             $config = sprintf('--path=%s --url=%s', escapeshellarg($this->path), escapeshellarg($this->url));
         }
 
-        exec("wp {$alias} {$command} {$subcommand} {$arguments} --no-color", $cmd_output, $exit_code);
+        exec("wp {$config} {$command} {$subcommand} {$arguments} --no-color", $cmd_output, $exit_code);
 
         return compact('cmd_output', 'exit_code');
+    }
+
+    /**
+     * Clear object cache.
+     */
+    public function clearCache()
+    {
+        $this->wpcli('cache', 'flush');
+    }
+
+    /**
+     * Activate a plugin.
+     *
+     * @param string $plugin
+     */
+    public function pluginActivate($plugin)
+    {
+        $this->wpcli('plugin', 'activate', array($plugin));
+    }
+
+    /**
+     * Deactivate a plugin.
+     *
+     * @param string $plugin
+     */
+    public function pluginDeactivate($plugin)
+    {
+        $this->wpcli('plugin', 'deactivate', array($plugin));
+    }
+
+    /**
+     * Switch active theme.
+     *
+     * @param string $theme
+     */
+    public function switchTheme($theme)
+    {
+        $this->wpcli('theme', 'activate', array($theme));
     }
 }
