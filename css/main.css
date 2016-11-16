@@ -68,7 +68,6 @@ li {
 }
 
 .page-header {
-    border-bottom: 0;
     margin-top: 0;
 }
 
@@ -107,12 +106,4 @@ h5, .h5 {
 
 h6, .h6 {
     font-size: 14px;
-}
-
-.screen-reader-text {
-    clip: rect(1px, 1px, 1px, 1px); 
-    height: 1px; 
-    width: 1px; 
-    overflow: hidden; 
-    position: absolute !important;
 }

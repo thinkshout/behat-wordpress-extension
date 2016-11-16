@@ -128,7 +128,7 @@ The default driver uses <a href="http://wp-cli.org/">WP-CLI</a>.</p>
             $(function() {
                 hljs.initHighlightingOnLoad();
 
-                $("section>h1").addClass('screen-reader-text').wrap('<div class="page-header" />');
+                $("section>h1").wrap('<div class="page-header" />');
                 $('table').map(function() {
                     var table = $(this);
                     table.addClass('table table-striped');

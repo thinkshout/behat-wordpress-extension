@@ -107,7 +107,7 @@ along with this program. If not, see <a href="http://www.gnu.org/licenses/">http
             $(function() {
                 hljs.initHighlightingOnLoad();
 
-                $("section>h1").addClass('screen-reader-text').wrap('<div class="page-header" />');
+                $("section>h1").wrap('<div class="page-header" />');
                 $('table').map(function() {
                     var table = $(this);
                     table.addClass('table table-striped');
