@@ -100,7 +100,7 @@ class WpcliDriver extends BaseDriver
      *
      * @param string $plugin
      */
-    public function pluginActivate($plugin)
+    public function activatePlugin($plugin)
     {
         $this->wpcli('plugin', 'activate', array($plugin));
     }
@@ -110,7 +110,7 @@ class WpcliDriver extends BaseDriver
      *
      * @param string $plugin
      */
-    public function pluginDeactivate($plugin)
+    public function deactivatePlugin($plugin)
     {
         $this->wpcli('plugin', 'deactivate', array($plugin));
     }
@@ -124,4 +124,39 @@ class WpcliDriver extends BaseDriver
     {
         $this->wpcli('theme', 'activate', array($theme));
     }
+
+    /**
+     * Export WordPress database.
+     *
+     * @return string Absolute path to database SQL file.
+     */
+    public function exportDatabase()
+    {
+        while (true) {
+            $filename = uniqid('database-', true) . '.sql';
+
+            if (! file_exists(getcwd() . "/{$filename}")) {
+                break;
+            }
+        }
+
+        // Protect against WP-CLI changing the filename.
+        $filename = $this->wpcli('db', 'export', array($filename, '--porcelain'));
+
+        return getcwd() . "/{$filename}";
+    }
+
+    /**
+     * Import WordPress database.
+     *
+     * @param string $filename Absolute path to database SQL file to import.
+     */
+    public function importDatabase($filename)
+    {
+        $filename = getcwd() . "/{$filename}";
+        $this->wpcli('db', 'import', array($filename));
+
+        // TODO: delete backup?
+    }
 }
+

@@ -18,14 +18,14 @@ interface DriverInterface
      *
      * @param string $plugin
      */
-    public function pluginActivate($plugin);
+    public function activatePlugin($plugin);
 
     /**
      * Deactivate a plugin.
      *
      * @param string $plugin
      */
-    public function pluginDeactivate($plugin);
+    public function deactivatePlugin($plugin);
 
     /**
      * Switch active theme.
@@ -33,4 +33,18 @@ interface DriverInterface
      * @param string $plugin
      */
     public function switchTheme($plugin);
+
+    /**
+     * Export WordPress database.
+     *
+     * @return string Absolute path to database SQL file.
+     */
+    public function exportDatabase();
+
+    /**
+     * Import WordPress database.
+     *
+     * @param string $import_file Absolute path to database SQL file to import.
+     */
+    public function importDatabase($import_file);
 }
