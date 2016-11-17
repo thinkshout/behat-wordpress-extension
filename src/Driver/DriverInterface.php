@@ -52,6 +52,23 @@ interface DriverInterface
      */
     public function deleteTerm($term_id, $taxonomy);
 
+    /**
+     * Create content.
+     *
+     * @param array $args Set the values of the new content item.
+     * @return int Content ID.
+     */
+    public function createContent($args);
+
+    /**
+     * Delete specified content.
+     *
+     * @param int   $id ID of content to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteContent($id, $args = array());
+
+    /**
      * Export WordPress database.
      *
      * @return string Absolute path to database SQL file.

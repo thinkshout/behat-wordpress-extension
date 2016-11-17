@@ -159,6 +159,51 @@ class WpcliDriver extends BaseDriver
     }
 
     /**
+     * Create content.
+     *
+     * @param array $args Set the values of the new content item.
+     * @return int Content ID.
+     */
+    public function createContent($args)
+    {
+        $wpcli_args = array('--porcelain');
+        $whitelist  = array(
+            'ID', 'post_author', 'post_date', 'post_date_gmt', 'post_content', 'post_content_filtered', 'post_title',
+            'post_excerpt', 'post_status', 'post_type', 'comment_status', 'ping_status', 'post_password', 'post_name',
+            'to_ping', 'pinged', 'post_modified', 'post_modified_gmt', 'post_parent', 'menu_order', 'post_mime_type',
+            'guid', 'post_category', 'tax_input', 'meta_input',
+        );
+
+        foreach ($whitelist as $option) {
+            if (isset($args[$option])) {
+                $wpcli_args["--{$option}"] = $args[$option];
+            }
+        }
+
+        return $this->wpcli('post', 'create', $wpcli_args);
+    }
+
+    /**
+     * Delete specified content.
+     *
+     * @param int   $id ID of content to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteContent($id, $args = array())
+    {
+        $wpcli_args = array($id);
+        $whitelist  = array('force', 'defer-term-counting');
+
+        foreach ($whitelist as $option) {
+            if (isset($args[$option])) {
+                $wpcli_args[] = "--{$option}";
+            }
+        }
+
+        $this->wpcli('post', 'delete', $wpcli_args);
+    }
+
+    /**
      * Export WordPress database.
      *
      * @return string Absolute path to database SQL file.
