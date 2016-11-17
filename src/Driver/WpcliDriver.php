@@ -32,8 +32,8 @@ class WpcliDriver extends BaseDriver
      * Constructor.
      *
      * @param string $alias WP-CLI alias. This or $path must be not falsey.
-     * @param string $path Absolute path to WordPress site files. This or $alias must be not falsey.
-     * @param string $url WordPress site URL.
+     * @param string $path  Absolute path to WordPress site files. This or $alias must be not falsey.
+     * @param string $url   WordPress site URL.
      */
     public function __construct($alias, $path, $url)
     {
@@ -123,6 +123,39 @@ class WpcliDriver extends BaseDriver
     public function switchTheme($theme)
     {
         $this->wpcli('theme', 'activate', array($theme));
+    }
+
+    /**
+     * Create a term in a taxonomy.
+     *
+     * @param string $term
+     * @param string $taxonomy
+     * @param array  $args Optional. Set the values of the new term.
+     * @return int Term ID.
+     */
+   public function createTerm($term, $taxonomy, $args = array())
+   {
+        $wpcli_args = array($taxonomy, $term, '--porcelain');
+        $whitelist  = array('description', 'parent', 'slug');
+
+        foreach ($whitelist as $option) {
+            if (isset($args[$option])) {
+                $wpcli_args["--{$option}"] = $args[$option];
+            }
+        }
+
+        return $this->wpcli('term', 'create', $wpcli_args);
+   }
+
+    /**
+     * Delete a term from a taxonomy.
+     *
+     * @param int    $term_id
+     * @param string $taxonomy
+     */
+    public function deleteTerm($term_id, $taxonomy)
+    {
+        $this->wpcli('term', 'delete', array($taxonomy, $term_id));
     }
 
     /**

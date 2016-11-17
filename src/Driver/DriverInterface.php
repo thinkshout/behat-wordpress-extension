@@ -35,6 +35,23 @@ interface DriverInterface
     public function switchTheme($plugin);
 
     /**
+     * Create a term in a taxonomy.
+     *
+     * @param string $term
+     * @param string $taxonomy
+     * @param array  $args Optional. Set the values of the new term.
+     * @return int Term ID.
+     */
+   public function createTerm($term, $taxonomy, $args = array());
+
+    /**
+     * Delete a term from a taxonomy.
+     *
+     * @param int    $term_id
+     * @param string $taxonomy
+     */
+    public function deleteTerm($term_id, $taxonomy);
+
      * Export WordPress database.
      *
      * @return string Absolute path to database SQL file.
