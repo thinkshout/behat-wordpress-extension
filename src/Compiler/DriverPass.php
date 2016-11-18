@@ -26,14 +26,14 @@ class DriverPass implements CompilerPassInterface
             foreach ($attributes as $attribute) {
                 if (! empty($attribute['alias'])) {
                     $wordpress->addMethodCall(
-                        'registerDriver', array($attribute['alias'], new Reference($id))
+                        'registerDriver', [$attribute['alias'], new Reference($id)]
                     );
                 }
             }
         }
 
         $wordpress->addMethodCall(
-            'setDefaultDriverName', array($container->getParameter('wordpress.wordpress.default_driver'))
+            'setDefaultDriverName', [$container->getParameter('wordpress.wordpress.default_driver')]
         );
     }
 }

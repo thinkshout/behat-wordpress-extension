@@ -59,10 +59,10 @@ class WpcliDriver extends BaseDriver
      *     @type int   $exit_code  Returned status code of the executed command.
      * }
      */
-    public function wpcli($command, $subcommand, $raw_arguments = array())
+    public function wpcli($command, $subcommand, $raw_arguments = [])
     {
         $arguments  = '';
-        $cmd_output = array();
+        $cmd_output = [];
         $exit_code  = 0;
 
         // Build parameter list.
@@ -102,7 +102,7 @@ class WpcliDriver extends BaseDriver
      */
     public function activatePlugin($plugin)
     {
-        $this->wpcli('plugin', 'activate', array($plugin));
+        $this->wpcli('plugin', 'activate', [$plugin]);
     }
 
     /**
@@ -112,7 +112,7 @@ class WpcliDriver extends BaseDriver
      */
     public function deactivatePlugin($plugin)
     {
-        $this->wpcli('plugin', 'deactivate', array($plugin));
+        $this->wpcli('plugin', 'deactivate', [$plugin]);
     }
 
     /**
@@ -122,7 +122,7 @@ class WpcliDriver extends BaseDriver
      */
     public function switchTheme($theme)
     {
-        $this->wpcli('theme', 'activate', array($theme));
+        $this->wpcli('theme', 'activate', [$theme]);
     }
 
     /**
@@ -133,10 +133,10 @@ class WpcliDriver extends BaseDriver
      * @param array  $args Optional. Set the values of the new term.
      * @return int Term ID.
      */
-   public function createTerm($term, $taxonomy, $args = array())
+   public function createTerm($term, $taxonomy, $args = [])
    {
-        $wpcli_args = array($taxonomy, $term, '--porcelain');
-        $whitelist  = array('description', 'parent', 'slug');
+        $wpcli_args = [$taxonomy, $term, '--porcelain'];
+        $whitelist  = ['description', 'parent', 'slug'];
 
         foreach ($whitelist as $option) {
             if (isset($args[$option])) {
@@ -155,7 +155,7 @@ class WpcliDriver extends BaseDriver
      */
     public function deleteTerm($term_id, $taxonomy)
     {
-        $this->wpcli('term', 'delete', array($taxonomy, $term_id));
+        $this->wpcli('term', 'delete', [$taxonomy, $term_id]);
     }
 
     /**
@@ -166,7 +166,7 @@ class WpcliDriver extends BaseDriver
      */
     public function createContent($args)
     {
-        $wpcli_args = array('--porcelain');
+        $wpcli_args = ['--porcelain'];
         $whitelist  = array(
             'ID', 'post_author', 'post_date', 'post_date_gmt', 'post_content', 'post_content_filtered', 'post_title',
             'post_excerpt', 'post_status', 'post_type', 'comment_status', 'ping_status', 'post_password', 'post_name',
@@ -189,10 +189,10 @@ class WpcliDriver extends BaseDriver
      * @param int   $id ID of content to delete.
      * @param array $args Optional. Extra parameters to pass to WordPress.
      */
-    public function deleteContent($id, $args = array())
+    public function deleteContent($id, $args = [])
     {
-        $wpcli_args = array($id);
-        $whitelist  = array('force', 'defer-term-counting');
+        $wpcli_args = [$id];
+        $whitelist  = ['force', 'defer-term-counting'];
 
         foreach ($whitelist as $option) {
             if (isset($args[$option])) {
@@ -219,7 +219,7 @@ class WpcliDriver extends BaseDriver
         }
 
         // Protect against WP-CLI changing the filename.
-        $filename = $this->wpcli('db', 'export', array($filename, '--porcelain'));
+        $filename = $this->wpcli('db', 'export', [$filename, '--porcelain']);
 
         return getcwd() . "/{$filename}";
     }
@@ -232,7 +232,7 @@ class WpcliDriver extends BaseDriver
     public function importDatabase($filename)
     {
         $filename = getcwd() . "/{$filename}";
-        $this->wpcli('db', 'import', array($filename));
+        $this->wpcli('db', 'import', [$filename]);
 
         // TODO: delete backup?
     }

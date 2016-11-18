@@ -42,7 +42,7 @@ interface DriverInterface
      * @param array  $args Optional. Set the values of the new term.
      * @return int Term ID.
      */
-   public function createTerm($term, $taxonomy, $args = array());
+   public function createTerm($term, $taxonomy, $args = []);
 
     /**
      * Delete a term from a taxonomy.
@@ -66,7 +66,7 @@ interface DriverInterface
      * @param int   $id ID of content to delete.
      * @param array $args Optional. Extra parameters to pass to WordPress.
      */
-    public function deleteContent($id, $args = array());
+    public function deleteContent($id, $args = []);
 
     /**
      * Export WordPress database.
