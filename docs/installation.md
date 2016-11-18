@@ -35,7 +35,7 @@ currentMenu: installation
 
   Edit that file and change the `base_url` setting to point at the website that you intend to test.
 
-1. Initialise Behat:
+1. Initialise [Behat](http://behat.org):
 
     ```Shell
     vendor/bin/behat --init
