@@ -91,13 +91,30 @@
                                 </nav>
                                                                                                                                                                                                                                     
                     <h1 id="settings">Settings</h1>
+<p>Behat uses <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> for its configuration file.</p>
 <h2 id="paulgibbswordpressbehatextension">PaulGibbs\WordpressBehatExtension</h2>
-<p>Extension <code>PaulGibbs\WordpressBehatExtension</code> integrates <a href="https://wordpress.org/">WordPress</a> into Behat. These are its configuration options:</p>
+<p>Extension <code>PaulGibbs\WordpressBehatExtension</code> integrates WordPress into Behat. These are its configuration options:</p>
 <pre><code class="language-YAML">PaulGibbs\WordpressBehatExtension:
   default_driver: wpcli
   wpcli:
     alias: dev
-    path: /www/example.com</code></pre>
+    path: /www/example.com
+  users:
+    admin:
+      username: admin
+      password: admin
+    editor:
+      username: editor
+      password: editor
+    author:
+      username: author
+      password: author
+    contributor:
+      username: contributor
+      password: contributor
+    subscriber:
+      username: subscriber
+      password: subscriber</code></pre>
 <table>
 <thead>
 <tr>
@@ -108,24 +125,39 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>default_driver</strong></td>
-<td>wpcli</td>
+<td><code>default_driver</code></td>
+<td><strong>wpcli</strong></td>
 <td>The driver to use (either &quot;wpcli&quot; or &quot;browser&quot;).</td>
 </tr>
 <tr>
-<td><strong>wpcli.alias</strong></td>
-<td><em>not set</em></td>
-<td>Optional. <a href="https://wp-cli.org/commands/cli/alias/">WP-CLI alias</a> (preferred over <code>wpcli.path</code>).</td>
+<td><code>wpcli.alias</code></td>
+<td><em>null</em></td>
+<td><em>Optional</em>. <a href="https://wp-cli.org/commands/cli/alias/">WP-CLI alias</a> (preferred over <code>wpcli.path</code>).</td>
 </tr>
 <tr>
-<td><strong>wpcli.path</strong></td>
-<td><em>not set</em></td>
-<td>Optional. Path to WordPress files.</td>
+<td><code>wpcli.path</code></td>
+<td><em>null</em></td>
+<td><em>Optional</em>. Path to WordPress files.</td>
+</tr>
+<tr>
+<td><code>wpcli.users</code></td>
+<td><em>see example</em></td>
+<td>Keys must match WordPress roles.</td>
+</tr>
+<tr>
+<td><code>users.*.username</code></td>
+<td></td>
+<td>The name of a user with the specified role.</td>
+</tr>
+<tr>
+<td><code>users.*.password</code></td>
+<td></td>
+<td>The password of a user with the specified role.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="behatminkextension">Behat\MinkExtension</h2>
-<p>Extension <code>Behat\MinkExtension</code> integrates <a href="http://mink.behat.org/en/latest/">Mink</a> into Behat. <a href="https://github.com/Behat/MinkExtension/blob/master/doc/index.rst">Visit its website</a> for more information.</p>
+<p>Extension <code>Behat\MinkExtension</code> integrates Mink into Behat. <a href="http://mink.behat.org/en/latest/">Visit its website</a> for more information.</p>
                 </section>
 
             </div>
