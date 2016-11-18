@@ -18,6 +18,5 @@ default:
           selenium2: ~
 
     PaulGibbs\WordpressBehatExtension:
-      default_driver: wpcli
       wpcli:
         path: /path/to/wordpress
