@@ -1,4 +1,4 @@
-§{
+{
   "name": "paulgibbs/behat-wordpress-extension",
   "type": "behat-extension",
   "description": "WordPress extension for Behat functional testing.",

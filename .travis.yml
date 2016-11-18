@@ -23,6 +23,7 @@ env:
 
 before_script:
   - phpenv config-rm xdebug.ini
+  - composer validate
   - composer install --no-progress
 
 script:
