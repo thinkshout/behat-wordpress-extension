@@ -24,4 +24,5 @@ You can do some things to increase the chance that your pull request is accepted
  * [PSR-4: Autoloading Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md).
  * Delimit variable and property names by underscore.
  * Only typehint callable, classes, and objects.
- * Prefer short syntax `[ ]` for multi-line arrays, and the traditional syntax for single-line arrays.
+ * Prefer short syntax `[ ]` for single-line arrays, and the traditional syntax for multi-line arrays.
+ * Keep maximumum line lengths to around ~120 characters.
