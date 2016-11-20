@@ -59,11 +59,11 @@ class BlackboxDriver extends BaseDriver
      * @param array  $args Optional. Set the values of the new term.
      * @return int Term ID.
      */
-   public function createTerm($term, $taxonomy, $args = [])
-   {
+    public function createTerm($term, $taxonomy, $args = [])
+    {
         // Not supported by the blackbox driver.
         return 0;
-   }
+    }
 
     /**
      * Delete a term from a taxonomy.

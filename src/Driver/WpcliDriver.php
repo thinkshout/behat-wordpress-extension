@@ -133,8 +133,8 @@ class WpcliDriver extends BaseDriver
      * @param array  $args Optional. Set the values of the new term.
      * @return int Term ID.
      */
-   public function createTerm($term, $taxonomy, $args = [])
-   {
+    public function createTerm($term, $taxonomy, $args = [])
+    {
         $wpcli_args = [$taxonomy, $term, '--porcelain'];
         $whitelist  = ['description', 'parent', 'slug'];
 
@@ -145,7 +145,7 @@ class WpcliDriver extends BaseDriver
         }
 
         return $this->wpcli('term', 'create', $wpcli_args);
-   }
+    }
 
     /**
      * Delete a term from a taxonomy.

@@ -42,7 +42,7 @@ interface DriverInterface
      * @param array  $args Optional. Set the values of the new term.
      * @return int Term ID.
      */
-   public function createTerm($term, $taxonomy, $args = []);
+    public function createTerm($term, $taxonomy, $args = []);
 
     /**
      * Delete a term from a taxonomy.
