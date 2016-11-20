@@ -75,36 +75,62 @@
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
                                                                                                                                                                                                                                                                                                                                                                                                                                             
                     <h1 id="drivers">Drivers</h1>
-<p>The WordPress Extension for Behat provides multiple drivers for interacting with the WordPress site you are testing.
-The default driver uses <a href="http://wp-cli.org/">WP-CLI</a>.</p>
+<p>The WordPress Extension for Behat provides multiple drivers for interacting with the WordPress site you are testing.</p>
 <table>
 <thead>
 <tr>
 <th>Feature</th>
 <th>WP-CLI</th>
-<th>Browser<sup><a href="#NYI">1</a></sup></th>
+<th>WordPress API</th>
+<th>Blackbox</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Activate/deactive plugins.</td>
+<td>Publish posts and comments.</td>
 <td>Yes</td>
-<td>~</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create terms for taxonomy.</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Manage plugins.</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
 </tr>
 <tr>
 <td>Switch theme.</td>
 <td>Yes</td>
-<td>~</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Clear cache.</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Import/export MySQL backup.</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
 </tr>
 <tr>
 <td>Run tests and site on different servers.</td>
-<td>Yes<sup><a href="#WP-CLI">2</a></sup></td>
+<td>Yes<sup><a href="#WP-CLI">1</a></sup></td>
 <td>No</td>
+<td>Yes</td>
 </tr>
 </tbody>
 </table>
 <ol>
-<li><a id="NYI"></a> Feature planned, not yet implemented.</li>
 <li>WP-CLI <a href="https://wp-cli.org/blog/version-0.24.0.html#but-wait-whats-the-ssh-in-there" id="WP-CLI">supports SSH connections</a> to remote WordPress sites.</li>
 </ol>
                 </section>
