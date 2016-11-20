@@ -18,5 +18,4 @@ default:
           selenium2: ~
 
     PaulGibbs\WordpressBehatExtension:
-      wpcli:
-        path: /path/to/wordpress
+      path: /path/to/wordpress

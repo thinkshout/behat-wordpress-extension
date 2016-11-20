@@ -73,6 +73,8 @@ class WordpressBehatExtension implements ExtensionInterface
                     ->defaultValue('wpcli')
                 ->end()
 
+                ->scalarNode('path')->end()
+
                 ->arrayNode('users')
                     ->addDefaultsIfNotSet()
                     ->children()
@@ -142,7 +144,6 @@ class WordpressBehatExtension implements ExtensionInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('alias')->end()
-                        ->scalarNode('path')->end()
                     ->end()
                 ->end()
             ->end()
@@ -164,6 +165,7 @@ class WordpressBehatExtension implements ExtensionInterface
         $container->setParameter('wordpress.parameters', $config);
 
         $this->setupWpcliDriver($loader, $container, $config);
+        // TODO: this.
     }
 
     /**
@@ -181,15 +183,15 @@ class WordpressBehatExtension implements ExtensionInterface
 
         $loader->load('drivers/wpcli.yml');
 
-        if (empty($config['wpcli']['alias']) && empty($config['wpcli']['path'])) {
+        if (empty($config['wpcli']['alias']) && empty($config['path'])) {
             throw new \RuntimeException('WP-CLI driver requires an `alias` or root `path` set.');
         }
 
         $config['wpcli']['alias'] = isset($config['wpcli']['alias']) ? $config['wpcli']['alias'] : '';
         $container->setParameter('wordpress.driver.wpcli.alias', $config['wpcli']['alias']);
 
-        $config['wpcli']['path'] = isset($config['wpcli']['path']) ? $config['wpcli']['path'] : '';
-        $container->setParameter('wordpress.driver.wpcli.path', $config['wpcli']['path']);
+        $config['wpcli']['path'] = isset($config['path']) ? $config['path'] : '';
+        $container->setParameter('wordpress.driver.wpcli.path', $config['path']);
     }
 
     /**
