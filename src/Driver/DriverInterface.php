@@ -69,6 +69,22 @@ interface DriverInterface
     public function deleteContent($id, $args = []);
 
     /**
+     * Create a comment.
+     *
+     * @param array $args Set the values of the new comment.
+     * @return int Content ID.
+     */
+    public function createComment($args);
+
+    /**
+     * Delete specified comment.
+     *
+     * @param int   $id ID of comment to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteComment($id, $args = []);
+
+    /**
      * Export WordPress database.
      *
      * @return string Absolute path to database SQL file.

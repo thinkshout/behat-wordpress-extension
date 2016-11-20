@@ -204,6 +204,49 @@ class WpcliDriver extends BaseDriver
     }
 
     /**
+     * Create a comment.
+     *
+     * @param array $args Set the values of the new comment.
+     * @return int Comment ID.
+     */
+    public function createComment($args)
+    {
+        $wpcli_args = ['--porcelain'];
+        $whitelist  = array(
+            'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_date',
+            'comment_date_gmt', 'comment_parent', 'comment_post_ID', 'user_id', 'comment_agent', 'comment_author_IP',
+        );
+
+        foreach ($whitelist as $option) {
+            if (isset($args[$option])) {
+                $wpcli_args["--{$option}"] = $args[$option];
+            }
+        }
+
+        return $this->wpcli('comment', 'create', $wpcli_args);
+    }
+
+    /**
+     * Delete specified comment.
+     *
+     * @param int   $id ID of comment to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteComment($id, $args = [])
+    {
+        $wpcli_args = [$id];
+        $whitelist  = ['force'];
+
+        foreach ($whitelist as $option) {
+            if (isset($args[$option])) {
+                $wpcli_args[] = "--{$option}";
+            }
+        }
+
+        $this->wpcli('comment', 'delete', $wpcli_args);
+    }
+
+    /**
      * Export WordPress database.
      *
      * @return string Absolute path to database SQL file.
