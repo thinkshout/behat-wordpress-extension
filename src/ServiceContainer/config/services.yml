@@ -1,6 +1,5 @@
 parameters:
   # WordPress driver manager.
-  wordpress.wordpress.api_driver: wpcli
   wordpress.wordpress.class: PaulGibbs\WordpressBehatExtension\WordpressDriverManager
 
   # Context initialiser.
