@@ -166,7 +166,7 @@ class WordpressBehatExtension implements ExtensionInterface
         $container->setParameter('wordpress.parameters', $config);
 
         $this->setupWpcliDriver($loader, $container, $config);
-        // TODO: this.
+        // TODO: this for WordPress API.
     }
 
     /**
