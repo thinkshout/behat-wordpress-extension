@@ -57,7 +57,12 @@ class WordpressDriverManager
      */
     public function getDriver($name = '')
     {
-        $name   = strtolower($name) ?: $this->default_driver;
+        $name = strtolower($name) ?: $this->default_driver;
+
+        if (! isset($this->drivers[$name])) {
+            throw new InvalidArgumentException("Driver '{$name}' is not registered.");
+        }
+
         $driver = $this->drivers[$name];
 
         return $driver;
