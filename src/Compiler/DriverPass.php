@@ -25,9 +25,7 @@ class DriverPass implements CompilerPassInterface
         foreach ($container->findTaggedServiceIds('wordpress.driver') as $id => $attributes) {
             foreach ($attributes as $attribute) {
                 if (! empty($attribute['alias'])) {
-                    $wordpress->addMethodCall(
-                        'registerDriver', [$attribute['alias'], new Reference($id)]
-                    );
+                    $wordpress->addMethodCall('registerDriver', [$attribute['alias'], new Reference($id)]);
                 }
             }
         }
