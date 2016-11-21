@@ -96,9 +96,9 @@
 <p>Extension <code>PaulGibbs\WordpressBehatExtension</code> integrates WordPress into Behat. These are its configuration options:</p>
 <pre><code class="language-YAML">PaulGibbs\WordpressBehatExtension:
   default_driver: wpcli
+  path: /www/example.com
   wpcli:
     alias: dev
-    path: /www/example.com
   users:
     admin:
       username: admin
@@ -130,14 +130,14 @@
 <td>The driver to use (either &quot;wpcli&quot; or &quot;browser&quot;).</td>
 </tr>
 <tr>
+<td><code>path</code></td>
+<td><em>null</em></td>
+<td><em>Optional</em>. Path to WordPress files.</td>
+</tr>
+<tr>
 <td><code>wpcli.alias</code></td>
 <td><em>null</em></td>
 <td><em>Optional</em>. <a href="https://wp-cli.org/commands/cli/alias/">WP-CLI alias</a> (preferred over <code>wpcli.path</code>).</td>
-</tr>
-<tr>
-<td><code>wpcli.path</code></td>
-<td><em>null</em></td>
-<td><em>Optional</em>. Path to WordPress files.</td>
 </tr>
 <tr>
 <td><code>wpcli.users</code></td>
