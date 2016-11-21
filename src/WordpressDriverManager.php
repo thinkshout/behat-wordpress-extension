@@ -15,7 +15,7 @@ class WordpressDriverManager
      *
      * @var string $default_driver
      */
-    protected $default_driver = 'wpcli';
+    protected $default_driver = '';
 
     /**
      * All registered drivers.
