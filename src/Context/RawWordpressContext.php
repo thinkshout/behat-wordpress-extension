@@ -29,6 +29,12 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
 
 
     /**
+     * Constructor.
+     */
+    public function __construct() {
+    }
+
+    /**
      * Set WordPress instance.
      *
      * @param WordpressDriverManager $wordpress
