@@ -162,6 +162,7 @@ class WordpressBehatExtension implements ExtensionInterface
         $loader->load('services.yml');
 
         $container->setParameter('wordpress.wordpress.default_driver', $config['default_driver']);
+        $container->setParameter('wordpress.path', $config['path']);
         $container->setParameter('wordpress.parameters', $config);
 
         $this->setupWpcliDriver($loader, $container, $config);
