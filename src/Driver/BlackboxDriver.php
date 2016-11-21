@@ -7,4 +7,3 @@ namespace PaulGibbs\WordpressBehatExtension\Driver;
 class BlackboxDriver extends BaseDriver
 {
 }
-

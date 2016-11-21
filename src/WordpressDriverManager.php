@@ -83,7 +83,7 @@ class WordpressDriverManager
         $name = strtolower($name);
 
         if (! isset($this->drivers[$name])) {
-            throw new InvalidArgumentException(sprintf('Driver "%s" is not registered.', $name));
+            throw new InvalidArgumentException("Driver '{$name}' is not registered.");
         }
 
         $this->default_driver = $name;
