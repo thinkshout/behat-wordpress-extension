@@ -158,7 +158,7 @@ class WpcliDriver extends BaseDriver
             }
         }
 
-        return $this->wpcli('term', 'create', $wpcli_args);
+        return (int) $this->wpcli('term', 'create', $wpcli_args)['cmd_output'];
     }
 
     /**
@@ -194,7 +194,7 @@ class WpcliDriver extends BaseDriver
             }
         }
 
-        return $this->wpcli('post', 'create', $wpcli_args);
+        return (int) $this->wpcli('post', 'create', $wpcli_args)['cmd_output'];
     }
 
     /**
@@ -237,7 +237,7 @@ class WpcliDriver extends BaseDriver
             }
         }
 
-        return $this->wpcli('comment', 'create', $wpcli_args);
+        return (int) $this->wpcli('comment', 'create', $wpcli_args)['cmd_output'];
     }
 
     /**
@@ -276,7 +276,7 @@ class WpcliDriver extends BaseDriver
         }
 
         // Protect against WP-CLI changing the filename.
-        $filename = $this->wpcli('db', 'export', [$filename, '--porcelain']);
+        $filename = $this->wpcli('db', 'export', [$filename, '--porcelain'])['cmd_output'];
 
         return getcwd() . "/{$filename}";
     }
