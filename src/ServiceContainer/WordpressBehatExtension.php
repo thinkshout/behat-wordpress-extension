@@ -69,7 +69,7 @@ class WordpressBehatExtension implements ExtensionInterface
         $builder
             ->children()
                 ->enumNode('default_driver')
-                    ->values(['wpcli'])
+                    ->values(['wpcli', 'wpapi', 'blackbox'])
                     ->defaultValue('wpcli')
                 ->end()
 
