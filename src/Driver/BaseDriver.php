@@ -11,6 +11,32 @@ use PaulGibbs\WordpressBehatExtension\Exception\UnsupportedDriverActionException
 abstract class BaseDriver implements DriverInterface
 {
     /**
+     * Track driver bootstrapping.
+     *
+     * @var bool
+     */
+    protected $is_bootstrapped = false;
+
+
+    /**
+     * Has the driver has been bootstrapped?
+     */
+    public function isBootstrapped()
+    {
+        return $this->is_bootstrapped;
+    }
+
+    /**
+     * Set up anything required for the driver.
+     *
+     * Called when the driver is used for the first time.
+     */
+    public function bootstrap()
+    {
+        $this->is_bootstrapped = true;
+    }
+
+    /**
      * Clear object cache.
      */
     public function clearCache()

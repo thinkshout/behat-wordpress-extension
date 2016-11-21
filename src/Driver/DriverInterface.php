@@ -9,6 +9,18 @@ namespace PaulGibbs\WordpressBehatExtension\Driver;
 interface DriverInterface
 {
     /**
+     * Has the driver has been bootstrapped?
+     */
+    public function isBootstrapped();
+
+    /**
+     * Set up anything required for the driver.
+     *
+     * Called when the driver is used for the first time.
+     */
+    public function bootstrap();
+
+    /**
      * Clear object cache.
      */
     public function clearCache();

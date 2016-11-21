@@ -1,6 +1,8 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\Driver;
 
+use RuntimeException;
+
 /**
  * Connect Behat to WordPress using WP-CLI.
  */
@@ -40,6 +42,22 @@ class WpcliDriver extends BaseDriver
         $this->alias = ltrim($alias, '@');
         $this->path  = realpath($path);
         $this->url   = rtrim(filter_var($url, FILTER_SANITIZE_URL), '/');
+    }
+
+    /**
+     * Set up anything required for the driver.
+     *
+     * Called when the driver is used for the first time.
+     */
+    public function bootstrap()
+    {
+        $status = $this->wpcli('core', 'is-installed')['exit_code'];
+
+        if ($status === 0) {
+            $this->is_bootstrapped = true;
+        } else {
+            throw new RuntimeException('WP-CLI cannot find WordPress. Check "path" and/or "alias" settings.');
+        }
     }
 
     /**
