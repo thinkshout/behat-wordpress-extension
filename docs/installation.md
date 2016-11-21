@@ -8,8 +8,6 @@ currentMenu: installation
 >
 > Require `paulgibbs/behat-wordpress-extension` and copy its `behat.yml.dist` into your project (minus `.dist`), install <a href="https://wp-cli.org/">WP-CLI</a> globally, and run `vendor/bin/behat --init`.
 
-1. Check that all [requirements](requirements.html) are met.
-
 1. Create a folder for your tests:
 
   ```Shell
@@ -18,6 +16,8 @@ currentMenu: installation
   ```
 
   All the commands that follow are written to install from the root of your project folder.
+
+1. Check that all of the [requirements](requirements.html) are met. These instructions assume that Composer has been downloaded into your project folder.
 
 1. Tell [Composer](https://getcomposer.org/) to install the WordPress Extension for Behat. To do this conveniently, run:
 
