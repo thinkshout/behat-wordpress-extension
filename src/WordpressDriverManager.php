@@ -65,6 +65,11 @@ class WordpressDriverManager
 
         $driver = $this->drivers[$name];
 
+        // Bootstrap driver if needed.
+        if (! $driver->isBootstrapped()) {
+            $driver->bootstrap();
+        }
+
         return $driver;
     }
 
