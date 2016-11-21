@@ -1,0 +1,10 @@
+parameters:
+  wordpress.driver.wpapi.class: PaulGibbs\WordpressBehatExtension\Driver\WpapiDriver
+
+services:
+  wordpress.driver.wpapi:
+    class: %wordpress.driver.wpapi.class%
+    arguments:
+      - %wordpress.driver.wpapi.path%
+    tags:
+      - { name: wordpress.driver, alias: wpapi }

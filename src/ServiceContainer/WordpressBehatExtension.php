@@ -147,6 +147,13 @@ class WordpressBehatExtension implements ExtensionInterface
                         ->scalarNode('alias')->end()
                     ->end()
                 ->end()
+
+                ->arrayNode('blackbox')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                    ->end()
+                ->end()
+
             ->end()
         ->end();
     }
@@ -167,7 +174,7 @@ class WordpressBehatExtension implements ExtensionInterface
         $container->setParameter('wordpress.parameters', $config);
 
         $this->setupWpcliDriver($loader, $container, $config);
-        // TODO: this for WordPress API.
+        $this->setupBlackboxDriver($loader, $container, $config);
     }
 
     /**
@@ -194,6 +201,22 @@ class WordpressBehatExtension implements ExtensionInterface
 
         $config['wpcli']['path'] = isset($config['path']) ? $config['path'] : '';
         $container->setParameter('wordpress.driver.wpcli.path', $config['path']);
+    }
+
+    /**
+     * Loads settings for the blackbox driver.
+     *
+     * @param FileLoader       $loader
+     * @param ContainerBuilder $container
+     * @param array            $config
+     */
+    protected function setupBlackboxDriver(FileLoader $loader, ContainerBuilder $container, $config)
+    {
+        if (! isset($config['blackbox'])) {
+            return;
+        }
+
+        $loader->load('drivers/blackbox.yml');
     }
 
     /**
