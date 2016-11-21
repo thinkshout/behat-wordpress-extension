@@ -178,7 +178,7 @@ class WordpressBehatExtension implements ExtensionInterface
      */
     protected function setupWpcliDriver(FileLoader $loader, ContainerBuilder $container, $config)
     {
-        if (empty($config['wpcli'])) {
+        if (! isset($config['wpcli'])) {
             return;
         }
 
