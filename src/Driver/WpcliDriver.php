@@ -40,10 +40,6 @@ class WpcliDriver extends BaseDriver
         $this->alias = ltrim($alias, '@');
         $this->path  = realpath($path);
         $this->url   = rtrim(filter_var($url, FILTER_SANITIZE_URL), '/');
-
-        if (! $this->alias && ! $this->path) {
-            throw new \RuntimeException('WP-CLI driver requires an `alias` or root `path`.');
-        }
     }
 
     /**
