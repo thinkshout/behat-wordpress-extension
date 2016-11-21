@@ -25,9 +25,9 @@ currentMenu: installation
   php composer.phar require paulgibbs/behat-wordpress-extension="^0.1"
   ```
 
-  This will create a `composer.json` file you, and download the WordPress Extension for Behat, with all its dependencies.
+  This will create a `composer.json` file for you, and download everything you need.
 
-1. The WordPress Extension for Behat comes with a sample configuration file to help you set up the test environment. Copy it into your project folder and name it `behat.yml`:
+1. The extension comes with a sample configuration file to help you set up the test environment. Copy it into your project folder and name it `behat.yml`:
 
   ```Shell
   cp vendor/paulgibbs/behat-wordpress-extension/behat.yml.dist behat.yml
@@ -41,7 +41,7 @@ currentMenu: installation
     vendor/bin/behat --init
     ```
 
-  This will generate a `features/` folder for your [Behat features](http://docs.behat.org/en/latest/user_guide/features_scenarios.html#features), and a new [Behat Context](http://docs.behat.org/en/latest/user_guide/context.html) in `features/bootstrap/`. The latter is aware of both the WordPress and [Mink](https://github.com/Behat/MinkExtension) extensions, so you'll be able to take advantage of their drivers as you build your own custom [step definitions or hooks](http://docs.behat.org/en/latest/user_guide/writing_scenarios.html).
+  This will generate a `features/` folder for your [Behat features](http://docs.behat.org/en/latest/user_guide/features_scenarios.html#features), and a new [Behat context](http://docs.behat.org/en/latest/user_guide/context.html) in `features/bootstrap/`. The latter is aware of both the WordPress and [Mink](https://github.com/Behat/MinkExtension) extensions, so you will be able to take advantage of them as you build your own custom [step definitions or hooks](http://docs.behat.org/en/latest/user_guide/writing_scenarios.html).
 
 1. To confirm that everything is set up correctly, run:
 
