@@ -92,17 +92,17 @@ cd projectfolder</code></pre>
 <li>
 <p>Tell <a href="https://getcomposer.org/">Composer</a> to install the WordPress Extension for Behat. To do this conveniently, run:</p>
 <pre><code class="language-Shell">php composer.phar require paulgibbs/behat-wordpress-extension="^0.1"</code></pre>
-<p>This will create a <code>composer.json</code> file you, and download the WordPress Extension for Behat, with all its dependencies.</p>
+<p>This will create a <code>composer.json</code> file for you, and download everything you need.</p>
 </li>
 <li>
-<p>The WordPress Extension for Behat comes with a sample configuration file to help you set up the test environment. Copy it into your project folder and name it <code>behat.yml</code>:</p>
+<p>The extension comes with a sample configuration file to help you set up the test environment. Copy it into your project folder and name it <code>behat.yml</code>:</p>
 <pre><code class="language-Shell">cp vendor/paulgibbs/behat-wordpress-extension/behat.yml.dist behat.yml</code></pre>
 <p>Edit that file and change the <code>base_url</code> setting to point at the website that you intend to test.</p>
 </li>
 <li>
 <p>Initialise <a href="http://behat.org">Behat</a>:</p>
 <pre><code class="language-Shell">vendor/bin/behat --init</code></pre>
-<p>This will generate a <code>features/</code> folder for your <a href="http://docs.behat.org/en/latest/user_guide/features_scenarios.html#features">Behat features</a>, and a new <a href="http://docs.behat.org/en/latest/user_guide/context.html">Behat Context</a> in <code>features/bootstrap/</code>. The latter is aware of both the WordPress and <a href="https://github.com/Behat/MinkExtension">Mink</a> extensions, so you'll be able to take advantage of their drivers as you build your own custom <a href="http://docs.behat.org/en/latest/user_guide/writing_scenarios.html">step definitions or hooks</a>.</p>
+<p>This will generate a <code>features/</code> folder for your <a href="http://docs.behat.org/en/latest/user_guide/features_scenarios.html#features">Behat features</a>, and a new <a href="http://docs.behat.org/en/latest/user_guide/context.html">Behat context</a> in <code>features/bootstrap/</code>. The latter is aware of both the WordPress and <a href="https://github.com/Behat/MinkExtension">Mink</a> extensions, so you will be able to take advantage of them as you build your own custom <a href="http://docs.behat.org/en/latest/user_guide/writing_scenarios.html">step definitions or hooks</a>.</p>
 </li>
 <li>
 <p>To confirm that everything is set up correctly, run:</p>
