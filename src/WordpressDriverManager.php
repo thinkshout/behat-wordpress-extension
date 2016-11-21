@@ -3,6 +3,8 @@ namespace PaulGibbs\WordpressBehatExtension;
 
 use PaulGibbs\WordpressBehatExtension\Driver\DriverInterface;
 
+use InvalidArgumentException;
+
 /**
  * Driver manager.
  */
@@ -81,7 +83,7 @@ class WordpressDriverManager
         $name = strtolower($name);
 
         if (! isset($this->drivers[$name])) {
-            throw new \InvalidArgumentException(sprintf('Driver "%s" is not registered.', $name));
+            throw new InvalidArgumentException(sprintf('Driver "%s" is not registered.', $name));
         }
 
         $this->default_driver = $name;

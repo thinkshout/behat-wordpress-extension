@@ -15,6 +15,7 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition,
 
 use PaulGibbs\WordpressBehatExtension\Compiler\DriverPass;
 
+use InvalidArgumentException;
 
 /**
  * Behat extension for loading and configuring WordPress.
@@ -185,7 +186,7 @@ class WordpressBehatExtension implements ExtensionInterface
         $loader->load('drivers/wpcli.yml');
 
         if (empty($config['wpcli']['alias']) && empty($config['path'])) {
-            throw new \RuntimeException('WP-CLI driver requires an `alias` or root `path` set.');
+            throw new RuntimeException('WP-CLI driver requires an `alias` or root `path` set.');
         }
 
         $config['wpcli']['alias'] = isset($config['wpcli']['alias']) ? $config['wpcli']['alias'] : '';

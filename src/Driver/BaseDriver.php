@@ -1,6 +1,8 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\Driver;
 
+use PaulGibbs\WordpressBehatExtension\Exception\UnsupportedDriverActionException;
+
 /**
  * Common base class for WordPress drivers.
  *
