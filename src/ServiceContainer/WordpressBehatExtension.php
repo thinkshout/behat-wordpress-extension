@@ -69,13 +69,14 @@ class WordpressBehatExtension implements ExtensionInterface
     {
         $builder
             ->children()
+                // Common settings.
                 ->enumNode('default_driver')
                     ->values(['wpcli', 'wpapi', 'blackbox'])
                     ->defaultValue('wpcli')
                 ->end()
-
                 ->scalarNode('path')->end()
 
+                // Account roles -> username/password.
                 ->arrayNode('users')
                     ->addDefaultsIfNotSet()
                     ->children()
@@ -141,6 +142,7 @@ class WordpressBehatExtension implements ExtensionInterface
                     ->end()
                 ->end()
 
+                // WP-CLI driver.
                 ->arrayNode('wpcli')
                     ->addDefaultsIfNotSet()
                     ->children()
@@ -148,6 +150,7 @@ class WordpressBehatExtension implements ExtensionInterface
                     ->end()
                 ->end()
 
+                // Blackbox driver.
                 ->arrayNode('blackbox')
                     ->addDefaultsIfNotSet()
                     ->children()
@@ -178,7 +181,7 @@ class WordpressBehatExtension implements ExtensionInterface
     }
 
     /**
-     * Loads settings for the WP-CLI driver.
+     * Load settings for the WP-CLI driver.
      *
      * @param FileLoader       $loader
      * @param ContainerBuilder $container
