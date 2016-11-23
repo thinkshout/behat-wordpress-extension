@@ -1,7 +1,8 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\Driver;
 
-use RuntimeException;
+use RuntimeException,
+    UnexpectedValueException;
 
 /**
  * Connect Behat to WordPress by loading WordPress directly into the global scope.
@@ -80,9 +81,11 @@ class WpapiDriver extends BaseDriver
         require_once "{$this->path}/wp-admin/includes/plugin-install.php";
 
         $plugin = $this->getPlugin($plugin);
-        if ($plugin) {
-            activate_plugin($plugin);
+        if (! $plugin) {
+            throw new RuntimeException("WordPress API driver cannot find the plugin: {$plugin}.");
         }
+
+        activate_plugin($plugin);
     }
 
     /**
@@ -104,7 +107,7 @@ class WpapiDriver extends BaseDriver
 
         $plugin = $this->getPlugin($plugin);
         if (! $plugin) {
-            return;
+            throw new RuntimeException("WordPress API driver cannot find the plugin: {$plugin}.");
         }
 
         deactivate_plugins($plugin);
@@ -122,7 +125,7 @@ class WpapiDriver extends BaseDriver
             return;
         }
 
-        switch_theme( $the_theme->get_template(), $the_theme->get_stylesheet() );
+        switch_theme( $the_theme->get_template() );
     }
 
     /**
@@ -135,10 +138,14 @@ class WpapiDriver extends BaseDriver
      */
     public function createTerm($term, $taxonomy, $args = [])
     {
-        $args = wp_slash($args);
-        $term = wp_slash($term);
-
+        $args     = wp_slash($args);
+        $term     = wp_slash($term);
         $new_term = wp_insert_term($term, $taxonomy, $args);
+
+        if (is_object($new_term) && get_class($new_term) === 'WP_Error') {
+            throw new UnexpectedValueException("WordPress API driver failed creating a new term.");
+        }
+
         return $new_term['term_id'];
     }
 
@@ -150,7 +157,11 @@ class WpapiDriver extends BaseDriver
      */
     public function deleteTerm($term_id, $taxonomy)
     {
-        wp_delete_term($term_id, $taxonomy);
+        $result = wp_delete_term($term_id, $taxonomy);
+
+        if (is_object($result) && get_class($result) === 'WP_Error') {
+            throw new UnexpectedValueException("WordPress API driver failed deleting a new term.");
+        }
     }
 
     /**
@@ -161,8 +172,14 @@ class WpapiDriver extends BaseDriver
      */
     public function createContent($args)
     {
-        $args = wp_slash($args);
-        return wp_insert_post($args);
+        $args     = wp_slash($args);
+        $new_post = wp_insert_post($args);
+
+        if (is_object($new_post) && get_class($new_post) === 'WP_Error') {
+            throw new UnexpectedValueException("WordPress API driver failed creating new content.");
+        }
+
+        return $new_post;
     }
 
     /**
@@ -173,7 +190,11 @@ class WpapiDriver extends BaseDriver
      */
     public function deleteContent($id, $args = [])
     {
-        wp_delete_post($id, isset($args['force']));
+        $result = wp_delete_post($id, isset($args['force']));
+
+        if (! $result) {
+            throw new UnexpectedValueException("WordPress API driver failed deleting content.");
+        }
     }
 
     /**
@@ -184,7 +205,11 @@ class WpapiDriver extends BaseDriver
      */
     public function createComment($args)
     {
-        return wp_new_comment($args);
+        $result = wp_new_comment($args);
+
+        if (! $result) {
+            throw new UnexpectedValueException("WordPress API driver failed creating a new comment.");
+        }
     }
 
     /**
@@ -195,7 +220,11 @@ class WpapiDriver extends BaseDriver
      */
     public function deleteComment($id, $args = [])
     {
-        wp_delete_comment($id, isset($args['force']));
+        $result = wp_delete_comment($id, isset($args['force']));
+
+        if (! $result) {
+            throw new UnexpectedValueException("WordPress API driver failed deleting a comment.");
+        }
     }
 
 
