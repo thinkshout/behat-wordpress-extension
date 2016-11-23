@@ -150,6 +150,13 @@ class WordpressBehatExtension implements ExtensionInterface
                     ->end()
                 ->end()
 
+                // WordPress API driver.
+                ->arrayNode('wpapi')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                    ->end()
+                ->end()
+
                 // Blackbox driver.
                 ->arrayNode('blackbox')
                     ->addDefaultsIfNotSet()
@@ -177,6 +184,7 @@ class WordpressBehatExtension implements ExtensionInterface
         $container->setParameter('wordpress.parameters', $config);
 
         $this->setupWpcliDriver($loader, $container, $config);
+        $this->setupWpapiDriver($loader, $container, $config);
         $this->setupBlackboxDriver($loader, $container, $config);
     }
 
@@ -207,7 +215,30 @@ class WordpressBehatExtension implements ExtensionInterface
     }
 
     /**
-     * Loads settings for the blackbox driver.
+     * Load settings for the WordPress API driver.
+     *
+     * @param FileLoader       $loader
+     * @param ContainerBuilder $container
+     * @param array            $config
+     */
+    protected function setupWpapiDriver(FileLoader $loader, ContainerBuilder $container, $config)
+    {
+        if (! isset($config['wpapi'])) {
+            return;
+        }
+
+        $loader->load('drivers/wpapi.yml');
+
+        if (empty($config['path'])) {
+            throw new RuntimeException('WordPress API driver requires a root `path` set.');
+        }
+
+        $config['wpapi']['path'] = isset($config['path']) ? $config['path'] : '';
+        $container->setParameter('wordpress.driver.wpapi.path', $config['wpapi']['path']);
+    }
+
+    /**
+     * Load settings for the blackbox driver.
      *
      * @param FileLoader       $loader
      * @param ContainerBuilder $container

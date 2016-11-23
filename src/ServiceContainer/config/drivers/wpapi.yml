@@ -5,6 +5,6 @@ services:
   wordpress.driver.wpapi:
     class: %wordpress.driver.wpapi.class%
     arguments:
-      - %wordpress.driver.wpapi.path%
+      - %wordpress.path%
     tags:
       - { name: wordpress.driver, alias: wpapi }
