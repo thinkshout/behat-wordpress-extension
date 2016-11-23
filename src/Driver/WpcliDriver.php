@@ -56,7 +56,7 @@ class WpcliDriver extends BaseDriver
         if ($status === 0) {
             $this->is_bootstrapped = true;
         } else {
-            throw new RuntimeException('WP-CLI cannot find WordPress. Check "path" and/or "alias" settings.');
+            throw new RuntimeException('WP-CLI driver cannot find WordPress. Check "path" and/or "alias" settings.');
         }
     }
 
