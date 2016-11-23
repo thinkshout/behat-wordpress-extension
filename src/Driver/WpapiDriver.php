@@ -71,7 +71,7 @@ class WpapiDriver extends BaseDriver
     {
         if (
             ! file_exists("{$this->path}/wp-admin/includes/plugin.php") ||
-            ! file_exists("{$this->path}/wp-admin/includes/plugin-install.php") ||
+            ! file_exists("{$this->path}/wp-admin/includes/plugin-install.php")
         ) {
             throw new RuntimeException('WordPress API driver cannot find expected WordPress files.');
         }
