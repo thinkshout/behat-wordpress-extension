@@ -96,7 +96,13 @@ class WpcliDriver extends BaseDriver
             $config = sprintf('--path=%s --url=%s', escapeshellarg($this->path), escapeshellarg($this->url));
         }
 
-        exec("wp {$config} {$command} {$subcommand} {$arguments} --no-color", $cmd_output, $exit_code);
+        if (DIRECTORY_SEPARATOR === '\\') {
+            $binary = 'wp.bat';
+        } else {
+            $binary = 'wp';
+        }
+
+        exec("{$binary} {$config} {$command} {$subcommand} {$arguments} --no-color --quiet 2>/dev/null", $cmd_output, $exit_code);
 
         return compact('cmd_output', 'exit_code');
     }
