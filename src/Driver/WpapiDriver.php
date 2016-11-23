@@ -211,7 +211,7 @@ class WpapiDriver extends BaseDriver
      */
     protected function getPlugin($name)
     {
-        foreach ( et_plugins() as $file => $_) {
+        foreach (get_plugins() as $file => $_) {
             if ($file === "{$name}.php" || ($name && $file === $name) || (dirname($file) === $name && $name !== '.')) {
                 return $file;
             }
