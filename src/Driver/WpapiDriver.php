@@ -80,7 +80,7 @@ class WpapiDriver extends BaseDriver
         require_once "{$this->path}/wp-admin/includes/plugin-install.php";
 
         $plugin = $this->getPlugin($plugin);
-        if ($plugin)
+        if ($plugin) {
             activate_plugin($plugin);
         }
     }
@@ -103,7 +103,7 @@ class WpapiDriver extends BaseDriver
         require_once "{$this->path}/wp-admin/includes/plugin-install.php";
 
         $plugin = $this->getPlugin($plugin);
-        if (! $plugin)
+        if (! $plugin) {
             return;
         }
 
