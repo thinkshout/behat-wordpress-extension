@@ -161,7 +161,7 @@ class WpcliDriver extends BaseDriver
      *
      * @param string $term
      * @param string $taxonomy
-     * @param array  $args Optional. Set the values of the new term.
+     * @param array  $args     Optional. Set the values of the new term.
      * @return int Term ID.
      */
     public function createTerm($term, $taxonomy, $args = [])
@@ -217,7 +217,7 @@ class WpcliDriver extends BaseDriver
     /**
      * Delete specified content.
      *
-     * @param int   $id ID of content to delete.
+     * @param int   $id   ID of content to delete.
      * @param array $args Optional. Extra parameters to pass to WordPress.
      */
     public function deleteContent($id, $args = [])
@@ -260,7 +260,7 @@ class WpcliDriver extends BaseDriver
     /**
      * Delete specified comment.
      *
-     * @param int   $id ID of comment to delete.
+     * @param int   $id   ID of comment to delete.
      * @param array $args Optional. Extra parameters to pass to WordPress.
      */
     public function deleteComment($id, $args = [])
@@ -307,8 +307,6 @@ class WpcliDriver extends BaseDriver
     {
         $filename = getcwd() . "/{$filename}";
         $this->wpcli('db', 'import', [$filename]);
-
-        // TODO: delete backup?
     }
 }
 

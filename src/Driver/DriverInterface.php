@@ -2,9 +2,9 @@
 namespace PaulGibbs\WordpressBehatExtension\Driver;
 
 /**
- * WordPress Driver interface.
+ * WordPress driver interface.
  *
- * A Driver represents and manages the connection between the Behat environment and a WordPress site.
+ * A driver represents and manages the connection between the Behat environment and a WordPress site.
  */
 interface DriverInterface
 {
@@ -51,7 +51,7 @@ interface DriverInterface
      *
      * @param string $term
      * @param string $taxonomy
-     * @param array  $args Optional. Set the values of the new term.
+     * @param array  $args     Optional. Set the values of the new term.
      * @return int Term ID.
      */
     public function createTerm($term, $taxonomy, $args = []);
@@ -75,7 +75,7 @@ interface DriverInterface
     /**
      * Delete specified content.
      *
-     * @param int   $id ID of content to delete.
+     * @param int   $id   ID of content to delete.
      * @param array $args Optional. Extra parameters to pass to WordPress.
      */
     public function deleteContent($id, $args = []);
@@ -91,7 +91,7 @@ interface DriverInterface
     /**
      * Delete specified comment.
      *
-     * @param int   $id ID of comment to delete.
+     * @param int   $id   ID of comment to delete.
      * @param array $args Optional. Extra parameters to pass to WordPress.
      */
     public function deleteComment($id, $args = []);

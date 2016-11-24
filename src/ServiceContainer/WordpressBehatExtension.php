@@ -18,7 +18,7 @@ use PaulGibbs\WordpressBehatExtension\Compiler\DriverPass;
 use InvalidArgumentException;
 
 /**
- * Behat extension for loading and configuring WordPress.
+ * Main part of the Behat extension.
  */
 class WordpressBehatExtension implements ExtensionInterface
 {
@@ -61,7 +61,7 @@ class WordpressBehatExtension implements ExtensionInterface
     }
 
     /**
-     * Set up configuration for the extension.
+     * Declare configuration options for the extension.
      *
      * @param ArrayNodeDefinition $builder
      */
@@ -169,7 +169,7 @@ class WordpressBehatExtension implements ExtensionInterface
     }
 
     /**
-     * Load extension services into temporary container.
+     * Load extension services into ServiceContainer.
      *
      * @param ContainerBuilder $container
      * @param array            $config
@@ -265,7 +265,7 @@ class WordpressBehatExtension implements ExtensionInterface
     }
 
     /**
-     * Set up Driver registration.
+     * Set up driver registration.
      *
      * @param ContainerBuilder $container
      */

@@ -22,4 +22,4 @@ class WpcliLogger extends QuietLogger
     }
 }
 
-WP_CLI::set_logger( new WpcliLogger );
+WP_CLI::set_logger(new WpcliLogger);

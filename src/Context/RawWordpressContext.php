@@ -9,7 +9,7 @@ use PaulGibbs\WordpressBehatExtension\WordpressDriverManager;
 /**
  * Base Behat Context class.
  *
- * Does not define any steps.
+ * Does not contain any step defintions.
  */
 class RawWordpressContext extends RawMinkContext implements WordpressAwareInterface, SnippetAcceptingContext
 {
@@ -94,7 +94,7 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * throw an exception should the expected state not (yet) exist.
      *
      * @param callable $closure Action to execute.
-     * @param int      $tries Optional. Number of attempts to make before giving up.
+     * @param int      $tries  Optional. Number of attempts to make before giving up.
      */
     public function spins(callable $closure, $tries = 10)
     {

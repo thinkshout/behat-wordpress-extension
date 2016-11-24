@@ -6,7 +6,9 @@ use PaulGibbs\WordpressBehatExtension\Driver\DriverInterface;
 use InvalidArgumentException;
 
 /**
- * Driver manager.
+ * Manages driver registration.
+ *
+ * A driver represents and manages the connection between the Behat and WordPress environments.
  */
 class WordpressDriverManager
 {
@@ -50,7 +52,7 @@ class WordpressDriverManager
     }
 
     /**
-     * Return a registered driver by name, or the default driver.
+     * Return a registered driver by name (defaults to the default driver).
      *
      * @param string $name Optional. The name of the driver to return. If omitted, the default driver is returned.
      * @return DriverInterface The requested driver.

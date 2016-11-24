@@ -79,7 +79,7 @@ abstract class BaseDriver implements DriverInterface
      *
      * @param string $term
      * @param string $taxonomy
-     * @param array  $args Optional. Set the values of the new term.
+     * @param array  $args     Optional. Set the values of the new term.
      * @return int Term ID.
      */
     public function createTerm($term, $taxonomy, $args = [])
@@ -112,7 +112,7 @@ abstract class BaseDriver implements DriverInterface
     /**
      * Delete specified content.
      *
-     * @param int   $id ID of content to delete.
+     * @param int   $id   ID of content to delete.
      * @param array $args Optional. Extra parameters to pass to WordPress.
      */
     public function deleteContent($id, $args = [])
@@ -134,7 +134,7 @@ abstract class BaseDriver implements DriverInterface
     /**
      * Delete specified comment.
      *
-     * @param int   $id ID of comment to delete.
+     * @param int   $id   ID of comment to delete.
      * @param array $args Optional. Extra parameters to pass to WordPress.
      */
     public function deleteComment($id, $args = [])
