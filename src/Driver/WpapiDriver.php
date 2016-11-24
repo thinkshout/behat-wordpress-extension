@@ -80,12 +80,12 @@ class WpapiDriver extends BaseDriver
         require_once "{$this->path}/wp-admin/includes/plugin.php";
         require_once "{$this->path}/wp-admin/includes/plugin-install.php";
 
-        $plugin = $this->getPlugin($plugin);
-        if (! $plugin) {
+        $path = $this->getPlugin($plugin);
+        if (! $path) {
             throw new RuntimeException("WordPress API driver cannot find the plugin: {$plugin}.");
         }
 
-        activate_plugin($plugin);
+        activate_plugin($path);
     }
 
     /**
@@ -105,12 +105,12 @@ class WpapiDriver extends BaseDriver
         require_once "{$this->path}/wp-admin/includes/plugin.php";
         require_once "{$this->path}/wp-admin/includes/plugin-install.php";
 
-        $plugin = $this->getPlugin($plugin);
-        if (! $plugin) {
+        $path = $this->getPlugin($plugin);
+        if (! $path) {
             throw new RuntimeException("WordPress API driver cannot find the plugin: {$plugin}.");
         }
 
-        deactivate_plugins($plugin);
+        deactivate_plugins($path);
     }
 
     /**
