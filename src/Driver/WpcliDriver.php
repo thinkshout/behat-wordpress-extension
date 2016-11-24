@@ -1,7 +1,8 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\Driver;
 
-use RuntimeException;
+use RuntimeException,
+    UnexpectedValueException;
 
 /**
  * Connect Behat to WordPress using WP-CLI.
@@ -75,10 +76,7 @@ class WpcliDriver extends BaseDriver
      */
     public function wpcli($command, $subcommand, $raw_arguments = [])
     {
-        $arguments  = '';
-        $cmd_output = [];
-        $exit_code  = 0;
-        $wpcli_args = '--no-color --require=src/WpcliLogger.php';
+        $arguments = '';
 
         // Build parameter list.
         foreach ($raw_arguments as $name => $value) {
@@ -97,13 +95,25 @@ class WpcliDriver extends BaseDriver
             $config = sprintf('--path=%s --url=%s', escapeshellarg($this->path), escapeshellarg($this->url));
         }
 
+        // Support Windows.
         if (DIRECTORY_SEPARATOR === '\\') {
             $binary = 'wp.bat';
         } else {
             $binary = 'wp';
         }
 
+        $cmd_output = [];
+        $exit_code  = 0;
+        $wpcli_args = '--no-color --require=src/WpcliLogger.php';
+
+        // Query WP-CLI.
         exec("{$binary} {$config} {$command} {$subcommand} {$arguments} {$wpcli_args} 2>&1", $cmd_output, $exit_code);
+        $cmd_output = implode(PHP_EOL, $cmd_output);
+
+        if ($cmd_output) {
+            // Any output is bad.
+            throw new UnexpectedValueException("WP-CLI driver query failure: {$cmd_output}");
+        }
 
         return compact('cmd_output', 'exit_code');
     }
@@ -156,8 +166,8 @@ class WpcliDriver extends BaseDriver
      */
     public function createTerm($term, $taxonomy, $args = [])
     {
-        $wpcli_args = [$taxonomy, $term, '--porcelain'];
         $whitelist  = ['description', 'parent', 'slug'];
+        $wpcli_args = [$taxonomy, $term, '--porcelain'];
 
         foreach ($whitelist as $option) {
             if (isset($args[$option])) {
