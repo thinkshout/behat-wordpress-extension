@@ -75,10 +75,10 @@ class WpcliDriver extends BaseDriver
      */
     public function wpcli($command, $subcommand, $raw_arguments = [])
     {
-        $arguments    = '';
-        $cmd_output   = [];
-        $exit_code    = 0;
-        $wpcli_tweaks = '--no-color --require=src/WpcliLogger.php';
+        $arguments  = '';
+        $cmd_output = [];
+        $exit_code  = 0;
+        $wpcli_args = '--no-color --require=src/WpcliLogger.php';
 
         // Build parameter list.
         foreach ($raw_arguments as $name => $value) {
@@ -103,7 +103,7 @@ class WpcliDriver extends BaseDriver
             $binary = 'wp';
         }
 
-        exec("{$binary} {$config} {$command} {$subcommand} {$arguments} {$wpcli_tweaks}", $cmd_output, $exit_code);
+        exec("{$binary} {$config} {$command} {$subcommand} {$arguments} {$wpcli_args} 2>&1", $cmd_output, $exit_code);
 
         return compact('cmd_output', 'exit_code');
     }
