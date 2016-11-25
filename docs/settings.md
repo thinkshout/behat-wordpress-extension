@@ -36,7 +36,7 @@ PaulGibbs\WordpressBehatExtension:
 
 Option             | Default value | Description
 -------------------| ------------- | -----------
-`default_driver`   | **wpcli**     | The [driver](drivers.html) to use (either "wpcli" or "browser").
+`default_driver`   | **wpcli**     | The [driver](drivers.html) to use ("wpcli", "wpapi", "blackbox").
 `path`             | _null_        | _Optional_. Path to WordPress files.
 `wpcli.alias`      | _null_        | _Optional_. [WP-CLI alias](https://wp-cli.org/commands/cli/alias/) (preferred over `wpcli.path`).
 `wpcli.users`      | _see example_ | Keys must match WordPress roles.

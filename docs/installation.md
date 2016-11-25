@@ -25,7 +25,7 @@ currentMenu: installation
   php composer.phar require paulgibbs/behat-wordpress-extension="^0.1"
   ```
 
-  This will create a `composer.json` file for you, and download everything you need.
+  This will create a `composer.json` file for you, and download the extension.
 
 1. The extension comes with a sample configuration file to help you set up the test environment. Copy it into your project folder and name it `behat.yml`:
 
