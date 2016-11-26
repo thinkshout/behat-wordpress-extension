@@ -75,21 +75,13 @@
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
                                                                                                                                                                                                                                                                                                                                                                                                                                             
                     <h1 id="contexts">Contexts</h1>
-<p>With Behat, it is possible to flexibly structure your code by using multiple contexts in a single test suite.</p>
-<h2 id="available-contexts">Available contexts</h2>
-<p>The WordPress Extension for Behat includes the following contexts:</p>
-<ul>
-<li>
-<p><em><strong>RawWordpressContext</strong></em>
-A context that provides no step definitions, but all of the necessary functionality for interacting with WordPress, and with the browser, via Mink sessions.</p>
-</li>
-<li>
-<p><em><strong>WordpressContext</strong></em>
-Provides step-definitions for creating TODO, TODO, and TODO.</p>
-</li>
-<li><em><strong>MessageContext</strong></em>
-Step-definitions that are specific to WordPress messages that get displayed (notice, warning, and error)</li>
-</ul>
+<p>With Behat, it is possible to flexibly structure your code by using multiple <a href="http://docs.behat.org/en/latest/user_guide/context.html">contexts</a> in a single test suite. The WordPress Extension for Behat includes the following contexts:</p>
+<h3 id="rawwordpresscontext">RawWordpressContext</h3>
+<p>This is a context that provides no step definitions, but all of the necessary functionality for interacting with WordPress and the browser.</p>
+<h3 id="wordpresscontext">WordpressContext</h3>
+<p>Provides step definitions for creating posts, comments, and terms; and managing plugins, themes, and the cache; and the database.</p>
+<h3 id="messagecontext">MessageContext</h3>
+<p>Provides step definitions that are specific to WordPress admin notices that get displayed in the dashboard (info, warning, and error).</p>
                 </section>
 
             </div>
