@@ -6,6 +6,8 @@ currentMenu: drivers
 
 The WordPress Extension for Behat provides a range of drivers for interacting with the WordPress site you are testing. A driver represents and manages the connection between the Behat and WordPress environments.
 
+The default driver is `wpcli`. To specify which driver to use for your tests, set [`default_driver`](settings.html) in your `behat.yml` file.
+
 Different drivers support different features:
 
 Feature                                  | WP-CLI                     | WordPress API | Blackbox
