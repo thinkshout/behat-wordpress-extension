@@ -16,4 +16,4 @@ Provides step definitions for creating posts, comments, and terms; and managing 
 
 ### MessageContext
 
-Provides step definitions that are specific to WordPress admin notices that get displayed in the dashboard (info, warning, and error).
+Provides step definitions that are specific to WordPress admin notices that get displayed in the dashboard (error and updated).

@@ -3,7 +3,8 @@ default:
     default:
       contexts:
         - FeatureContext
-        - PaulGibbs\WordpressBehatExtension\Context\TestContext
+        - Behat\MinkExtension\Context\MinkContext
+        - PaulGibbs\WordpressBehatExtension\Context\MessageContext
 
   extensions:
     Behat\MinkExtension:
