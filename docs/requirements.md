@@ -10,7 +10,7 @@ currentMenu: requirements
 * [Selenium](http://docs.seleniumhq.org/download/) ("Standalone Server" version).
 
 
-## Driver-specific requirements
+## Driver requirements
 
 The [WP-CLI driver](drivers.html) (the default) requires [WP-CLI](http://wp-cli.org/), installed globally:
   ```Shell
