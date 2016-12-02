@@ -48,6 +48,7 @@ menu:
 
 baseUrl: http://wordhat.info/
 branch: gh-pages
+cname: wordhat.info
 footerTitle: <a href="credits.html">Built on the shoulders of giants</a>
 googleAnalyticsCode: UA-88402256-1
 logo: http://paulgibbs.github.io/wordhat/lettermark.svg
