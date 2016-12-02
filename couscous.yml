@@ -1,5 +1,5 @@
 template:
-  url: https://github.com/paulgibbs/Template-Light.git
+  url: https://github.com/paulgibbs/WordHat-Site-Template.git
   index: index.md
 
 include:
@@ -10,7 +10,7 @@ exclude:
 
 branch: gh-pages
 
-baseUrl: https://paulgibbs.github.io/behat-wordpress-extension/
+baseUrl: http://wordhat.info/
 
 menu:
   items:
@@ -50,6 +50,7 @@ menu:
       text: Credits
       relativeUrl: credits.html
 
-title: WordPress Extension for Behat
-subTitle: 0.2.0
+title: WordHat
+subTitle: WordPress Extension for Behat
 footerTitle: <a href="credits.html">Built on the shoulders of giants</a>
+logo: http://paulgibbs.github.io/wordhat/lettermark.svg
