@@ -8,10 +8,6 @@ include:
 exclude:
   - %gitignore%
 
-branch: gh-pages
-
-baseUrl: http://wordhat.info/
-
 menu:
   items:
     about:
@@ -50,8 +46,10 @@ menu:
       text: Credits
       relativeUrl: credits.html
 
-title: WordHat
-subTitle: WordPress Extension for Behat
+baseUrl: http://wordhat.info/
+branch: gh-pages
 footerTitle: <a href="credits.html">Built on the shoulders of giants</a>
-logo: http://paulgibbs.github.io/wordhat/lettermark.svg
 googleAnalyticsCode: UA-88402256-1
+logo: http://paulgibbs.github.io/wordhat/lettermark.svg
+subTitle: WordPress Extension for Behat
+title: WordHat
