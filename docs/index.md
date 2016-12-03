@@ -1,21 +1,30 @@
----
-currentMenu: about
----
+<style type="text/css">
+#content .index-logo {
+  border: 0;
+  margin-bottom: 15px;
+}
 
-# About
+@media (max-width: 768px) {
+  #content .index-logo {
+    width: 100%;
+  }
+}
 
-The WordPress Extension for Behat is an integration layer between [Behat](http://behat.org), [Mink](https://github.com/Behat/MinkExtension), and [WordPress](https://wordpress.org). It provides WordPress-specific functionality for common testing scenarios specific to WordPress sites.
+@media (min-width: 768px) {
+  #content .index-logo {
+    width: 30vw;
+  }
+}
+</style>
 
-## What does Behat and Mink do?
+<img src="//paulgibbs.github.io/wordhat/logo.svg" class="index-logo" alt="">
 
-Behat and Mink allow you to describe the behavior of a website in plain, but stylised, language, and then turn that description into an automated test that will visit the site and perform each step you describe.
+[![Build Status](https://travis-ci.org/paulgibbs/behat-wordpress-extension.svg?branch=master)](https://travis-ci.org/paulgibbs/behat-wordpress-extension)
+[![Latest Stable Version](https://poser.pugx.org/paulgibbs/behat-wordpress-extension/v/stable.svg)](https://packagist.org/packages/paulgibbs/behat-wordpress-extension)
+[![Total Downloads](https://poser.pugx.org/paulgibbs/behat-wordpress-extension/downloads.svg)](https://packagist.org/packages/paulgibbs/behat-wordpress-extension)
+[![Latest Unstable Version](https://poser.pugx.org/paulgibbs/behat-wordpress-extension/v/unstable.svg)](https://packagist.org/packages/paulgibbs/behat-wordpress-extension)
+[![License](https://poser.pugx.org/paulgibbs/behat-wordpress-extension/license.svg)](https://packagist.org/packages/paulgibbs/behat-wordpress-extension)
 
-Such functional tests can help site builders ensure that the added value they've created when building a WordPress site continues to behave as expected after any sort of site change -- WordPress updates, new plugins, new features, and so on.
+WordHat is an integration layer between [Behat](http://behat.org), [Mink Extension](https://github.com/Behat/MinkExtension), and [WordPress](https://wordpress.org). It provides WordPress-specific functionality for common testing scenarios specific to WordPress sites.
 
-## What does this extension do?
-
-The extension provides [step definitions](http://docs.behat.org/en/latest/user_guide/context/definitions.html) that help you implement tests for common WordPress tasks:
-
-* Manage themes and plugins.
-* Manipulate site content.
-* And more!
+If you are new to the project or Behat, we recommend that you first read through all the documentation.
