@@ -19,7 +19,7 @@ currentMenu: installation
 
 1. Check that all of the [requirements](requirements.html) are met. These instructions assume that Composer has been downloaded into your project folder.
 
-1. Tell [Composer](https://getcomposer.org/) to install the WordPress Extension for Behat. To do this conveniently, run:
+1. Tell [Composer](https://getcomposer.org/) to install WordHat. To do this conveniently, run:
 
   ```Shell
   php composer.phar require paulgibbs/behat-wordpress-extension="^0.1"
