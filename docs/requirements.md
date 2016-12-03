@@ -5,9 +5,9 @@ currentMenu: requirements
 # Requirements
 
 * A [WordPress](https://wordpress.org/) site, running version 4.7+.
-* PHP 5.6+, with the [cURL extension](https://curl.haxx.se/libcurl/php/install.html) enabled.
+* PHP 5.6+, with the [cURL extension](https://curl.haxx.se/libcurl/php/install.html).
 * [Composer](https://getcomposer.org/).
-* [Selenium](http://docs.seleniumhq.org/download/) ("Standalone Server" version).
+* [Selenium](http://docs.seleniumhq.org/download/) (the "Standalone Server" version).
 
 
 ## Driver requirements

@@ -57,3 +57,5 @@ currentMenu: installation
   Given I am logged in as a user with the :role role(s)
   Given I am logged in as :name
   ```
+
+Now you are ready to start writing your tests. If you are new to Behat, you might want to review its [quick start](http://behat.org/en/latest/quick_start.html#example) documentation. Good luck, and happy testing!
