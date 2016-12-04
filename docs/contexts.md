@@ -12,7 +12,7 @@ This is a context that provides no step definitions, but all of the necessary fu
 
 ### WordpressContext
 
-Provides step definitions for creating posts, comments, and terms; and managing plugins, themes, and the cache; and the database.
+Provides step definitions for creating posts, comments, and terms; managing plugins, themes, and the cache; the database, and much more.
 
 ### MessageContext
 
