@@ -3,9 +3,9 @@ namespace PaulGibbs\WordpressBehatExtension\Context;
 
 use RuntimeException;
 
-use Behat\Behat\Context\SnippetAcceptingContext,
-    Behat\Mink\Exception\ExpectationException,
-    Behat\MinkExtension\Context\RawMinkContext;
+use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Mink\Exception\ExpectationException;
+use Behat\MinkExtension\Context\RawMinkContext;
 
 use PaulGibbs\WordpressBehatExtension\WordpressDriverManager;
 
@@ -142,7 +142,7 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
         $page->fillField('user_pass', $password);
         $page->findButton('wp-submit')->click();
 
-        $this->spins(function() use ($page) {
+        $this->spins(function () use ($page) {
             if (! $page->has('css', 'body.logged-in')) {
                 throw new ExpectationException('The user is not logged-in.', $this->getSession()->getDriver());
             }
@@ -152,7 +152,8 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
     /**
      * Log the current user out.
      */
-    public function logOut() {
+    public function logOut()
+    {
         if (! $this->user_authenticated) {
             return;
         }

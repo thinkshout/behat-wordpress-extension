@@ -1,17 +1,17 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\ServiceContainer;
 
-use Behat\Behat\Context\ServiceContainer\ContextExtension,
-    Behat\Testwork\ServiceContainer\Extension as ExtensionInterface,
-    Behat\Testwork\ServiceContainer\ExtensionManager,
-    Behat\Testwork\ServiceContainer\ServiceProcessor;
+use Behat\Behat\Context\ServiceContainer\ContextExtension;
+use Behat\Testwork\ServiceContainer\Extension as ExtensionInterface;
+use Behat\Testwork\ServiceContainer\ExtensionManager;
+use Behat\Testwork\ServiceContainer\ServiceProcessor;
 
-use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition,
-    Symfony\Component\Config\FileLocator,
-    Symfony\Component\DependencyInjection\ContainerBuilder,
-    Symfony\Component\DependencyInjection\Definition,
-    Symfony\Component\DependencyInjection\Loader\FileLoader,
-    Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Loader\FileLoader;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 use PaulGibbs\WordpressBehatExtension\Compiler\DriverPass;
 
@@ -42,7 +42,8 @@ class WordpressBehatExtension implements ExtensionInterface
      *
      * @return string
      */
-    public function getConfigKey() {
+    public function getConfigKey()
+    {
         return 'wordpress';
     }
 
@@ -269,7 +270,8 @@ class WordpressBehatExtension implements ExtensionInterface
      *
      * @param ContainerBuilder $container
      */
-    protected function processDriverPass(ContainerBuilder $container) {
+    protected function processDriverPass(ContainerBuilder $container)
+    {
         $driver = new DriverPass();
         $driver->process($container);
     }
@@ -279,7 +281,8 @@ class WordpressBehatExtension implements ExtensionInterface
      *
      * `behat --init` creates an inital Context class. Here, we switch the template used for that.
      */
-    protected function processClassGenerator(ContainerBuilder $container) {
+    protected function processClassGenerator(ContainerBuilder $container)
+    {
         $definition = new Definition('PaulGibbs\WordpressBehatExtension\Context\ContextClass\ClassGenerator');
         $container->setDefinition(ContextExtension::CLASS_GENERATOR_TAG . '.simple', $definition);
     }

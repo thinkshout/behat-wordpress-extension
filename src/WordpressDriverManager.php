@@ -82,7 +82,7 @@ class WordpressDriverManager
      */
     public function getDrivers()
     {
-       return $this->drivers;
+        return $this->drivers;
     }
 
     /**

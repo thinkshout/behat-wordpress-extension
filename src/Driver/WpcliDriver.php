@@ -1,8 +1,8 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\Driver;
 
-use RuntimeException,
-    UnexpectedValueException;
+use RuntimeException;
+use UnexpectedValueException;
 
 /**
  * Connect Behat to WordPress using WP-CLI.
@@ -309,4 +309,3 @@ class WpcliDriver extends BaseDriver
         $this->wpcli('db', 'import', [$import_file]);
     }
 }
-

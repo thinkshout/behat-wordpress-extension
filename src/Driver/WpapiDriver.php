@@ -1,8 +1,8 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\Driver;
 
-use RuntimeException,
-    UnexpectedValueException;
+use RuntimeException;
+use UnexpectedValueException;
 
 /**
  * Connect Behat to WordPress by loading WordPress directly into the global scope.
@@ -70,8 +70,7 @@ class WpapiDriver extends BaseDriver
      */
     public function activatePlugin($plugin)
     {
-        if (
-            ! file_exists("{$this->path}/wp-admin/includes/plugin.php") ||
+        if (! file_exists("{$this->path}/wp-admin/includes/plugin.php") ||
             ! file_exists("{$this->path}/wp-admin/includes/plugin-install.php")
         ) {
             throw new RuntimeException('WordPress API driver cannot find expected WordPress files.');
@@ -95,8 +94,7 @@ class WpapiDriver extends BaseDriver
      */
     public function deactivatePlugin($plugin)
     {
-        if (
-            ! file_exists("{$this->path}/wp-admin/includes/plugin.php") ||
+        if (! file_exists("{$this->path}/wp-admin/includes/plugin.php") ||
             ! file_exists("{$this->path}/wp-admin/includes/plugin-install.php")
         ) {
             throw new RuntimeException('WordPress API driver cannot find expected WordPress files.');

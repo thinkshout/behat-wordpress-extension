@@ -1,8 +1,8 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension;
 
-use WP_CLI,
-    WP_CLI\Loggers\Quiet as QuietLogger;
+use WP_CLI;
+use WP_CLI\Loggers\Quiet as QuietLogger;
 
 /**
  * A logger for WP-CLI that promotes warning messages to errors.
