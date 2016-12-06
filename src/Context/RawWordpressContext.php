@@ -41,7 +41,8 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
     /**
      * Constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
     }
 
     /**
@@ -128,7 +129,8 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * @param string $username
      * @param string $password
      */
-    public function logIn($username, $password) {
+    public function logIn($username, $password)
+    {
         if ($this->user_authenticated) {
             return;
         }
@@ -164,7 +166,8 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      *
      * @return bool
      */
-    public function isUserAuthenticated() {
+    public function isUserAuthenticated()
+    {
         return (bool) $this->user_authenticated;
     }
 
@@ -173,7 +176,8 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      *
      * @AfterScenario
      */
-    public function clearCache() {
+    public function clearCache()
+    {
         $this->getDriver()->clearCache();
     }
 
