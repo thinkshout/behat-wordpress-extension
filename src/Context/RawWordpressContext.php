@@ -183,6 +183,16 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
     }
 
     /**
+     * Clear Mink's browser environment.
+     *
+     * @AfterScenario
+     */
+    public function resetBrowser()
+    {
+        $this->getSession()->reset();
+    }
+
+    /**
      * Activate a plugin.
      *
      * @param string $plugin
