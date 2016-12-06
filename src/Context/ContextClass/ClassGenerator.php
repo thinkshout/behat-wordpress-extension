@@ -1,13 +1,14 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\Context\ContextClass;
 
-use Behat\Behat\Context\ContextClass\ClassGenerator as BehatContextGenerator,
-    Behat\Testwork\Suite\Suite;
+use Behat\Behat\Context\ContextClass\ClassGenerator as BehatContextGenerator;
+use Behat\Testwork\Suite\Suite;
 
 /**
  * Generates a starting Context class (as a string).
  */
-class ClassGenerator implements BehatContextGenerator {
+class ClassGenerator implements BehatContextGenerator
+{
 
     /**
      * @var string
@@ -44,7 +45,8 @@ PHP;
      * @param string $context_class
      * @return bool
      */
-    public function supportsSuiteAndClass(Suite $suite, $context_class) {
+    public function supportsSuiteAndClass(Suite $suite, $context_class)
+    {
         return true;
     }
 
@@ -55,7 +57,8 @@ PHP;
      * @param string $context_class
      * @return string The context class source code.
      */
-    public function generateClass(Suite $suite, $context_class) {
+    public function generateClass(Suite $suite, $context_class)
+    {
         $fqn       = $context_class;
         $namespace = '';
         $pos       = strrpos($fqn, '\\');
