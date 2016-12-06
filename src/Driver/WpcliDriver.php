@@ -301,12 +301,12 @@ class WpcliDriver extends BaseDriver
     /**
      * Import WordPress database.
      *
-     * @param string $filename Absolute path to database SQL file to import.
+     * @param string $import_file Relative path and filename of SQL file to import.
      */
-    public function importDatabase($filename)
+    public function importDatabase($import_file)
     {
-        $filename = getcwd() . "/{$filename}";
-        $this->wpcli('db', 'import', [$filename]);
+        $import_file = getcwd() . "/{$import_file}";
+        $this->wpcli('db', 'import', [$import_file]);
     }
 }
 

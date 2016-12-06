@@ -67,9 +67,9 @@ abstract class BaseDriver implements DriverInterface
     /**
      * Switch active theme.
      *
-     * @param string $plugin
+     * @param string $theme
      */
-    public function switchTheme($plugin)
+    public function switchTheme($theme)
     {
         throw new UnsupportedDriverActionException('switch themes in ' . self::class);
     }
@@ -155,7 +155,7 @@ abstract class BaseDriver implements DriverInterface
     /**
      * Import WordPress database.
      *
-     * @param string $import_file Absolute path to database SQL file to import.
+     * @param string $import_file Relative path and filename of SQL file to import.
      */
     public function importDatabase($import_file)
     {
