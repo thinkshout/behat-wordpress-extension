@@ -104,7 +104,7 @@ class WpcliDriver extends BaseDriver
 
         $cmd_output = [];
         $exit_code  = 0;
-        $wpcli_args = '--no-color --require=src/WpcliLogger.php';
+        $wpcli_args = '--no-color --require=' . dirname(__DIR__) . '/WpcliLogger.php';
 
         // Query WP-CLI.
         exec("{$binary} {$config} {$command} {$subcommand} {$arguments} {$wpcli_args} 2>&1", $cmd_output, $exit_code);
