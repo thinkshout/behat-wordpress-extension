@@ -109,4 +109,22 @@ interface DriverInterface
      * @param string $import_file Relative path and filename of SQL file to import.
      */
     public function importDatabase($import_file);
+
+    /**
+     * Create a user.
+     *
+     * @param string $user_login User login name.
+     * @param string $user_email User email address.
+     * @param array  $args       Optional. Extra parameters to pass to WordPress.
+     * @return int User ID.
+     */
+    public function createUser($user_login, $user_email, $args = []);
+
+    /**
+     * Delete a user.
+     *
+     * @param int   $id   ID of user to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteUser($id, $args = []);
 }

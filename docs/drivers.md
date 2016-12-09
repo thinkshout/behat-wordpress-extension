@@ -14,6 +14,7 @@ Feature                                  | WP-CLI                     | WordPres
 ---------------------------------------- | -------------------------- | ------------- | --------
 Publish posts and comments.              | Yes                        | Yes           | No
 Create terms for taxonomy.               | Yes                        | Yes           | No
+Create users.                            | Yes                        | Yes           | No
 Manage plugins.                          | Yes                        | Yes           | No
 Switch theme.                            | Yes                        | Yes           | No
 Clear cache.                             | Yes                        | Yes           | No

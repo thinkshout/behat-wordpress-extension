@@ -161,4 +161,28 @@ abstract class BaseDriver implements DriverInterface
     {
         throw new UnsupportedDriverActionException('import the database in ' . self::class);
     }
+
+    /**
+     * Create a user.
+     *
+     * @param string $user_login User login name.
+     * @param string $user_email User email address.
+     * @param array  $args       Optional. Extra parameters to pass to WordPress.
+     * @return int User ID.
+     */
+    public function createUser($user_login, $user_email, $args = [])
+    {
+        throw new UnsupportedDriverActionException('create users in ' . self::class);
+    }
+
+    /**
+     * Delete a user.
+     *
+     * @param int   $id   ID of user to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteUser($id, $args = [])
+    {
+        throw new UnsupportedDriverActionException('delete users in ' . self::class);
+    }
 }

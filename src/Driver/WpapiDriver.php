@@ -225,6 +225,42 @@ class WpapiDriver extends BaseDriver
         }
     }
 
+    /**
+     * Create a user.
+     *
+     * @param string $user_login User login name.
+     * @param string $user_email User email address.
+     * @param array  $args       Optional. Extra parameters to pass to WordPress.
+     * @return int User ID.
+     */
+    public function createUser($user_login, $user_email, $args = [])
+    {
+        $user     = compact($user_login, $user_email);
+        $args     = array_merge(wp_slash($user), wp_slash($args));
+        $new_user = wp_insert_user($args);
+
+        if (is_object($new_user) && get_class($new_user) === 'WP_Error') {
+            throw new UnexpectedValueException("WordPress API driver failed creating new user.");
+        }
+
+        return $new_user;
+    }
+
+    /**
+     * Delete a user.
+     *
+     * @param int   $id   ID of user to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteUser($id, $args = [])
+    {
+        $result = wp_delete_user($id, $args);
+
+        if (! $result) {
+            throw new UnexpectedValueException("WordPress API driver failed deleting user.");
+        }
+    }
+
 
     /*
      * Internal helpers.
