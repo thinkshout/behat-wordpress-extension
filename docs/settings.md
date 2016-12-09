@@ -39,7 +39,7 @@ Option             | Default value | Description
 `default_driver`   | **wpcli**     | The [driver](drivers.html) to use ("wpcli", "wpapi", "blackbox").
 `path`             | _null_        | _Optional_. Path to WordPress files.
 `wpcli.alias`      | _null_        | _Optional_. [WP-CLI alias](https://wp-cli.org/commands/cli/alias/) (preferred over `wpcli.path`).
-`wpcli.users`      | _see example_ | Keys must match WordPress roles.
+`wpcli.users`      | _see example_ | Keys must match names of WordPress roles.
 `users.*.username` |               | The name of a user with the specified role.
 `users.*.password` |               | The password of a user with the specified role.
 
