@@ -5,7 +5,7 @@ use Behat\Behat\Context\ContextClass\ClassGenerator as BehatContextGenerator;
 use Behat\Testwork\Suite\Suite;
 
 /**
- * Generates a starting Context class (as a string).
+ * Generate a sample Behat context class template.
  */
 class ClassGenerator implements BehatContextGenerator
 {
