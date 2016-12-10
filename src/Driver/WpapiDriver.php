@@ -4,6 +4,8 @@ namespace PaulGibbs\WordpressBehatExtension\Driver;
 use RuntimeException;
 use UnexpectedValueException;
 
+use function PaulGibbs\WordpressBehatExtension\is_wordpress_error;
+
 /**
  * Connect Behat to WordPress by loading WordPress directly into the global scope.
  */
@@ -140,7 +142,7 @@ class WpapiDriver extends BaseDriver
         $term     = wp_slash($term);
         $new_term = wp_insert_term($term, $taxonomy, $args);
 
-        if (is_object($new_term) && get_class($new_term) === 'WP_Error') {
+        if (is_wordpress_error($new_term)) {
             throw new UnexpectedValueException("WordPress API driver failed creating a new term.");
         }
 
@@ -157,7 +159,7 @@ class WpapiDriver extends BaseDriver
     {
         $result = wp_delete_term($term_id, $taxonomy);
 
-        if (is_object($result) && get_class($result) === 'WP_Error') {
+        if (is_wordpress_error($result)) {
             throw new UnexpectedValueException("WordPress API driver failed deleting a new term.");
         }
     }
@@ -173,7 +175,7 @@ class WpapiDriver extends BaseDriver
         $args     = wp_slash($args);
         $new_post = wp_insert_post($args);
 
-        if (is_object($new_post) && get_class($new_post) === 'WP_Error') {
+        if (is_wordpress_error($new_post)) {
             throw new UnexpectedValueException("WordPress API driver failed creating new content.");
         }
 
@@ -239,7 +241,7 @@ class WpapiDriver extends BaseDriver
         $args     = array_merge(wp_slash($user), wp_slash($args));
         $new_user = wp_insert_user($args);
 
-        if (is_object($new_user) && get_class($new_user) === 'WP_Error') {
+        if (is_wordpress_error($new_user)) {
             throw new UnexpectedValueException("WordPress API driver failed creating new user.");
         }
 
