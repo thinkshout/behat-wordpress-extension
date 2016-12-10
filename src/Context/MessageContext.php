@@ -11,6 +11,7 @@ class MessageContext extends RawWordpressContext
      * Check the specified notification is on-screen.
      *
      * Example: Then I should see a status message that says "Post published"
+     *
      * @Then /^(?:I|they) should see an? (error|status) message that says "([^"]+)"$/
      *
      * @param string $type    Message type. Either "error" or "status".
