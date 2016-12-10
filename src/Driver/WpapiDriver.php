@@ -143,7 +143,12 @@ class WpapiDriver extends BaseDriver
         $new_term = wp_insert_term($term, $taxonomy, $args);
 
         if (is_wordpress_error($new_term)) {
-            throw new UnexpectedValueException("WordPress API driver failed creating a new term.");
+            throw new UnexpectedValueException(
+                sprintf(
+                    'WordPress API driver failed creating a new term: %s',
+                    $new_term->get_error_message()
+                )
+            );
         }
 
         return $new_term['term_id'];
@@ -160,7 +165,12 @@ class WpapiDriver extends BaseDriver
         $result = wp_delete_term($term_id, $taxonomy);
 
         if (is_wordpress_error($result)) {
-            throw new UnexpectedValueException("WordPress API driver failed deleting a new term.");
+            throw new UnexpectedValueException(
+                sprintf(
+                    'WordPress API driver failed deleting a new term: %s',
+                    $result->get_error_message()
+                )
+            );
         }
     }
 
@@ -176,7 +186,12 @@ class WpapiDriver extends BaseDriver
         $new_post = wp_insert_post($args);
 
         if (is_wordpress_error($new_post)) {
-            throw new UnexpectedValueException("WordPress API driver failed creating new content.");
+            throw new UnexpectedValueException(
+                sprintf(
+                    'WordPress API driver failed creating new content: %s',
+                    $new_post->get_error_message()
+                )
+            );
         }
 
         return $new_post;
@@ -242,7 +257,12 @@ class WpapiDriver extends BaseDriver
         $new_user = wp_insert_user($args);
 
         if (is_wordpress_error($new_user)) {
-            throw new UnexpectedValueException("WordPress API driver failed creating new user.");
+            throw new UnexpectedValueException(
+                sprintf(
+                    'WordPress API driver failed creating new user: %s',
+                    $new_user->get_error_message()
+                )
+            );
         }
 
         return $new_user;
