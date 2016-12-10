@@ -6,6 +6,7 @@ currentMenu: settings
 
 Behat uses [YAML](https://en.wikipedia.org/wiki/YAML) for its configuration file.
 
+
 ## PaulGibbs\WordpressBehatExtension
 
 Extension `PaulGibbs\WordpressBehatExtension` integrates WordPress into Behat. These are its configuration options:
