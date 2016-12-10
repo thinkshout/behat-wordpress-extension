@@ -309,4 +309,28 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
     {
         $this->getDriver()->importDatabase($import_file);
     }
+
+    /**
+     * Create a user.
+     *
+     * @param string $user_login User login name.
+     * @param string $user_email User email address.
+     * @param array  $args       Optional. Extra parameters to pass to WordPress.
+     * @return int User ID.
+     */
+    public function createUser($user_login, $user_email, $args = [])
+    {
+        return $this->getDriver()->createUser($user_login, $user_email, $args);
+    }
+
+    /**
+     * Delete a user.
+     *
+     * @param int   $id   ID of user to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteUser($id, $args = [])
+    {
+        $this->getDriver()->deleteUser($id, $args);
+    }
 }
