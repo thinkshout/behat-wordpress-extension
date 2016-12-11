@@ -2,7 +2,6 @@
 namespace PaulGibbs\WordpressBehatExtension;
 
 use PaulGibbs\WordpressBehatExtension\Driver\DriverInterface;
-
 use InvalidArgumentException;
 
 /**

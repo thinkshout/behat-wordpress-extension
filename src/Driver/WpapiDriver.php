@@ -3,7 +3,6 @@ namespace PaulGibbs\WordpressBehatExtension\Driver;
 
 use RuntimeException;
 use UnexpectedValueException;
-
 use function PaulGibbs\WordpressBehatExtension\is_wordpress_error;
 
 /**
