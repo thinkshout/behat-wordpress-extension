@@ -2,7 +2,7 @@
 namespace PaulGibbs\WordpressBehatExtension\Context;
 
 /**
- * Provides step definitions that are specific to the WordPress dashboard.
+ * Provides step definitions that are specific to the WordPress dashboard (wp-admin).
  */
 class DashboardContext extends RawWordpressContext
 {

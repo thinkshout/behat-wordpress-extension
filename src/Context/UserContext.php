@@ -6,10 +6,9 @@ use Behat\Gherkin\Node\TableNode;
 use function PaulGibbs\WordpressBehatExtension\is_wordpress_error;
 
 /**
- * Provides step definitions for creating posts, comments, and terms; managing plugins, themes, and
- * the cache; the database, and much more.
+ * Provides step definitions for all things relating to users.
  */
-class WordpressContext extends RawWordpressContext
+class UserContext extends RawWordpressContext
 {
     /**
      * Open the dashboard.
@@ -34,7 +33,7 @@ class WordpressContext extends RawWordpressContext
      *
      * Example: Given there are users:
      *     | user_login | user_pass | user_email        | role          |
-     *     | admin      | admin     | admin@example.com | administrator |
+     *     | admin      | admin     | admin@exampåle.com | administrator |
      *
      * @Given /^there are users:/
      *
@@ -56,3 +55,6 @@ class WordpressContext extends RawWordpressContext
         }
     }
 }
+
+//there are posts
+//I am logged in as "walter" with password "test"
