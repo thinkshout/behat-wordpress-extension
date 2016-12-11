@@ -31,4 +31,4 @@ script:
   - vendor/bin/phpcs --standard=phpcs-ruleset.xml -p -s -v -n src --extensions=php
 
 after_success:
-  - vendor/bin/couscous travis-auto-deploy --php-version=7.0
+  - vendor/bin/couscous travis-auto-deploy --php-version=7.1
