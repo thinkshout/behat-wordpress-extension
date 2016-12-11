@@ -14,7 +14,7 @@ This is a context that provides no step definitions, but all of the necessary fu
 
 ## DashboardContext
 
-Provides step definitions that are specific to the WordPress dashboard.
+Provides step definitions that are specific to the WordPress dashboard (wp-admin).
 
 
 ## WordpressContext
