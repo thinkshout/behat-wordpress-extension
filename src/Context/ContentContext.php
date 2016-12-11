@@ -7,3 +7,5 @@ namespace PaulGibbs\WordpressBehatExtension\Context;
 class ContentContext extends RawWordpressContext
 {
 }
+
+//there are posts

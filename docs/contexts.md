@@ -30,3 +30,8 @@ Provides step definitions for managing plugins and themes.
 ## UserContext
 
 Provides step definitions for all things relating to users.
+
+
+## WordpressContext
+
+Provides step definitions for a range of common tasks. Recommended for all test suites.
