@@ -4,7 +4,8 @@ default:
       contexts:
         - FeatureContext
         - Behat\MinkExtension\Context\MinkContext
-        - PaulGibbs\WordpressBehatExtension\Context\MessageContext
+        - PaulGibbs\WordpressBehatExtension\Context\DashboardContext
+        - PaulGibbs\WordpressBehatExtension\Context\WordPressContext
 
   extensions:
     Behat\MinkExtension:
