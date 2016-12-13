@@ -14,7 +14,7 @@ class UserContext extends RawWordpressContext
      * Add specified user accounts.
      *
      * Example: Given there are users:
-     *     | user_login | user_pass | user_email        | role          |
+     *     | user_login | user_pass | user_email         | role          |
      *     | admin      | admin     | admin@exampåle.com | administrator |
      *
      * @Given /^there are users:/
