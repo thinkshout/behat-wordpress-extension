@@ -30,13 +30,6 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      */
     protected $wordpress_parameters;
 
-    /**
-     * Is a user currently authenticated?
-     *
-     * @var bool
-     */
-    protected $user_authenticated = false;
-
 
     /**
      * Constructor.
@@ -131,8 +124,8 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      */
     public function logIn($username, $password)
     {
-        if ($this->user_authenticated) {
-            return;
+        if ($this->loggedIn()) {
+            $this->logOut();
         }
 
         $this->visitPath('wp-login.php?redirect_to=' . urlencode($this->locatePath('/')));
@@ -143,8 +136,8 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
         $page->findButton('wp-submit')->click();
 
         $this->spins(function () use ($page) {
-            if (! $page->has('css', 'body.logged-in')) {
-                throw new ExpectationException('The user is not logged-in.', $this->getSession()->getDriver());
+            if (! $this->loggedIn()) {
+                throw new ExpectationException('The user could not be logged-in.', $this->getSession()->getDriver());
             }
         });
     }
@@ -154,12 +147,7 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      */
     public function logOut()
     {
-        if (! $this->user_authenticated) {
-            return;
-        }
-
         $this->visitPath('wp-login.php?action=logout');
-        $this->user_authenticated = false;
     }
 
     /**
@@ -167,9 +155,19 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      *
      * @return bool
      */
-    public function isUserAuthenticated()
+    public function loggedIn()
     {
-        return (bool) $this->user_authenticated;
+        $page = $this->getSession()->getPage();
+
+        // Look for a selector to determine if the user is logged in.
+        try {
+            return $page->has('css', 'body.logged-in');
+
+        // This may fail if the user has not loaded any site yet.
+        } catch (DriverException $e) {
+        }
+
+        return false;
     }
 
     /**
