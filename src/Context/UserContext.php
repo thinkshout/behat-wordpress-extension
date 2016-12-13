@@ -24,16 +24,7 @@ class UserContext extends RawWordpressContext
     public function thereAreUsers(TableNode $users)
     {
         foreach ($users->getHash() as $user) {
-            $result = wp_insert_user($user);
-
-            if (is_wordpress_error($result)) {
-                throw new InvalidArgumentException(
-                    sprintf(
-                        'Invalid user information schema: %s',
-                        $result->get_error_message()
-                    )
-                );
-            }
+            $this->createUser($user['user_login'], $user['user_email'], $user);
         }
     }
 }
