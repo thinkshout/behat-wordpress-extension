@@ -24,7 +24,7 @@ Provides step definitions that are specific to the WordPress dashboard (wp-admin
 
 ## SiteContext
 
-Provides step definitions for managing plugins and themes.
+Provides step definitions for managing plugins, themes, and cache.
 
 
 ## UserContext
