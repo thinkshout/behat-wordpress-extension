@@ -19,13 +19,24 @@ class UserContext extends RawWordpressContext
      *
      * @Given /^there are users:/
      *
-     * @param TableNode $users
+     * @param TableNode $new_users
      */
-    public function thereAreUsers(TableNode $users)
+    public function thereAreUsers(TableNode $new_users)
     {
-        foreach ($users->getHash() as $user) {
-            $this->createUser($user['user_login'], $user['user_email'], $user);
+        $params = $this->getWordpressParameters();
+
+        foreach ($new_users->getHash() as $new) {
+            $this->createUser($new['user_login'], $new['user_email'], $new);
+
+            // Store new users by username, not by role (unlike what the docs say).
+            $id = strtolower($new['user_login']);
+            $params['users'][$id] = array(
+                'username' = $new['user_login'],
+                'password' = $new['user_pass'],
+            );
         }
+
+        $this->setWordpressParameters($params);
     }
 
     /**
