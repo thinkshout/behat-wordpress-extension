@@ -31,8 +31,8 @@ class UserContext extends RawWordpressContext
             // Store new users by username, not by role (unlike what the docs say).
             $id = strtolower($new['user_login']);
             $params['users'][$id] = array(
-                'username' = $new['user_login'],
-                'password' = $new['user_pass'],
+                'username' => $new['user_login'],
+                'password' => $new['user_pass'],
             );
         }
 
