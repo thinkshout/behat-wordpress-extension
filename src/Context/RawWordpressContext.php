@@ -96,6 +96,8 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * by retrying the action for a given number of attempts, each delayed by 1 second. The closure is expected to
      * throw an exception should the expected state not (yet) exist.
      *
+     * To avoid doubt, you should only need to spin when waiting for an AJAX response, after initial page load.
+     *
      * @param callable $closure Action to execute.
      * @param int      $wait    Optional. How long to wait before giving up, in seconds.
      */
