@@ -24,3 +24,7 @@ default:
 
     PaulGibbs\WordpressBehatExtension:
       path: /path/to/wordpress
+      users:
+        admin:
+          username: admin
+          password: admin
