@@ -139,11 +139,9 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
         $page->fillField('user_pass', $password);
         $page->findButton('wp-submit')->click();
 
-        $this->spins(function () use ($page) {
-            if (! $this->loggedIn()) {
-                throw new ExpectationException('The user could not be logged-in.', $this->getSession()->getDriver());
-            }
-        });
+        if (! $this->loggedIn()) {
+            throw new ExpectationException('The user could not be logged-in.', $this->getSession()->getDriver());
+        }
     }
 
     /**
