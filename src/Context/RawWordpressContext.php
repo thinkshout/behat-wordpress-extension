@@ -96,22 +96,25 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * throw an exception should the expected state not (yet) exist.
      *
      * @param callable $closure Action to execute.
-     * @param int      $tries  Optional. Number of attempts to make before giving up.
+     * @param int      $wait    Optional. How long to wait before giving up, in seconds.
      */
-    public function spins(callable $closure, $tries = 10)
+    public function spins(callable $closure, $wait = 60)
     {
-        for ($i = 0; $i <= $tries; $i++) {
+        $error     = null;
+        $stop_time = time() + $wait;
+
+        while (time() < $stop_time) {
             try {
                 call_user_func($closure);
                 return;
             } catch (\Exception $e) {
-                if ($i === $tries) {
-                    throw $e;
-                }
+                $error = $e;
             }
 
-            sleep(1);
+            usleep(250000);
         }
+
+        throw $error;
     }
 
     /**
@@ -145,6 +148,7 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      */
     public function logOut()
     {
+        $this->visitPath('wp-admin/');
         $this->visitPath('wp-login.php?action=logout');
     }
 
