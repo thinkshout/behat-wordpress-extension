@@ -149,8 +149,28 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      */
     public function logOut()
     {
-        $this->visitPath('wp-admin/');
-        $this->visitPath('wp-login.php?action=logout');
+        $has_toolbar = false;
+        $page        = $this->getSession()->getPage();
+
+        try {
+            $has_toolbar = $page->has('css', '#wp-admin-bar-logout');
+
+        // This may fail if the user has not loaded any site yet.
+        } catch (DriverException $e) {
+        }
+
+        // No toolbar? Go to wp-admin, and check again.
+        if (! $has_toolbar) {
+            $this->visitPath('wp-admin/');
+            $has_toolbar = $page->has('css', '#wp-admin-bar-logout');
+        }
+
+        // No toolbar? User must be anonymous.
+        if (! $has_toolbar) {
+            return;
+        }
+
+        $page->find('css', '#wp-admin-bar-logout a')->click();
     }
 
     /**
