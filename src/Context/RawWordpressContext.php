@@ -1,8 +1,6 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\Context;
 
-use RuntimeException;
-
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\RawMinkContext;
