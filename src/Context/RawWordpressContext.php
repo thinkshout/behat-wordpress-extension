@@ -2,6 +2,7 @@
 namespace PaulGibbs\WordpressBehatExtension\Context;
 
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Mink\Exception\DriverException;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\RawMinkContext;
 
