@@ -21,7 +21,7 @@ class WpapiDriver extends BaseDriver
     /**
      * Constructor.
      *
-     * @param string $path Absolute path to WordPress site's files. This or $alias must be not falsey.
+     * @param string $path Absolute path to WordPress site's files.
      */
     public function __construct($path)
     {
