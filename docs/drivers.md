@@ -20,7 +20,8 @@ Create users.                            | Yes                        | Yes     
 Manage plugins.                          | Yes                        | Yes           | No
 Switch theme.                            | Yes                        | Yes           | No
 Clear cache.                             | Yes                        | Yes           | No
-Import/export MySQL backup.              | Yes                        | No            | No
+Database import/export.                  | Yes                        | No            | No
+Database transactions.                   | No                         | Yes           | No
 Run tests and site on different servers. | Yes<sup>[1](#WP-CLI)</sup> | No            | Yes
 
 1. WP-CLI <a href="https://wp-cli.org/blog/version-0.24.0.html#but-wait-whats-the-ssh-in-there" id="WP-CLI">supports SSH connections</a> to remote WordPress sites.

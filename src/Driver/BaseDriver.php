@@ -196,4 +196,20 @@ abstract class BaseDriver implements DriverInterface
     {
         throw new UnsupportedDriverActionException('delete users in ' . self::class);
     }
+
+    /**
+     * Start a database transaction.
+     */
+    public function startTransaction()
+    {
+        throw new UnsupportedDriverActionException('start a database transaction in ' . self::class);
+    }
+
+    /**
+     * End (rollback) a database transaction.
+     */
+    public function endTransaction()
+    {
+        throw new UnsupportedDriverActionException('end (rollback) a database transaction ' . self::class);
+    }
 }

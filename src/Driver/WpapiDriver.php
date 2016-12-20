@@ -304,6 +304,30 @@ class WpapiDriver extends BaseDriver
         }
     }
 
+    /**
+     * Start a database transaction.
+     *
+     * Violating dependency injection because WordPress.
+     */
+    public function startTransaction()
+    {
+        global $wpdb;
+
+        $wpdb->query('SET autocommit = 0;');
+        $wpdb->query('START TRANSACTION;');
+    }
+
+    /**
+     * End (rollback) a database transaction.
+     *
+     * Violating dependency injection because WordPress.
+     */
+    public function endTransaction()
+    {
+        global $wpdb;
+        $wpdb->query('ROLLBACK;');
+    }
+
 
     /*
      * Internal helpers.

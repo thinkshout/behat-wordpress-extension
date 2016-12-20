@@ -365,4 +365,20 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
     {
         $this->getDriver()->deleteUser($id, $args);
     }
+
+    /**
+     * Start a database transaction.
+     */
+    public function startTransaction()
+    {
+        $this->getDriver()->startTransaction();
+    }
+
+    /**
+     * End (rollback) a database transaction.
+     */
+    public function endTransaction()
+    {
+        $this->getDriver()->endTransaction();
+    }
 }

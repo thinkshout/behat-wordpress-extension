@@ -138,4 +138,14 @@ interface DriverInterface
      * @param array $args Optional. Extra parameters to pass to WordPress.
      */
     public function deleteUser($id, $args = []);
+
+    /**
+     * Start a database transaction.
+     */
+    public function startTransaction();
+
+    /**
+     * End (rollback) a database transaction.
+     */
+    public function endTransaction();
 }
