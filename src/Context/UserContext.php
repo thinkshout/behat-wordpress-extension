@@ -40,6 +40,38 @@ class UserContext extends RawWordpressContext
     }
 
     /**
+     * Add user account, and go to their author archive page.
+     *
+     * Example: Given I am viewing an author archive:
+     *     | user_login | user_pass | user_email        | role          |
+     *     | admin      | admin     | admin@example.com | administrator |
+     *
+     * @Given /^(?:I am|they are) viewing an author archive:/
+     *
+     * @param TableNode $user_data
+     */
+    public function iAmViewingAuthorArchive(TableNode $user_data)
+    {
+        $params = $this->getWordpressParameters();
+
+        // Create user.
+        $data     = $user_data->getHash();
+        $new_user = $this->createUser($data['user_login'], $data['user_email'], $data);
+
+        // Store new users by username, not by role (unlike what the docs say).
+        $id = strtolower($data['user_login']);
+        $params['users'][$id] = array(
+            'username' => $data['user_login'],
+            'password' => $data['user_pass'],
+        );
+
+        $this->setWordpressParameters($params);
+
+        // Navigate to archive.
+        $this->visitPath( sprintf('author/%s/', $new_user['slug'] ) );
+    }
+
+    /**
      * Log user out.
      *
      * Example: Given I am an anonymous user
