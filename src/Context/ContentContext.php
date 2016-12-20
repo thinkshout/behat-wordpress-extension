@@ -25,4 +25,21 @@ class ContentContext extends RawWordpressContext
             $this->createContent($post);
         }
     }
+
+    /**
+     * Create content, and go to it in the browser.
+     *
+     * Example: Given I am viewing a post:
+     *     | post_type | post_title | post_content | post_status |
+     *     | page      | Tes Post   | Hello World  | publish     |
+     *
+     * @Given /^(?:I am|they are) viewing a (?:blog) post:/
+     *
+     * @param TableNode $post_data
+     */
+    public function iAmViewingBlogPost(TableNode $post_data)
+    {
+        $post = $this->createContent($post_data->getHash());
+        $this->visitPath(sprintf('?p=%d', (int) $post['id']));
+    }
 }
