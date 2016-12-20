@@ -133,7 +133,10 @@ class WpapiDriver extends BaseDriver
      * @param string $term
      * @param string $taxonomy
      * @param array  $args     Optional. Set the values of the new term.
-     * @return int Term ID.
+     * @return array {
+     *     @type int    $id   Term ID.
+     *     @type string $slug Term slug.
+     * }
      */
     public function createTerm($term, $taxonomy, $args = [])
     {
@@ -150,7 +153,10 @@ class WpapiDriver extends BaseDriver
             );
         }
 
-        return $new_term['term_id'];
+        return array(
+            'id'   => $new_term['term_id'],
+            'slug' => get_term($new_term['term_id'], $taxonomy)->slug,
+        );
     }
 
     /**
@@ -177,23 +183,29 @@ class WpapiDriver extends BaseDriver
      * Create content.
      *
      * @param array $args Set the values of the new content item.
-     * @return int Content ID.
+     * @return array {
+     *     @type int    $id   Content ID.
+     *     @type string $slug Content slug.
+     * }
      */
     public function createContent($args)
     {
-        $args     = wp_slash($args);
-        $new_post = wp_insert_post($args);
+        $args = wp_slash($args);
+        $post = wp_insert_post($args);
 
-        if (is_wordpress_error($new_post)) {
+        if (is_wordpress_error($post)) {
             throw new UnexpectedValueException(
                 sprintf(
                     'WordPress API driver failed creating new content: %s',
-                    $new_post->get_error_message()
+                    $post->get_error_message()
                 )
             );
         }
 
-        return $new_post;
+        return array(
+            'id'   => $post,
+            'slug' => get_post($post)->post_name,
+        );
     }
 
     /**
@@ -215,15 +227,19 @@ class WpapiDriver extends BaseDriver
      * Create a comment.
      *
      * @param array $args Set the values of the new comment.
-     * @return int Comment ID.
+     * @return array {
+     *     @type int $id Content ID.
+     * }
      */
     public function createComment($args)
     {
-        $result = wp_new_comment($args);
+        $comment_id = wp_new_comment($args);
 
-        if (! $result) {
+        if (! $comment_id) {
             throw new UnexpectedValueException("WordPress API driver failed creating a new comment.");
         }
+
+        return array('id' => $comment_id);
     }
 
     /**
@@ -247,7 +263,10 @@ class WpapiDriver extends BaseDriver
      * @param string $user_login User login name.
      * @param string $user_email User email address.
      * @param array  $args       Optional. Extra parameters to pass to WordPress.
-     * @return int User ID.
+     * @return array {
+     *     @type int    $id   User ID.
+     *     @type string $slug User slug (nicename).
+     * }
      */
     public function createUser($user_login, $user_email, $args = [])
     {
@@ -264,7 +283,10 @@ class WpapiDriver extends BaseDriver
             );
         }
 
-        return $new_user;
+        return array(
+            'id'   => $new_user,
+            'slug' => get_userdata($new_user)->user_nicename,
+        );
     }
 
     /**

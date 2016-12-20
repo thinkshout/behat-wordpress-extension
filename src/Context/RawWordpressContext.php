@@ -249,7 +249,10 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * @param string $term
      * @param string $taxonomy
      * @param array  $args     Optional. Set the values of the new term.
-     * @return int Term ID.
+     * @return array {
+     *     @type int    $id   Term ID.
+     *     @type string $slug Term slug.
+     * }
      */
     public function createTerm($term, $taxonomy, $args = [])
     {
@@ -271,7 +274,10 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * Create content.
      *
      * @param array $args Set the values of the new content item.
-     * @return int Content ID.
+     * @return array {
+     *     @type int    $id   Content ID.
+     *     @type string $slug Content slug.
+     * }
      */
     public function createContent($args)
     {
@@ -293,7 +299,9 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * Create a comment.
      *
      * @param array $args Set the values of the new comment.
-     * @return int Content ID.
+     * @return array {
+     *     @type int $id Content ID.
+     * }
      */
     public function createComment($args)
     {
@@ -337,7 +345,10 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * @param string $user_login User login name.
      * @param string $user_email User email address.
      * @param array  $args       Optional. Extra parameters to pass to WordPress.
-     * @return int User ID.
+     * @return array {
+     *     @type int    $id   User ID.
+     *     @type string $slug User slug (nicename).
+     * }
      */
     public function createUser($user_login, $user_email, $args = [])
     {
