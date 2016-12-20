@@ -1,13 +1,15 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\Context;
 
+use Behat\Gherkin\Node\TableNode;
+
 /**
  * Provides step definitions for creating content: post types, comments, and terms.
  */
 class ContentContext extends RawWordpressContext
 {
     /**
-     * Create content of the fiven type.
+     * Create content of the given type.
      *
      * Example: Given there are posts:
      *     | post_type | post_title | post_content | post_status |

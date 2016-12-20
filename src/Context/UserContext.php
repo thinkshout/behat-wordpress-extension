@@ -19,20 +19,20 @@ class UserContext extends RawWordpressContext
      *
      * @Given /^(?:there are|there is a) users?:/
      *
-     * @param TableNode $new_users
+     * @param TableNode $users
      */
-    public function thereAreUsers(TableNode $new_users)
+    public function thereAreUsers(TableNode $users)
     {
         $params = $this->getWordpressParameters();
 
-        foreach ($new_users->getHash() as $new) {
-            $this->createUser($new['user_login'], $new['user_email'], $new);
+        foreach ($users->getHash() as $user) {
+            $this->createUser($user['user_login'], $user['user_email'], $user);
 
             // Store new users by username, not by role (unlike what the docs say).
-            $id = strtolower($new['user_login']);
+            $id = strtolower($user['user_login']);
             $params['users'][$id] = array(
-                'username' => $new['user_login'],
-                'password' => $new['user_pass'],
+                'username' => $user['user_login'],
+                'password' => $user['user_pass'],
             );
         }
 
@@ -55,20 +55,20 @@ class UserContext extends RawWordpressContext
         $params = $this->getWordpressParameters();
 
         // Create user.
-        $data     = $user_data->getHash();
-        $new_user = $this->createUser($data['user_login'], $data['user_email'], $data);
+        $user     = $user_data->getHash();
+        $new_user = $this->createUser($user['user_login'], $user['user_email'], $user);
 
         // Store new users by username, not by role (unlike what the docs say).
-        $id = strtolower($data['user_login']);
+        $id = strtolower($user['user_login']);
         $params['users'][$id] = array(
-            'username' => $data['user_login'],
-            'password' => $data['user_pass'],
+            'username' => $user['user_login'],
+            'password' => $user['user_pass'],
         );
 
         $this->setWordpressParameters($params);
 
         // Navigate to archive.
-        $this->visitPath( sprintf('author/%s/', $new_user['slug'] ) );
+        $this->visitPath(sprintf('author/%s/', $new_user['slug']));
     }
 
     /**
