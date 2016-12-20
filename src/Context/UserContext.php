@@ -17,7 +17,7 @@ class UserContext extends RawWordpressContext
      *     | user_login | user_pass | user_email        | role          |
      *     | admin      | admin     | admin@example.com | administrator |
      *
-     * @Given /^there are users:/
+     * @Given /^(?:there are|there is a) users?:/
      *
      * @param TableNode $new_users
      */
