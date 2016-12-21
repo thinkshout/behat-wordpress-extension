@@ -33,16 +33,17 @@ PaulGibbs\WordpressBehatExtension:
     subscriber:
       username: subscriber
       password: subscriber
+  permalinks:
+    author_archive: author/%s/
 ```
 
 Option             | Default value | Description
 -------------------| ------------- | -----------
-`default_driver`   | **wpcli**     | The [driver](drivers.html) to use ("wpcli", "wpapi", "blackbox").
+`default_driver`   | _wpcli_       | The [driver](drivers.html) to use ("wpcli", "wpapi", "blackbox").
 `path`             | _null_        | _Optional_. Path to WordPress files.
 `wpcli.alias`      | _null_        | _Optional_. [WP-CLI alias](https://wp-cli.org/commands/cli/alias/) (preferred over `wpcli.path`).
-`wpcli.users`      | _see example_ | Keys must match names of WordPress roles.
-`users.*.username` |               | The name of a user with the specified role.
-`users.*.password` |               | The password of a user with the specified role.
+`users.*`          | _see example_ | Keys must match names of WordPress roles.
+`permalinks.*`     | _see example_ | Permalink pattern for the specified kind of link.<br>`%s` is replaced with user ID/nicename/etc, as appropriate.
 
 
 ## Behat\MinkExtension
