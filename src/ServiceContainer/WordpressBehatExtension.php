@@ -168,6 +168,16 @@ class WordpressBehatExtension implements ExtensionInterface
                     ->end()
                 ->end()
 
+                // Permalink patterns.
+                ->arrayNode('permalinks')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('author_archive')
+                            ->defaultValue('author/%s/')
+                        ->end()
+                    ->end()
+                ->end()
+
             ->end()
         ->end();
     }
