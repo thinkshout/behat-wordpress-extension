@@ -88,7 +88,6 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
         return $this->wordpress_parameters;
     }
 
-
    /**
      * Get active WordPress Driver.
      *
