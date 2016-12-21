@@ -79,6 +79,17 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
     }
 
     /**
+     * Get all WordPress parameters.
+     *
+     * @return array
+    */
+    public function getWordpressParameters()
+    {
+        return $this->wordpress_parameters;
+    }
+
+
+   /**
      * Get active WordPress Driver.
      *
      * @param string $name Optional. Name of specific driver to retrieve.
