@@ -68,7 +68,10 @@ class UserContext extends RawWordpressContext
         $this->setWordpressParameters($params);
 
         // Navigate to archive.
-        $this->visitPath(sprintf('author/%s/', $new_user['slug']));
+        $this->visitPath(sprintf(
+            $params['permalinks']['author_archive'],
+            $new_user['slug']
+        ));
     }
 
     /**
