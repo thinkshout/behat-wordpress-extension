@@ -80,7 +80,10 @@ abstract class BaseDriver implements DriverInterface
      * @param string $term
      * @param string $taxonomy
      * @param array  $args     Optional. Set the values of the new term.
-     * @return int Term ID.
+     * @return array {
+     *     @type int    $id   Term ID.
+     *     @type string $slug Term slug.
+     * }
      */
     public function createTerm($term, $taxonomy, $args = [])
     {
@@ -102,7 +105,10 @@ abstract class BaseDriver implements DriverInterface
      * Create content.
      *
      * @param array $args Set the values of the new content item.
-     * @return int Content ID.
+     * @return array {
+     *     @type int    $id   Content ID.
+     *     @type string $slug Content slug.
+     * }
      */
     public function createContent($args)
     {
@@ -124,7 +130,9 @@ abstract class BaseDriver implements DriverInterface
      * Create a comment.
      *
      * @param array $args Set the values of the new comment.
-     * @return int Content ID.
+     * @return array {
+     *     @type int $id Content ID.
+     * }
      */
     public function createComment($args)
     {
@@ -160,5 +168,48 @@ abstract class BaseDriver implements DriverInterface
     public function importDatabase($import_file)
     {
         throw new UnsupportedDriverActionException('import the database in ' . self::class);
+    }
+
+    /**
+     * Create a user.
+     *
+     * @param string $user_login User login name.
+     * @param string $user_email User email address.
+     * @param array  $args       Optional. Extra parameters to pass to WordPress.
+     * @return array {
+     *     @type int    $id   User ID.
+     *     @type string $slug User slug (nicename).
+     * }
+     */
+    public function createUser($user_login, $user_email, $args = [])
+    {
+        throw new UnsupportedDriverActionException('create users in ' . self::class);
+    }
+
+    /**
+     * Delete a user.
+     *
+     * @param int   $id   ID of user to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteUser($id, $args = [])
+    {
+        throw new UnsupportedDriverActionException('delete users in ' . self::class);
+    }
+
+    /**
+     * Start a database transaction.
+     */
+    public function startTransaction()
+    {
+        throw new UnsupportedDriverActionException('start a database transaction in ' . self::class);
+    }
+
+    /**
+     * End (rollback) a database transaction.
+     */
+    public function endTransaction()
+    {
+        throw new UnsupportedDriverActionException('end (rollback) a database transaction ' . self::class);
     }
 }

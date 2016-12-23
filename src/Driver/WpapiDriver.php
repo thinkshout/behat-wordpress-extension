@@ -3,6 +3,7 @@ namespace PaulGibbs\WordpressBehatExtension\Driver;
 
 use RuntimeException;
 use UnexpectedValueException;
+use function PaulGibbs\WordpressBehatExtension\is_wordpress_error;
 
 /**
  * Connect Behat to WordPress by loading WordPress directly into the global scope.
@@ -20,7 +21,7 @@ class WpapiDriver extends BaseDriver
     /**
      * Constructor.
      *
-     * @param string $path Absolute path to WordPress site's files. This or $alias must be not falsey.
+     * @param string $path Absolute path to WordPress site's files.
      */
     public function __construct($path)
     {
@@ -132,7 +133,10 @@ class WpapiDriver extends BaseDriver
      * @param string $term
      * @param string $taxonomy
      * @param array  $args     Optional. Set the values of the new term.
-     * @return int Term ID.
+     * @return array {
+     *     @type int    $id   Term ID.
+     *     @type string $slug Term slug.
+     * }
      */
     public function createTerm($term, $taxonomy, $args = [])
     {
@@ -140,11 +144,19 @@ class WpapiDriver extends BaseDriver
         $term     = wp_slash($term);
         $new_term = wp_insert_term($term, $taxonomy, $args);
 
-        if (is_object($new_term) && get_class($new_term) === 'WP_Error') {
-            throw new UnexpectedValueException("WordPress API driver failed creating a new term.");
+        if (is_wordpress_error($new_term)) {
+            throw new UnexpectedValueException(
+                sprintf(
+                    'WordPress API driver failed creating a new term: %s',
+                    $new_term->get_error_message()
+                )
+            );
         }
 
-        return $new_term['term_id'];
+        return array(
+            'id'   => $new_term['term_id'],
+            'slug' => get_term($new_term['term_id'], $taxonomy)->slug,
+        );
     }
 
     /**
@@ -157,8 +169,13 @@ class WpapiDriver extends BaseDriver
     {
         $result = wp_delete_term($term_id, $taxonomy);
 
-        if (is_object($result) && get_class($result) === 'WP_Error') {
-            throw new UnexpectedValueException("WordPress API driver failed deleting a new term.");
+        if (is_wordpress_error($result)) {
+            throw new UnexpectedValueException(
+                sprintf(
+                    'WordPress API driver failed deleting a new term: %s',
+                    $result->get_error_message()
+                )
+            );
         }
     }
 
@@ -166,18 +183,29 @@ class WpapiDriver extends BaseDriver
      * Create content.
      *
      * @param array $args Set the values of the new content item.
-     * @return int Content ID.
+     * @return array {
+     *     @type int    $id   Content ID.
+     *     @type string $slug Content slug.
+     * }
      */
     public function createContent($args)
     {
-        $args     = wp_slash($args);
-        $new_post = wp_insert_post($args);
+        $args = wp_slash($args);
+        $post = wp_insert_post($args);
 
-        if (is_object($new_post) && get_class($new_post) === 'WP_Error') {
-            throw new UnexpectedValueException("WordPress API driver failed creating new content.");
+        if (is_wordpress_error($post)) {
+            throw new UnexpectedValueException(
+                sprintf(
+                    'WordPress API driver failed creating new content: %s',
+                    $post->get_error_message()
+                )
+            );
         }
 
-        return $new_post;
+        return array(
+            'id'   => $post,
+            'slug' => get_post($post)->post_name,
+        );
     }
 
     /**
@@ -199,15 +227,19 @@ class WpapiDriver extends BaseDriver
      * Create a comment.
      *
      * @param array $args Set the values of the new comment.
-     * @return int Comment ID.
+     * @return array {
+     *     @type int $id Content ID.
+     * }
      */
     public function createComment($args)
     {
-        $result = wp_new_comment($args);
+        $comment_id = wp_new_comment($args);
 
-        if (! $result) {
+        if (! $comment_id) {
             throw new UnexpectedValueException("WordPress API driver failed creating a new comment.");
         }
+
+        return array('id' => $comment_id);
     }
 
     /**
@@ -223,6 +255,77 @@ class WpapiDriver extends BaseDriver
         if (! $result) {
             throw new UnexpectedValueException("WordPress API driver failed deleting a comment.");
         }
+    }
+
+    /**
+     * Create a user.
+     *
+     * @param string $user_login User login name.
+     * @param string $user_email User email address.
+     * @param array  $args       Optional. Extra parameters to pass to WordPress.
+     * @return array {
+     *     @type int    $id   User ID.
+     *     @type string $slug User slug (nicename).
+     * }
+     */
+    public function createUser($user_login, $user_email, $args = [])
+    {
+        $user     = compact($user_login, $user_email);
+        $args     = array_merge(wp_slash($user), wp_slash($args));
+        $new_user = wp_insert_user($args);
+
+        if (is_wordpress_error($new_user)) {
+            throw new UnexpectedValueException(
+                sprintf(
+                    'WordPress API driver failed creating new user: %s',
+                    $new_user->get_error_message()
+                )
+            );
+        }
+
+        return array(
+            'id'   => $new_user,
+            'slug' => get_userdata($new_user)->user_nicename,
+        );
+    }
+
+    /**
+     * Delete a user.
+     *
+     * @param int   $id   ID of user to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteUser($id, $args = [])
+    {
+        $result = wp_delete_user($id, $args);
+
+        if (! $result) {
+            throw new UnexpectedValueException("WordPress API driver failed deleting user.");
+        }
+    }
+
+    /**
+     * Start a database transaction.
+     *
+     * Violating dependency injection because WordPress.
+     */
+    public function startTransaction()
+    {
+        global $wpdb;
+
+        $wpdb->query('SET autocommit = 0;');
+        $wpdb->query('START TRANSACTION;');
+    }
+
+    /**
+     * End (rollback) a database transaction.
+     *
+     * Violating dependency injection because WordPress.
+     */
+    public function endTransaction()
+    {
+        global $wpdb;
+        $wpdb->query('ROLLBACK;');
     }
 
 

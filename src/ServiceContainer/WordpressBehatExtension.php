@@ -16,6 +16,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use PaulGibbs\WordpressBehatExtension\Compiler\DriverPass;
 
 use InvalidArgumentException;
+use RuntimeException;
 
 /**
  * Main part of the Behat extension.
@@ -35,6 +36,8 @@ class WordpressBehatExtension implements ExtensionInterface
     public function __construct(ServiceProcessor $processor = null)
     {
         $this->processor = $processor ?: new ServiceProcessor();
+
+        require_once dirname( __FILE__ ) . '/../utility.php';
     }
 
     /**
@@ -162,6 +165,16 @@ class WordpressBehatExtension implements ExtensionInterface
                 ->arrayNode('blackbox')
                     ->addDefaultsIfNotSet()
                     ->children()
+                    ->end()
+                ->end()
+
+                // Permalink patterns.
+                ->arrayNode('permalinks')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('author_archive')
+                            ->defaultValue('author/%s/')
+                        ->end()
                     ->end()
                 ->end()
 

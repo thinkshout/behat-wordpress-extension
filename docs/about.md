@@ -21,3 +21,8 @@ The extension provides [step definitions](http://docs.behat.org/en/latest/user_g
 * Manage themes and plugins.
 * Manipulate site content.
 * And more!
+
+
+## Contributions are welcomed!
+
+If you encounter a bug, have a suggestion, or would like to help the project grow, please get in contact via [Github](https://github.com/paulgibbs/behat-wordpress-extension). Thank you!

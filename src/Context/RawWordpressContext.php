@@ -1,9 +1,8 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\Context;
 
-use RuntimeException;
-
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Mink\Exception\DriverException;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\RawMinkContext;
 
@@ -29,13 +28,6 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * @var array
      */
     protected $wordpress_parameters;
-
-    /**
-     * Is a user currently authenticated?
-     *
-     * @var bool
-     */
-    protected $user_authenticated = false;
 
 
     /**
@@ -87,6 +79,16 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
     }
 
     /**
+     * Get all WordPress parameters.
+     *
+     * @return array
+    */
+    public function getWordpressParameters()
+    {
+        return $this->wordpress_parameters;
+    }
+
+   /**
      * Get active WordPress Driver.
      *
      * @param string $name Optional. Name of specific driver to retrieve.
@@ -104,23 +106,28 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * by retrying the action for a given number of attempts, each delayed by 1 second. The closure is expected to
      * throw an exception should the expected state not (yet) exist.
      *
+     * To avoid doubt, you should only need to spin when waiting for an AJAX response, after initial page load.
+     *
      * @param callable $closure Action to execute.
-     * @param int      $tries  Optional. Number of attempts to make before giving up.
+     * @param int      $wait    Optional. How long to wait before giving up, in seconds.
      */
-    public function spins(callable $closure, $tries = 10)
+    public function spins(callable $closure, $wait = 60)
     {
-        for ($i = 0; $i <= $tries; $i++) {
+        $error     = null;
+        $stop_time = time() + $wait;
+
+        while (time() < $stop_time) {
             try {
                 call_user_func($closure);
                 return;
             } catch (\Exception $e) {
-                if ($i === $tries) {
-                    throw $e;
-                }
+                $error = $e;
             }
 
-            sleep(1);
+            usleep(250000);
         }
+
+        throw $error;
     }
 
     /**
@@ -131,8 +138,8 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      */
     public function logIn($username, $password)
     {
-        if ($this->user_authenticated) {
-            return;
+        if ($this->loggedIn()) {
+            $this->logOut();
         }
 
         $this->visitPath('wp-login.php?redirect_to=' . urlencode($this->locatePath('/')));
@@ -142,11 +149,9 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
         $page->fillField('user_pass', $password);
         $page->findButton('wp-submit')->click();
 
-        $this->spins(function () use ($page) {
-            if (! $page->has('css', 'body.logged-in')) {
-                throw new ExpectationException('The user is not logged-in.', $this->getSession()->getDriver());
-            }
-        });
+        if (! $this->loggedIn()) {
+            throw new ExpectationException('The user could not be logged-in.', $this->getSession()->getDriver());
+        }
     }
 
     /**
@@ -154,12 +159,28 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      */
     public function logOut()
     {
-        if (! $this->user_authenticated) {
+        $has_toolbar = false;
+        $page        = $this->getSession()->getPage();
+
+        try {
+            $has_toolbar = $page->has('css', '#wp-admin-bar-logout');
+
+        // This may fail if the user has not loaded any site yet.
+        } catch (DriverException $e) {
+        }
+
+        // No toolbar? Go to wp-admin, and check again.
+        if (! $has_toolbar) {
+            $this->visitPath('wp-admin/');
+            $has_toolbar = $page->has('css', '#wp-admin-bar-logout');
+        }
+
+        // No toolbar? User must be anonymous.
+        if (! $has_toolbar) {
             return;
         }
 
-        $this->visitPath('wp-login.php?action=logout');
-        $this->user_authenticated = false;
+        $page->find('css', '#wp-admin-bar-logout a')->click();
     }
 
     /**
@@ -167,9 +188,19 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      *
      * @return bool
      */
-    public function isUserAuthenticated()
+    public function loggedIn()
     {
-        return (bool) $this->user_authenticated;
+        $page = $this->getSession()->getPage();
+
+        // Look for a selector to determine if the user is logged in.
+        try {
+            return $page->has('css', 'body.logged-in');
+
+        // This may fail if the user has not loaded any site yet.
+        } catch (DriverException $e) {
+        }
+
+        return false;
     }
 
     /**
@@ -228,7 +259,10 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * @param string $term
      * @param string $taxonomy
      * @param array  $args     Optional. Set the values of the new term.
-     * @return int Term ID.
+     * @return array {
+     *     @type int    $id   Term ID.
+     *     @type string $slug Term slug.
+     * }
      */
     public function createTerm($term, $taxonomy, $args = [])
     {
@@ -250,7 +284,10 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * Create content.
      *
      * @param array $args Set the values of the new content item.
-     * @return int Content ID.
+     * @return array {
+     *     @type int    $id   Content ID.
+     *     @type string $slug Content slug.
+     * }
      */
     public function createContent($args)
     {
@@ -272,7 +309,9 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
      * Create a comment.
      *
      * @param array $args Set the values of the new comment.
-     * @return int Content ID.
+     * @return array {
+     *     @type int $id Content ID.
+     * }
      */
     public function createComment($args)
     {
@@ -308,5 +347,48 @@ class RawWordpressContext extends RawMinkContext implements WordpressAwareInterf
     public function importDatabase($import_file)
     {
         $this->getDriver()->importDatabase($import_file);
+    }
+
+    /**
+     * Create a user.
+     *
+     * @param string $user_login User login name.
+     * @param string $user_email User email address.
+     * @param array  $args       Optional. Extra parameters to pass to WordPress.
+     * @return array {
+     *     @type int    $id   User ID.
+     *     @type string $slug User slug (nicename).
+     * }
+     */
+    public function createUser($user_login, $user_email, $args = [])
+    {
+        return $this->getDriver()->createUser($user_login, $user_email, $args);
+    }
+
+    /**
+     * Delete a user.
+     *
+     * @param int   $id   ID of user to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteUser($id, $args = [])
+    {
+        $this->getDriver()->deleteUser($id, $args);
+    }
+
+    /**
+     * Start a database transaction.
+     */
+    public function startTransaction()
+    {
+        $this->getDriver()->startTransaction();
+    }
+
+    /**
+     * End (rollback) a database transaction.
+     */
+    public function endTransaction()
+    {
+        $this->getDriver()->endTransaction();
     }
 }

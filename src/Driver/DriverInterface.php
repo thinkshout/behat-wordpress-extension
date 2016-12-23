@@ -52,7 +52,10 @@ interface DriverInterface
      * @param string $term
      * @param string $taxonomy
      * @param array  $args     Optional. Set the values of the new term.
-     * @return int Term ID.
+     * @return array {
+     *     @type int    $id   Term ID.
+     *     @type string $slug Term slug.
+     * }
      */
     public function createTerm($term, $taxonomy, $args = []);
 
@@ -68,7 +71,10 @@ interface DriverInterface
      * Create content.
      *
      * @param array $args Set the values of the new content item.
-     * @return int Content ID.
+     * @return array {
+     *     @type int    $id   Content ID.
+     *     @type string $slug Content slug.
+     * }
      */
     public function createContent($args);
 
@@ -84,7 +90,9 @@ interface DriverInterface
      * Create a comment.
      *
      * @param array $args Set the values of the new comment.
-     * @return int Content ID.
+     * @return array {
+     *     @type int $id Content ID.
+     * }
      */
     public function createComment($args);
 
@@ -109,4 +117,35 @@ interface DriverInterface
      * @param string $import_file Relative path and filename of SQL file to import.
      */
     public function importDatabase($import_file);
+
+    /**
+     * Create a user.
+     *
+     * @param string $user_login User login name.
+     * @param string $user_email User email address.
+     * @param array  $args       Optional. Extra parameters to pass to WordPress.
+     * @return array {
+     *     @type int    $id   User ID.
+     *     @type string $slug User slug (nicename).
+     * }
+     */
+    public function createUser($user_login, $user_email, $args = []);
+
+    /**
+     * Delete a user.
+     *
+     * @param int   $id   ID of user to delete.
+     * @param array $args Optional. Extra parameters to pass to WordPress.
+     */
+    public function deleteUser($id, $args = []);
+
+    /**
+     * Start a database transaction.
+     */
+    public function startTransaction();
+
+    /**
+     * End (rollback) a database transaction.
+     */
+    public function endTransaction();
 }

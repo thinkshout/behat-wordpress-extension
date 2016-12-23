@@ -22,7 +22,7 @@ currentMenu: installation
 1. Tell [Composer](https://getcomposer.org/) to install WordHat. To do this conveniently, run:
 
   ```Shell
-  php composer.phar require paulgibbs/behat-wordpress-extension="^0.1"
+  php composer.phar require paulgibbs/behat-wordpress-extension="dev-master"
   ```
 
   This will create a `composer.json` file for you, and download the extension.

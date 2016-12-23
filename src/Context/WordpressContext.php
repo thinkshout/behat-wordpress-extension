@@ -1,9 +1,12 @@
 <?php
 namespace PaulGibbs\WordpressBehatExtension\Context;
 
+use InvalidArgumentException;
+use Behat\Gherkin\Node\TableNode;
+use function PaulGibbs\WordpressBehatExtension\is_wordpress_error;
+
 /**
- * Provides step definitions for creating posts, comments, and terms; managing plugins, themes, and
- * the cache; the database, and much more.
+ * Provides step definitions for a range of common tasks. Recommended for all test suites.
  */
 class WordpressContext extends RawWordpressContext
 {

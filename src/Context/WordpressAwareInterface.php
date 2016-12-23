@@ -2,7 +2,6 @@
 namespace PaulGibbs\WordpressBehatExtension\Context;
 
 use Behat\Behat\Context\Context;
-
 use PaulGibbs\WordpressBehatExtension\WordpressDriverManager;
 
 /**

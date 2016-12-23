@@ -4,7 +4,11 @@ default:
       contexts:
         - FeatureContext
         - Behat\MinkExtension\Context\MinkContext
-        - PaulGibbs\WordpressBehatExtension\Context\MessageContext
+        - PaulGibbs\WordpressBehatExtension\Context\ContentContext
+        - PaulGibbs\WordpressBehatExtension\Context\DashboardContext
+        - PaulGibbs\WordpressBehatExtension\Context\SiteContext
+        - PaulGibbs\WordpressBehatExtension\Context\UserContext
+        - PaulGibbs\WordpressBehatExtension\Context\WordpressContext
 
   extensions:
     Behat\MinkExtension:
@@ -20,3 +24,7 @@ default:
 
     PaulGibbs\WordpressBehatExtension:
       path: /path/to/wordpress
+      users:
+        admin:
+          username: admin
+          password: admin

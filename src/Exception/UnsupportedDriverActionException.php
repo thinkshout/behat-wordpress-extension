@@ -2,7 +2,6 @@
 namespace PaulGibbs\WordpressBehatExtension\Exception;
 
 use PaulGibbs\WordpressBehatExtension\Driver\DriverInterface;
-
 use Exception;
 
 /**
